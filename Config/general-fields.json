@@ -1,0 +1,186 @@
+{
+  "CaseID": {
+    "type": "url",
+    "source": "caseid"
+  },
+
+  "ReportingDistrict": {
+    "type": "select",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel1_selctor1_ddlDis"
+  },
+
+  "ReportingAdministration": {
+    "type": "select",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel1_selctor1_ddlRep"
+  },
+
+  "NotificationSource": {
+    "type": "select",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel1_selctor1_ddlRep"
+  },
+
+  "IsolationPlace": {
+    "type": "radio",
+    "group": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel1_RadioButtonList1"
+  },
+
+  "AdmissionDate": {
+    "type": "text",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_cln_AdmDate_TxtDate"
+  },
+
+  "ReportDate": {
+    "type": "text",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel1_cln_RepDate_TxtDate"
+  },
+
+  "FirstName": {
+    "type": "text",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel1_txtName1"
+  },
+
+  "FatherName": {
+    "type": "text",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel1_txtName2"
+  },
+
+  "GrandFatherName": {
+    "type": "text",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel1_txtName3"
+  },
+
+  "FamilyName": {
+    "type": "text",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel1_txtName5"
+  },
+
+  "Sex": {
+    "type": "select",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_ddlSex"
+  },
+
+  "Age": {
+    "type": "text",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_txtAge"
+  },
+
+  "AgeType": {
+    "type": "select",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_ddlAgeType"
+  },
+
+  "Nationality": {
+    "type": "select",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel1_DropDownList2"
+  },
+
+  "Occupation": {
+    "type": "select",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_ddlOccupation"
+  },
+
+  "OccupationOther": {
+    "type": "text",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_txtOccupationOther"
+  },
+
+  "MaritalStatus": {
+    "type": "select",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_ddlMarStatus"
+  },
+
+  "NationalID": {
+    "type": "text",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel1_txtNationalID"
+  },
+
+  "Phone": {
+    "type": "text",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel1_txtPhoneNo"
+  },
+
+  "ResidenceGovernorate": {
+    "type": "select",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel1_ResAreaSelector1_ddlGovs"
+  },
+
+  "ResidenceDistrict": {
+    "type": "select",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel1_ResAreaSelector1_ddlDis"
+  },
+
+  "ResidenceAdministration": {
+    "type": "select",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel1_ResAreaSelector1_ddlRep"
+  },
+
+  "ResidenceStreet": {
+    "type": "text",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel1_ResAreaSelector1_txtStreet"
+  },
+
+  "DiseaseID": {
+    "type": "value",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_ddlDisease"
+  },
+
+  "DiseaseName": {
+    "type": "select",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_ddlDisease"
+  },
+
+  "OnsetDate": {
+    "type": "text",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_cln_OnsetDate_TxtDate"
+  },
+
+  "GetSampleDate1": {
+    "type": "text",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_cln_GetSampleDate1_TxtDate"
+  },
+
+  "Specimen1": {
+    "type": "select",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_ddlSpec1"
+  },
+
+  "LabTest1": {
+    "type": "select",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_ddlLabTest1"
+  },
+
+  "Result1": {
+    "type": "select",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_ddlResult1"
+  },
+
+  "GetSampleDate2": {
+    "type": "text",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_cln_GetSampleDate2_TxtDate"
+  },
+
+  "Specimen2": {
+    "type": "select",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_ddlSpec2"
+  },
+
+  "LabTest2": {
+    "type": "select",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_ddlLabTest2"
+  },
+
+  "Result2": {
+    "type": "select",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_ddlResult2"
+  },
+
+  "CaseStatus": {
+    "type": "select",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_ddlCaseStatus"
+  },
+
+  "PhysicianName": {
+    "type": "text",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_txtPhysName"
+  }
+}
