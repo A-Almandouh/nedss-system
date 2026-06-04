@@ -4,7 +4,7 @@
     "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_AnimalDeal_ddlYesNo"
   },
 
-  "AnimalAbortion": {
+  "AbortionAnimal": {
     "type": "select",
     "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_abortionAnimal_ddlYesNo"
   },
@@ -39,12 +39,12 @@
     "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_tbOtherAnimals"
   },
 
-  "RawMilk": {
+  "Milk": {
     "type": "select",
     "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_milk_ddlYesNo"
   },
 
-  "QureishCheese": {
+  "Qureish": {
     "type": "select",
     "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_Qureish_ddlYesNo"
   },
@@ -54,12 +54,12 @@
     "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_otherCheese_ddlYesNo"
   },
 
-  "StreetIceCream": {
+  "IceCream": {
     "type": "select",
     "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_ice_ddlYesNo"
   },
 
-  "OtherDairyProducts": {
+  "OtherDairy": {
     "type": "select",
     "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_OtherDairy_ddlYesNo"
   },
@@ -69,14 +69,9 @@
     "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_taste_ddlYesNo"
   },
 
-  "SimilarCasesNearby": {
+  "SimilarCases": {
     "type": "select",
     "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_casesSuffer_ddlYesNo"
-  },
-
-  "InvestigationDate": {
-    "type": "text",
-    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_Calender1_Date_TxtDate"
   },
 
   "SurveyDate": {
@@ -94,7 +89,7 @@
     "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_Common_Ext_Data1_txtOS"
   },
 
-  "AdministrationDirector": {
+  "AdministrationManager": {
     "type": "text",
     "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_Common_Ext_Data1_txtAdmin"
   }
