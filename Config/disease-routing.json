@@ -9,7 +9,13 @@
   },
 
   "3": {
-    "mode": "url",
+    "mode": "external",
     "url": "https://nedss.mohp.gov.eg/nedss/WebPages/GeneralData/Ext_SomeDisease.aspx"
+  }
+  {
+  "15": {
+    "mode": "external",
+    "url": "https://mysite.com/forms/15.html",
+    "appendCaseId": true
   }
 }
