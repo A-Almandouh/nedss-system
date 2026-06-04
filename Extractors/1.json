@@ -1,1 +1,101 @@
+{
+  "AnimalDeal": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_AnimalDeal_ddlYesNo"
+  },
 
+  "AnimalAbortion": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_abortionAnimal_ddlYesNo"
+  },
+
+  "Buffalo": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_Buffalo_ddlYesNo"
+  },
+
+  "Camel": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_Camel_ddlYesNo"
+  },
+
+  "Cow": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_Cow_ddlYesNo"
+  },
+
+  "Goat": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_Goat_ddlYesNo"
+  },
+
+  "Sheep": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_Sheep_ddlYesNo"
+  },
+
+  "OtherAnimals": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_tbOtherAnimals"
+  },
+
+  "RawMilk": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_milk_ddlYesNo"
+  },
+
+  "QureishCheese": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_Qureish_ddlYesNo"
+  },
+
+  "OtherCheese": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_otherCheese_ddlYesNo"
+  },
+
+  "StreetIceCream": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_ice_ddlYesNo"
+  },
+
+  "OtherDairyProducts": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_OtherDairy_ddlYesNo"
+  },
+
+  "BrucellaExposure": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_taste_ddlYesNo"
+  },
+
+  "SimilarCasesNearby": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_casesSuffer_ddlYesNo"
+  },
+
+  "InvestigationDate": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_Calender1_Date_TxtDate"
+  },
+
+  "SurveyDate": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_Common_Ext_Data1_SurveyDateCalender_TxtDate"
+  },
+
+  "HealthObserver": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_Common_Ext_Data1_txtOH"
+  },
+
+  "SurveillanceOfficer": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_Common_Ext_Data1_txtOS"
+  },
+
+  "AdministrationDirector": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_Common_Ext_Data1_txtAdmin"
+  }
+}
