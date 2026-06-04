@@ -1,1 +1,15 @@
 
+{
+  "1": {
+    "mode": "link"
+  },
+
+  "2": {
+    "mode": "general"
+  },
+
+  "3": {
+    "mode": "url",
+    "url": "https://nedss.mohp.gov.eg/nedss/WebPages/GeneralData/Ext_SomeDisease.aspx"
+  }
+}
