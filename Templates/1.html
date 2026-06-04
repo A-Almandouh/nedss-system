@@ -546,25 +546,26 @@ body{
     </div>
 </div>
 </div>
+<script>
+window.addEventListener("message", function (event) {
 
+    if (!event.data || event.data.type !== "FILL_DATA") return;
+
+    const data = event.data.data;
+
+    console.log("DATA RECEIVED", data);
+
+    for (const key in data) {
+
+        const el = document.querySelector(`[data-field="${key}"]`);
+
+        if (el) {
+            el.textContent = data[key] || "";
+        }
+    }
+
+    setTimeout(() => window.print(), 800);
+});
+</script>
 </body>
-    <script>
-        window.addEventListener("message", function (event) {
-        
-            if (!event.data || event.data.type !== "FILL_DATA") return;
-        
-            const data = event.data.data;
-        
-            for (const key in data) {
-        
-                const el = document.querySelector(`[data-field="${key}"]`);
-        
-                if (el) {
-                    el.textContent = data[key] || "";
-                }
-            }
-        
-            setTimeout(() => window.print(), 800);
-        });
-    </script>
-</html>
+   </html>
