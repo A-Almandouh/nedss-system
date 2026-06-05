@@ -1,21 +1,392 @@
 {
-  "3": {
+  "100": {
     "mode": "link"
   },
 
-  "68": {
+  "200": {
     "mode": "general"
   },
-
+// البروسيللا
   "1": {
     "mode": "external",
     "url": "https://nedss.mohp.gov.eg/nedss/WebPages/GeneralData/Ext_Brucellosis.aspx?action=edit&",
     "appendCaseId": true
   },
+// الدفتيريا
+"2": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
 
-  "15": {
-    "mode": "external",
-    "url": "https://mysite.com/forms/15.html",
-    "appendCaseId": true
-  }
+// إلتهاب كبدى فيروسى B
+"3": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// إلتهاب كبدى فيروسى C
+"4": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// إلتهاب كبدى حاد
+"5": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// إلتهاب كبدى فيروسى A
+"6": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// الملاريا
+"7": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// الحصبة
+"8": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// الحمى والطفح الجلدى
+"9": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// النكاف
+"10": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// السعال الديكى
+"11": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// الحصبة الألمانية
+"12": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// التيتانوس الوليدى
+"13": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// الدرن
+"14": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// التيفود
+"15": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// الشلل الرخو الحاد
+"16": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// الطاعون
+"18": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// داء الكلب
+"20": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// الكوليرا
+"21": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// التسمم الممبارى
+"22": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// إلتهاب سحائى هيموفيليس أنفلونزا
+"24": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// إلتهاب سحائى بكتيرى
+"25": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// إلتهاب سحائى درنى
+"26": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// اسهال مدمم/الدوسنتاريا
+"27": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// الفاشيولا
+"29": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// الفيلاريا
+"30": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// ليشمانيا
+"31": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// حمى الوادى المتصدع
+"32": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// التهاب بالمخ الفيروسى
+"35": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// انفلونزا الطيور (H5N1)
+"36": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// درن خارج الرئة
+"37": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// البلهارسيا
+"57": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// إلتهاب سحائى مننجوكوكى
+"59": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// إلتهاب سحائى نيموكوكى
+"60": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// التسمم الغذائى الحاد
+"61": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// الامراض التنفسية الحادة (ARI)
+"62": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// التهاب سحائى زودومونوس
+"63": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// جديرى كاذب
+"67": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// امراض الاسهال
+"68": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// التهاب سحائى
+"70": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// متلازمة الشرق الاوسط التنفسية MERS-CoV
+"72": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// التهاب كبدى غير مصنف
+"75": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// حمى الدنج
+"76": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// فيروس زيكا
+"77": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// التهاب سحائى ستاف
+"78": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// الحمى النزفية الفيروسية
+"79": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// الايبولا
+"80": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// حمى غرب النيل
+"81": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// حمى القرم
+"82": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// الحمى الصفراء
+"83": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// الجمرة الخبيثة
+"84": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// الكورونا المستجدة 19-COVID
+"85": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// شيكونجونيا
+"86": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// جدرى القردة
+"87": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+},
+
+// التراكوما
+"88": {
+"mode": "external",
+"url": "",
+"appendCaseId": true
+}
 }
