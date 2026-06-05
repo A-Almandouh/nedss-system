@@ -266,16 +266,12 @@
 
 // جديرى كاذب
 "67": {
-"mode": "external",
-"url": "",
-"appendCaseId": true
+"mode": "general"
 },
 
 // امراض الاسهال
 "68": {
-"mode": "external",
-"url": "",
-"appendCaseId": true
+"mode": "general"
 },
 
 // التهاب سحائى
