@@ -129,6 +129,11 @@
     "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_ddlDisease"
   },
 
+   "DiseaseName2": {
+    "type": "select",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_ddlDisease"
+  },
+
   "OnsetDate": {
     "type": "text",
     "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_cln_OnsetDate_TxtDate"
