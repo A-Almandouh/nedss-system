@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+ <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@gh-pages/qrcode.min.js"></script>
 <title>نموذج استقصاء</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
@@ -152,35 +152,48 @@ body{
 <div class="container-fluid">
 
 <div class="form-header">
-    <h1>
-        نموذج استقصاء لحالة
+    
+    <div class="row">
+        <div class="col-2" id="qrcode">
+             
+        </div>
+        <div class="col-8">
+           <h1>
+        نموذج تقصى لحالة
         <span data-field="DiseaseName"></span>
-    </h1>
+        
+            </h1> 
+            <br>
+            <h6>
+                (يتم استيفاؤه بواسطة الوحدات الصحية ومستشفيات الحميات والإدارات الصحية  ومديريات الصحة بالمحافظة )
+            </h6>
+        </div>
+        <div class="col-2 "><span class=" badge text-bg-secondary"> تحديث 2025</span></div>
+    </div>
 
-    <h2>
-        يتم استيفاؤه بواسطة الإدارات الصحية والوحدات الصحية
-    </h2>
+        
+    
 </div>
 
 <div class="row g-0 record">
 
     <div class="col-3">
-        <span class="lbl">المحافظة</span>
+        <span class="lbl">المحافظة : </span>
         <span class="val" data-field="ReportingGov"></span>
     </div>
 
     <div class="col-3">
-        <span class="lbl">الإدارة</span>
+        <span class="lbl">الإدارة : </span>
         <span class="val" data-field="ReportingDistrict"></span>
     </div>
 
     <div class="col-3">
-        <span class="lbl">مصدر الإبلاغ</span>
+        <span class="lbl">مصدر الإبلاغ : </span>
         <span class="val" data-field="NotificationSource"></span>
     </div>
 
     <div class="col-3">
-        <span class="lbl">مكان العزل</span>
+        <span class="lbl">مكان العزل : </span>
         <span class="val" data-field="IsolationPlace"></span>
     </div>
 
@@ -189,18 +202,18 @@ body{
 <div class="row g-0 record">
 
     <div class="col-4">
-        <span class="lbl">تاريخ الدخول</span>
+        <span class="lbl">تاريخ الدخول : </span>
         <span class="val" data-field="AdmissionDate"></span>
     </div>
 
     <div class="col-4">
-        <span class="lbl">تاريخ التقرير</span>
+        <span class="lbl"> تاريخ التقرير (الإكتشاف) : </span>
         <span class="val" data-field="ReportDate"></span>
     </div>
 
     <div class="col-4">
-        <span class="lbl">وقت الإبلاغ</span>
-        <span class="val"></span>
+        <span class="lbl">وقت الإبلاغ : </span>
+        <span class="val"> _ _ : _ _  ص / م</span>
     </div>
 
 </div>
@@ -208,22 +221,22 @@ body{
 <div class="row g-0 record">
 
     <div class="col-3">
-        <span class="lbl">اسم الحالة</span>
+        <span class="lbl">اسم المريض : </span>
         <span class="val" data-field="FirstName"></span>
     </div>
 
     <div class="col-3">
-        <span class="lbl">اسم الأب</span>
+        <span class="lbl">اسم الأب : </span>
         <span class="val" data-field="FatherName"></span>
     </div>
 
     <div class="col-3">
-        <span class="lbl">اسم الجد</span>
+        <span class="lbl">اسم الجد : </span>
         <span class="val" data-field="GrandFatherName"></span>
     </div>
 
     <div class="col-3">
-        <span class="lbl">لقب العائلة</span>
+        <span class="lbl">لقب العائلة : </span>
         <span class="val" data-field="FamilyName"></span>
     </div>
 
@@ -232,12 +245,12 @@ body{
 <div class="row g-0 record">
 
     <div class="col-4">
-        <span class="lbl">النوع</span>
+        <span class="lbl">النوع : </span>
         <span class="val" data-field="Sex"></span>
     </div>
 
     <div class="col-4">
-        <span class="lbl">العمر</span>
+        <span class="lbl">العمر : </span>
         <span class="val">
             <span data-field="Age"></span>
             <span data-field="AgeType"></span>
@@ -245,7 +258,7 @@ body{
     </div>
 
     <div class="col-4">
-        <span class="lbl">الجنسية</span>
+        <span class="lbl">الجنسية : </span>
         <span class="val" data-field="Nationality"></span>
     </div>
 
@@ -254,12 +267,12 @@ body{
 <div class="row g-0 record">
 
     <div class="col-6">
-        <span class="lbl">الوظيفة</span>
+        <span class="lbl">الوظيفة / المهنة : </span>
         <span class="val" data-field="Occupation"></span>
     </div>
 
     <div class="col-6">
-        <span class="lbl">الحالة الاجتماعية</span>
+        <span class="lbl">الحالة الاجتماعية : </span>
         <span class="val" data-field="MaritalStatus"></span>
     </div>
 
@@ -268,12 +281,12 @@ body{
 <div class="row g-0 record">
 
     <div class="col-6">
-        <span class="lbl">الرقم القومي</span>
+        <span class="lbl">الرقم القومي : </span>
         <span class="val" data-field="NationalID"></span>
     </div>
 
     <div class="col-6">
-        <span class="lbl">رقم التليفون</span>
+        <span class="lbl">رقم التليفون : </span>
         <span class="val" data-field="Phone"></span>
     </div>
 
@@ -282,17 +295,17 @@ body{
 <div class="row g-0 record">
 
     <div class="col-4">
-        <span class="lbl">محافظة السكن</span>
+        <span class="lbl">محافظة السكن : </span>
         <span class="val" data-field="ResidenceGovernorate"></span>
     </div>
 
     <div class="col-4">
-        <span class="lbl">إدارة السكن</span>
+        <span class="lbl">إدارة السكن : </span>
         <span class="val" data-field="ResidenceAdministration"></span>
     </div>
 
     <div class="col-4">
-        <span class="lbl">مكتب الصحة</span>
+        <span class="lbl">مكتب الصحة : </span>
         <span class="val" data-field="ResidenceDistrict"></span>
     </div>
 
@@ -301,7 +314,7 @@ body{
 <div class="row g-0 record">
 
     <div class="col-12">
-        <span class="lbl">العنوان بالتفصيل</span>
+        <span class="lbl">العنوان بالتفصيل : </span>
         <span class="val" data-field="ResidenceStreet"></span>
     </div>
 
@@ -310,12 +323,12 @@ body{
 <div class="row g-0 record">
 
     <div class="col-6">
-        <span class="lbl">المرض</span>
+        <span class="lbl">المرض : </span>
         <span class="val" data-field="DiseaseName2"></span>
     </div>
 
     <div class="col-6">
-        <span class="lbl">تاريخ بداية الأعراض</span>
+        <span class="lbl">تاريخ ظهور الأعراض : </span>
         <span class="val" data-field="OnsetDate"></span>
     </div>
 
@@ -324,22 +337,22 @@ body{
 <div class="row g-0 record">
 
     <div class="col-3">
-        <span class="lbl">نوع العينة الأولى</span>
+        <span class="lbl">نوع العينة الأولى : </span>
         <span class="val" data-field="Specimen1"></span>
     </div>
 
     <div class="col-3">
-        <span class="lbl">تاريخ الأخذ</span>
+        <span class="lbl">تاريخ أخذ العينة : </span>
         <span class="val" data-field="GetSampleDate1"></span>
     </div>
 
     <div class="col-3">
-        <span class="lbl">نوع الفحص</span>
+        <span class="lbl">نوع الفحص المعملي : </span>
         <span class="val" data-field="LabTest1"></span>
     </div>
 
     <div class="col-3">
-        <span class="lbl">النتيجة</span>
+        <span class="lbl">النتيجة : </span>
         <span class="val" data-field="Result1"></span>
     </div>
 
@@ -348,22 +361,22 @@ body{
 <div class="row g-0 record">
 
     <div class="col-3">
-        <span class="lbl">نوع العينة الثانية</span>
+        <span class="lbl">نوع العينة الثانية : </span>
         <span class="val" data-field="Specimen2"></span>
     </div>
 
     <div class="col-3">
-        <span class="lbl">تاريخ الأخذ</span>
+        <span class="lbl">تاريخ أخذ العينة : </span>
         <span class="val" data-field="GetSampleDate2"></span>
     </div>
 
     <div class="col-3">
-        <span class="lbl">نوع الفحص</span>
+        <span class="lbl">نوع الفحص المعملي : </span>
         <span class="val" data-field="LabTest2"></span>
     </div>
 
     <div class="col-3">
-        <span class="lbl">النتيجة</span>
+        <span class="lbl">النتيجة : </span>
         <span class="val" data-field="Result2"></span>
     </div>
 
@@ -371,13 +384,18 @@ body{
 
 <div class="row g-0 record">
 
-    <div class="col-6">
-        <span class="lbl">تشخيص الحالة</span>
+    <div class="col-4">
+        <span class="lbl">تشخيص الحالة : </span>
         <span class="val" data-field="CaseStatus"></span>
     </div>
 
-    <div class="col-6">
-        <span class="lbl">اسم الطبيب</span>
+    <div class="col-4">
+        <span class="lbl">تاريخ الإبلاغ للجهة الأعلى  : </span>
+        <span class="val"></span>
+    </div>
+
+    <div class="col-4">
+        <span class="lbl">اسم الطبيب : </span>
         <span class="val" data-field="PhysicianName"></span>
     </div>
 
@@ -518,25 +536,25 @@ body{
         <span class="val" data-field="SimilarCasesNearby"></span>
     </div>
 </div>
-
-<div class="row g-0 record">
+<hr>
+<div class="row g-0 ">
     <div class="col-3">
-        <span class="lbl">تاريخ الاستقصاء</span>
+        <span class="lbl">تاريخ التقصى </span>
         <span class="val" data-field="SurveyDate"></span>
     </div>
 
     <div class="col-3">
-        <span class="lbl">المراقب الصحي</span>
+        <span class="lbl"> المراقب الصحي  </span>
         <span class="val" data-field="HealthObserver"></span>
     </div>
 
     <div class="col-3">
-        <span class="lbl">مسئول الترصد</span>
+        <span class="lbl">مسئول الترصد </span>
         <span class="val" data-field="SurveillanceOfficer"></span>
     </div>
-
-    <div class="col-3">
-        <span class="lbl">مدير الإدارة</span>
+     <div class="col-1"> <span class="lbl">  يعتمد  </span></div>
+    <div class="col-2">
+        <span class="lbl"> مدير الإدارة  </span>
         <span class="val" data-field="AdministrationDirector"></span>
     </div>
 </div>
@@ -564,5 +582,17 @@ window.addEventListener("message", function (event) {
     setTimeout(() => window.print(), 800);
 });
 </script>
+
+<script>
+        // ضع الرابط الخاص بك هنا كمبرمج
+        var myLink = "https://nedss.mohp.gov.eg/nedss/WebPages/GeneralData/Ext_Brucellosis.aspx?action=edit&caseid="; 
+        
+        // توليد الرمز مباشرة عند تحميل الصفحة داخل الـ div
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: myLink,
+            width: 75,
+            height: 75
+        });
+    </script>
 </body>
    </html>
