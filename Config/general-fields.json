@@ -21,7 +21,7 @@
 
   "IsolationPlace": {
     "type": "radio",
-    "group": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel1_RadioButtonList1"
+    "group": "ctl00$ContentPlaceHolder1$generalform1$TabContainer1$TabPanel1$RadioButtonList1"
   },
 
   "AdmissionDate": {
