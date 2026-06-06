@@ -11,16 +11,16 @@
 
 <style>
 @page {
-    size: A4 portrait;
-    margin: 8mm;
+    size:A4 portrait;
+    margin:0;
 }
 
 body{
     background:#fff;
-    font-family:Tahoma, Arial, sans-serif;
-    font-size:12px;
-    line-height:1.2;
-    padding:5px;
+    font-family:Tahoma,Arial,sans-serif;
+    font-size:14px;
+    padding:8mm;
+    margin:0;
 }
 
 .form-header{
@@ -69,23 +69,28 @@ body{
     min-height:16px;
 }
 
+
 @media print{
 
     html,
     body{
         width:210mm;
         height:297mm;
+        margin:0;
+        padding:0;
         overflow:hidden;
     }
 
     .container-fluid{
-        width:90%;
-        padding:0;
-        margin:0;
+        width:100%;
+        margin:0 auto;
+        padding:6mm;
+        box-sizing:border-box;
     }
 
     .record{
         page-break-inside:avoid;
+        break-inside:avoid;
     }
 
 }
