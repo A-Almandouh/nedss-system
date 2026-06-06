@@ -584,76 +584,109 @@ window.addEventListener("message", function (event) {
 });
 </script>
 
+
 <script>
-        // ضع الرابط الخاص بك هنا كمبرمج
-      var myLink = "https://nedss.mohp.gov.eg/nedss/WebPages/GeneralData/Ext_Brucellosis.aspx?action=edit&caseid=" 
 
-        
-        // توليد الرمز مباشرة عند تحميل الصفحة داخل الـ div
-        var qrcode = new QRCode(document.getElementById("qrcode"), {
-            text: myLink,
-            width: 75,
-            height: 75
-        });
-    </script>
- <script>
-  window.addEventListener("message", function (event) {
+window.addEventListener("message", function (event) {
 
-    if (!event.data || event.data.type !== "FILL_DATA") return;
+    if (!event.data || event.data.type !== "FILL_DATA")
+        return;
 
     const data = event.data.data;
 
-    const reportDate =
-        new Date(data.ReportDate);
+    // ==========================
+    // تعبئة الحقول
+    // ==========================
+    console.log("DATA RECEIVED", data);
 
-    const month =
-        isNaN(reportDate)
-            ? ""
-            : reportDate.getMonth() + 1;
+    for (const key in data) {
 
-    const year =
-        isNaN(reportDate)
-            ? ""
-            : reportDate.getFullYear();
+        const el =
+            document.querySelector(
+                `[data-field="${key}"]`
+            );
 
-    document.title =
-        [
-            data.ResidenceGovernorate,
-            data.ResidenceAdministration,
-            data.DiseaseName,
-            month,
-            year,
-            data.FirstName,
-            data.FatherName,
-            data.GrandFatherName
-        ]
-        .filter(Boolean)
-        .join(" - ");
+        if (el) {
 
-});
+            el.textContent =
+                data[key] || "";
 
-  window.addEventListener("message", function (event) {
+        }
+    }
 
-    if (!event.data || event.data.type !== "FILL_DATA") return;
 
-    const data = event.data.data;
+    // ==========================
+    // عنوان الصفحة
+    // ==========================
+    let month = "";
+    let year = "";
 
+    if (data.ReportDate) {
+
+        const parts =
+            data.ReportDate.split("/");
+
+        if (parts.length === 3) {
+
+            month = parts[1];
+            year = parts[2];
+
+        }
+    }
+
+    document.title = [
+
+        data.ResidenceGovernorate,
+        data.ResidenceAdministration,
+        data.DiseaseName,
+        month,
+        year,
+        data.FirstName,
+        data.FatherName,
+        data.GrandFatherName
+
+    ]
+    .filter(Boolean)
+    .join(" - ");
+
+
+    // ==========================
+    // QR CODE
+    // ==========================
     const qrContainer =
         document.getElementById("qrcode");
 
-    qrContainer.innerHTML = "";
+    if (qrContainer) {
 
-    const myLink =
-   location.origin +"/nedss/WebPages/GeneralData/Ext_Brucellosis.aspx?action=edit&caseid="+ data.CaseID;
+        qrContainer.innerHTML = "";
 
-    new QRCode(qrContainer, {
-        text: myLink,
-        width: 75,
-        height: 75
-    });
+        const myLink =
+            "https://nedss.mohp.gov.eg/nedss/WebPages/GeneralData/Ext_Brucellosis.aspx?action=edit&caseid="
+            + data.CaseID;
+
+        new QRCode(qrContainer, {
+
+            text: myLink,
+            width: 75,
+            height: 75
+
+        });
+
+    }
+
+
+    // ==========================
+    // الطباعة
+    // ==========================
+    setTimeout(() => {
+
+        window.print();
+
+    }, 800);
 
 });
-  
- </script>
+
+</script>
+
 </body>
    </html>
