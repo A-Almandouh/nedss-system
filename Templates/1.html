@@ -155,7 +155,7 @@ body{
     
     <div class="row">
         <div class="col-2" id="qrcode">
-         <span data-field="CaseID"></span>    
+          
         </div>
         <div class="col-8">
            <h1>
@@ -586,7 +586,8 @@ window.addEventListener("message", function (event) {
 
 <script>
         // ضع الرابط الخاص بك هنا كمبرمج
-        var myLink = "https://nedss.mohp.gov.eg/nedss/WebPages/GeneralData/Ext_Brucellosis.aspx?action=edit&caseid="; 
+      var myLink = "https://nedss.mohp.gov.eg/nedss/WebPages/GeneralData/Ext_Brucellosis.aspx?action=edit&caseid=" + data.CaseID;
+
         
         // توليد الرمز مباشرة عند تحميل الصفحة داخل الـ div
         var qrcode = new QRCode(document.getElementById("qrcode"), {
