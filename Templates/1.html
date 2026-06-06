@@ -586,7 +586,7 @@ window.addEventListener("message", function (event) {
 
 <script>
         // ضع الرابط الخاص بك هنا كمبرمج
-      var myLink = "https://nedss.mohp.gov.eg/nedss/WebPages/GeneralData/Ext_Brucellosis.aspx?action=edit&caseid=" + data.CaseID;
+      var myLink = "https://nedss.mohp.gov.eg/nedss/WebPages/GeneralData/Ext_Brucellosis.aspx?action=edit&caseid=" 
 
         
         // توليد الرمز مباشرة عند تحميل الصفحة داخل الـ div
@@ -596,5 +596,64 @@ window.addEventListener("message", function (event) {
             height: 75
         });
     </script>
+ <script>
+  window.addEventListener("message", function (event) {
+
+    if (!event.data || event.data.type !== "FILL_DATA") return;
+
+    const data = event.data.data;
+
+    const reportDate =
+        new Date(data.ReportDate);
+
+    const month =
+        isNaN(reportDate)
+            ? ""
+            : reportDate.getMonth() + 1;
+
+    const year =
+        isNaN(reportDate)
+            ? ""
+            : reportDate.getFullYear();
+
+    document.title =
+        [
+            data.ResidenceGovernorate,
+            data.ResidenceAdministration,
+            data.DiseaseName,
+            month,
+            year,
+            data.FirstName,
+            data.FatherName,
+            data.GrandFatherName
+        ]
+        .filter(Boolean)
+        .join(" - ");
+
+});
+
+  window.addEventListener("message", function (event) {
+
+    if (!event.data || event.data.type !== "FILL_DATA") return;
+
+    const data = event.data.data;
+
+    const qrContainer =
+        document.getElementById("qrcode");
+
+    qrContainer.innerHTML = "";
+
+    const myLink =
+   location.origin +"/nedss/WebPages/GeneralData/Ext_Brucellosis.aspx?action=edit&caseid="+ data.CaseID;
+
+    new QRCode(qrContainer, {
+        text: myLink,
+        width: 75,
+        height: 75
+    });
+
+});
+  
+ </script>
 </body>
    </html>
