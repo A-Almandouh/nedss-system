@@ -212,10 +212,9 @@
 },
 
 "61": {
-"mode": "external",
-"url": "",
-"appendCaseId": true
+"mode": "general"
 },
+
 
 "62": {
 "mode": "external",
@@ -304,10 +303,9 @@
 },
 
 "84": {
-"mode": "external",
-"url": "",
-"appendCaseId": true
+"mode": "general"
 },
+
 
 "85": {
 "mode": "external",
@@ -328,8 +326,7 @@
 },
 
 "88": {
-"mode": "external",
-"url": "",
-"appendCaseId": true
+"mode": "general"
 }
+
 }
