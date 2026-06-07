@@ -1,0 +1,16 @@
+{
+  "Field1": {
+    "type": "select",
+    "id": "..."
+  },
+
+  "Field2": {
+    "type": "text",
+    "id": "..."
+  },
+
+  "Field3": {
+    "type": "radio",
+    "group": "..."
+  }
+}
