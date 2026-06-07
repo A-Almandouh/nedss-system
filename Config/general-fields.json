@@ -187,5 +187,22 @@
   "PhysicianName": {
     "type": "text",
     "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_txtPhysName"
+  },
+   "HosID": {
+    "type": "text",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_txtHosID"
+  },
+   "DisDate": {
+    "type": "text",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_clnDisDate_TxtDate"
+  },
+   "OutCome": {
+    "type": "select",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_ddlOutCome"
+  },
+   "FinalDiagnosis": {
+    "type": "text",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_txtFinalDiagnosis"
   }
+  
 }
