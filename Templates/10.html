@@ -673,7 +673,7 @@ window.addEventListener("message", function (event) {
         qrContainer.innerHTML = "";
 
         const myLink =
-            "https://nedss.mohp.gov.eg/nedss/WebPages/GeneralData/Ext_Brucellosis.aspx?action=edit&caseid="
+            "https://nedss.mohp.gov.eg/nedss/WebPages/GeneralData/Ext_Mumps.aspx?action=edit&caseid="
             + data.CaseID;
 
         new QRCode(qrContainer, {
@@ -690,9 +690,8 @@ window.addEventListener("message", function (event) {
     // ==========================
     // الطباعة
     // ==========================
-    setTimeout(() => {
-
-        window.print();
+  setTimeout(() => {
+    // window.print();
 
     }, 800);
 
