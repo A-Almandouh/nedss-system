@@ -1,16 +1,96 @@
 {
-  "Field1": {
+  "ContactWithCase": {
     "type": "select",
-    "id": "..."
+    "id": "ctl00_contentplaceholder1_mumps1_TabContainer1_TabPanel3_yn_conmumps_mum_ddlYesNo"
   },
 
-  "Field2": {
+  "OutbreakCase": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_mumps1_TabContainer1_TabPanel3_yn_casoutbreak_mum_ddlYesNo"
+  },
+
+  "Parotitis": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_mumps1_TabContainer1_TabPanel1_yn_parotitis_mum_ddlYesNo"
+  },
+
+  "ParotitisDate": {
     "type": "text",
-    "id": "..."
+    "id": "ctl00_contentplaceholder1_mumps1_TabContainer1_TabPanel1_Common_Calender1_TxtDate"
   },
 
-  "Field3": {
-    "type": "radio",
-    "group": "..."
+  "Fever": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_mumps1_TabContainer1_TabPanel1_yn_fever_mum_ddlYesNo"
+  },
+
+  "FeverDuration": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_mumps1_TabContainer1_TabPanel1_txt_pfever_mum"
+  },
+
+  "MaxTemperature": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_mumps1_TabContainer1_TabPanel1_txt_maxtemp_mum"
+  },
+
+  "OtherSalivaryGland": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_mumps1_TabContainer1_TabPanel1_yn_othersalivary_mum_ddlYesNo"
+  },
+
+  "Orchitis": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_mumps1_TabContainer1_TabPanel1_yn_orchitis_mum_ddlYesNo"
+  },
+
+  "Encephalitis": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_mumps1_TabContainer1_TabPanel1_yn_encephalitis_mum_ddlYesNo"
+  },
+
+  "OtherComplications": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_mumps1_TabContainer1_TabPanel1_yn_ocomp_mum_ddlYesNo"
+  },
+
+  "OtherComplicationsDescription": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_mumps1_TabContainer1_TabPanel1_txt_othercompl_mum"
+  },
+
+  "MMR": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_mumps1_TabContainer1_TabPanel2_yn_mmr_mum_ddlYesNo"
+  },
+
+  "MMRDate1": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_mumps1_TabContainer1_TabPanel2_MMrDate1_TxtDate"
+  },
+
+  "MMRDate2": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_mumps1_TabContainer1_TabPanel2_MMrDate2_TxtDate"
+  },
+
+  "SurveyDate": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_mumps1_Common_Ext_Data1_SurveyDateCalender_TxtDate"
+  },
+
+  "HealthObserver": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_mumps1_Common_Ext_Data1_txtOH"
+  },
+
+  "SurveillanceOfficer": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_mumps1_Common_Ext_Data1_txtOS"
+  },
+
+  "AdministrationManager": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_mumps1_Common_Ext_Data1_txtAdmin"
   }
 }
