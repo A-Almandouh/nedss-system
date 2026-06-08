@@ -120,8 +120,8 @@
   },
 
   "DiseaseID": {
-    "type": "value",
-    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_ddlDisease"
+    "type": "text",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_hf_DiseaseID"
   },
 
   "DiseaseName": {
