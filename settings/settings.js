@@ -1,17 +1,13 @@
-alert("تمت القراءة");
-
 // تحميل الإعدادات
-async function loadSettings() {
-alert("تم تحميسل الاعدادات");
-    const result =
-        await localStorage.get(
-            "settings"
-        );
+function loadSettings() {
+
+    alert("تم تحميل الإعدادات");
 
     const settings =
-        result.settings || {};
+        JSON.parse(
+            localStorage.getItem("settings")
+        ) || {};
 
-    // switches
     document.getElementById("autoSearch").checked =
         settings.autoSearch || false;
 
@@ -48,8 +44,6 @@ alert("تم تحميسل الاعدادات");
     document.getElementById("customScripts").checked =
         settings.customScripts || false;
 
-    // text boxes
-
     document.getElementById("departmentSheet").value =
         settings.departmentSheet || "";
 
@@ -67,14 +61,14 @@ alert("تم تحميسل الاعدادات");
 
     document.getElementById("customCode").value =
         settings.customCode || "";
-
 }
 
 
-
 // حفظ الإعدادات
-async function saveSettings() {
-alert("تم الدخول للحفظ ");
+function saveSettings() {
+
+    alert("تم الدخول للحفظ");
+
     const settings = {
 
         autoSearch:
@@ -133,27 +127,30 @@ alert("تم الدخول للحفظ ");
 
     };
 
-    await localStorage.set({
-        settings
-    });
+    localStorage.setItem(
+        "settings",
+        JSON.stringify(settings)
+    );
 
     alert(
         "تم حفظ الإعدادات بنجاح"
     );
-
 }
 
 
+// بعد تحميل الصفحة
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-// زر الحفظ
-document
-    .getElementById("saveButton")
-    .addEventListener(
-        "click",
-        saveSettings
-    );
+        loadSettings();
 
+        document
+            .getElementById("saveButton")
+            .addEventListener(
+                "click",
+                saveSettings
+            );
 
-// تحميل الصفحة
-loadSettings();
-
+    }
+);
