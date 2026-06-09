@@ -2,7 +2,7 @@ alert("تمت القراءة")
 ```javascript
 // تحميل الإعدادات
 async function loadSettings() {
-
+alert("تم تحميسل الاعدادات")
     const result =
         await chrome.storage.local.get(
             "settings"
@@ -74,7 +74,7 @@ async function loadSettings() {
 
 // حفظ الإعدادات
 async function saveSettings() {
-
+alert("تم الدخول للحفظ ")
     const settings = {
 
         autoSearch:
