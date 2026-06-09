@@ -1,8 +1,8 @@
-alert("تمت القراءة")
+alert("تمت القراءة");
 ```javascript
 // تحميل الإعدادات
 async function loadSettings() {
-alert("تم تحميسل الاعدادات")
+alert("تم تحميسل الاعدادات");
     const result =
         await localStorage.get(
             "settings"
@@ -74,7 +74,7 @@ alert("تم تحميسل الاعدادات")
 
 // حفظ الإعدادات
 async function saveSettings() {
-alert("تم الدخول للحفظ ")
+alert("تم الدخول للحفظ ");
     const settings = {
 
         autoSearch:
