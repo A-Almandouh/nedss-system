@@ -1,5 +1,5 @@
 alert("تمت القراءة");
-```javascript
+
 // تحميل الإعدادات
 async function loadSettings() {
 alert("تم تحميسل الاعدادات");
@@ -156,4 +156,4 @@ document
 
 // تحميل الصفحة
 loadSettings();
-```
+
