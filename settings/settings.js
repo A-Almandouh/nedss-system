@@ -1,7 +1,7 @@
 // تحميل الإعدادات
 function loadSettings() {
 
-    
+    alert("تم تحميل الإعدادات");
 
     const settings =
         JSON.parse(
@@ -67,7 +67,7 @@ function loadSettings() {
 // حفظ الإعدادات
 function saveSettings() {
 
- 
+    alert("تم الدخول للحفظ");
 
     const settings = {
 
