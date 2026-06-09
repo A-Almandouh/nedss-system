@@ -154,3 +154,15 @@ document.addEventListener(
 
     }
 );
+
+await chrome.storage.local.set({
+    settings
+});
+
+const result =
+    await chrome.storage.local.get(
+        "settings"
+    );
+
+const settings =
+    result.settings || {};
