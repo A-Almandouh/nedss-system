@@ -1,1 +1,299 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
+<head>
+<meta charset="UTF-8">
+
+<title>إعدادات NEDSS Engine</title>
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css"
+rel="stylesheet">
+
+<style>
+
+body{
+    background:#f4f6f9;
+    font-family:tahoma;
+}
+
+.header{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.card{
+    border:none;
+    border-radius:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.section-title{
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:20px;
+    color:#0d6efd;
+}
+
+.save-btn{
+    width:220px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container py-4">
+
+    <div class="header">
+
+        <h2>
+
+            ⚙ إعدادات NEDSS Engine
+
+        </h2>
+
+        <div class="text-muted">
+
+            تخصيص الإضافة حسب احتياجات المحافظة والإدارة الصحية
+
+        </div>
+
+    </div>
+
+
+    <!-- حفظ التقصي -->
+    <div class="card p-4 mb-4">
+
+        <div class="section-title">
+
+            📁 حفظ التقصي
+
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+
+                رابط Google Sheet للإدارة
+
+            </label>
+
+            <input
+            id="districtSheet"
+            class="form-control">
+
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+
+                رابط Google Sheet للمحافظة
+
+            </label>
+
+            <input
+            id="govSheet"
+            class="form-control">
+
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+
+                رابط مجلد PDF المحلي
+
+            </label>
+
+            <input
+            id="localPdfPath"
+            class="form-control">
+
+        </div>
+
+    </div>
+
+
+    <!-- المميزات الإضافية -->
+    <div class="card p-4 mb-4">
+
+        <div class="section-title">
+
+            ✨ المميزات الإضافية
+
+        </div>
+
+        <div class="form-check form-switch mb-3">
+
+            <input
+            class="form-check-input"
+            type="checkbox"
+            id="showProgress">
+
+            <label class="form-check-label">
+
+                عرض نسبة اكتمال البيانات
+
+            </label>
+
+        </div>
+
+
+        <div class="form-check form-switch mb-3">
+
+            <input
+            class="form-check-input"
+            type="checkbox"
+            id="highlightEmpty">
+
+            <label class="form-check-label">
+
+                تمييز الخلايا الفارغة
+
+            </label>
+
+        </div>
+
+
+        <div class="form-check form-switch mb-3">
+
+            <input
+            class="form-check-input"
+            type="checkbox"
+            id="mergeGeneral">
+
+            <label class="form-check-label">
+
+                دمج البيانات العامة مع عام التكملة
+
+            </label>
+
+        </div>
+
+    </div>
+
+
+    <!-- صفحة استعراض الحالات -->
+    <div class="card p-4 mb-4">
+
+        <div class="section-title">
+
+            📋 صفحة استعراض الحالات
+
+        </div>
+
+        <div class="form-check form-switch mb-3">
+
+            <input
+            class="form-check-input"
+            type="checkbox"
+            id="showInvestigationLink">
+
+            <label class="form-check-label">
+
+                إظهار رابط التقصي
+
+            </label>
+
+        </div>
+
+
+        <div class="form-check form-switch mb-3">
+
+            <input
+            class="form-check-input"
+            type="checkbox"
+            id="showCasesCount">
+
+            <label class="form-check-label">
+
+                إظهار عدد الحالات الظاهرة
+
+            </label>
+
+        </div>
+
+    </div>
+
+
+    <!-- سكربتات إضافية -->
+    <div class="card p-4 mb-4">
+
+        <div class="section-title">
+
+            🧩 سكربتات إضافية
+
+        </div>
+
+        <div class="form-check form-switch mb-3">
+
+            <input
+            class="form-check-input"
+            type="checkbox"
+            id="enableAutoExport">
+
+            <label class="form-check-label">
+
+                تصدير تلقائي إلى Google Sheets
+
+            </label>
+
+        </div>
+
+
+        <div class="form-check form-switch mb-3">
+
+            <input
+            class="form-check-input"
+            type="checkbox"
+            id="enableAutoPrint">
+
+            <label class="form-check-label">
+
+                الطباعة التلقائية
+
+            </label>
+
+        </div>
+
+
+        <div class="form-check form-switch mb-3">
+
+            <input
+            class="form-check-input"
+            type="checkbox"
+            id="enableFutureScripts">
+
+            <label class="form-check-label">
+
+                تفعيل السكربتات التجريبية
+
+            </label>
+
+        </div>
+
+    </div>
+
+
+    <div class="text-center">
+
+        <button
+        class="btn btn-primary btn-lg save-btn">
+
+            💾 حفظ الإعدادات
+
+        </button>
+
+    </div>
+
+</div>
+
+</body>
+</html>
