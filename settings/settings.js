@@ -4,7 +4,7 @@ alert("تمت القراءة")
 async function loadSettings() {
 alert("تم تحميسل الاعدادات")
     const result =
-        await chrome.storage.local.get(
+        await localStorage.get(
             "settings"
         );
 
@@ -133,7 +133,7 @@ alert("تم الدخول للحفظ ")
 
     };
 
-    await chrome.storage.local.set({
+    await localStorage.set({
         settings
     });
 
