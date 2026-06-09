@@ -5,7 +5,7 @@ function loadSettings() {
 
     const settings =
         JSON.parse(
-            localStorage.getItem("settings")
+            chrome.storage.local.getItem("settings")
         ) || {};
 
     document.getElementById("autoSearch").checked =
@@ -127,7 +127,7 @@ function saveSettings() {
 
     };
 
-    localStorage.setItem(
+    chrome.storage.local.setItem(
         "settings",
         JSON.stringify(settings)
     );
