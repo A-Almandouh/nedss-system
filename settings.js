@@ -1,3 +1,4 @@
+alert("تمت القراءة")
 ```javascript
 // تحميل الإعدادات
 async function loadSettings() {
