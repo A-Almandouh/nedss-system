@@ -616,7 +616,7 @@ window.addEventListener("message", function (event) {
     if (!event.data || event.data.type !== "FILL_DATA") return;
 
     const data = event.data.data;
-
+  window.caseData = data;
     console.log("DATA RECEIVED", data);
 
     for (const key in data) {
@@ -641,7 +641,7 @@ window.addEventListener("message", function (event) {
         return;
 
     const data = event.data.data;
-
+     window.caseData = data;
     // ==========================
     // تعبئة الحقول
     // ==========================
