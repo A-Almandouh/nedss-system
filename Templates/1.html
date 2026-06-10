@@ -711,6 +711,10 @@ window.addEventListener("message", function (event) {
         const myLink =
             "https://nedss.mohp.gov.eg/nedss/WebPages/GeneralData/Ext_Brucellosis.aspx?action=edit&caseid="
             + data.CaseID;
+        // إنشاء الرابط
+          const link = document.createElement("a");
+          link.href = myLink;
+          link.target = "_blank";   // يفتح في تبويب جديد
 
         new QRCode(qrContainer, {
 
