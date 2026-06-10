@@ -1,126 +1,94 @@
 // saveHtml.js
 console.log("saveHtml loaded");
 async function saveHtml() {
+    // نسخة من الصفحة
+    const clone = document.documentElement.cloneNode(true);
 
-    const data =
-        await collectAllData();
+    // حفظ قيم input
+    document.querySelectorAll("input").forEach((input, index) => {
 
-    let html = `
+        const clonedInput = clone.querySelectorAll("input")[index];
+        if (!clonedInput) return;
 
-<!DOCTYPE html>
+        if (input.type === "checkbox" || input.type === "radio") {
 
-<html dir="rtl">
+            if (input.checked) {
+                clonedInput.setAttribute("checked", "checked");
+            } else {
+                clonedInput.removeAttribute("checked");
+            }
 
-<head>
+        } else {
 
-<meta charset="utf-8">
+            clonedInput.setAttribute("value", input.value);
+        }
+    });
 
-<title>
-${document.title}
-</title>
+    // حفظ قيم textarea
+    document.querySelectorAll("textarea").forEach((textarea, index) => {
 
-<style>
+        const clonedTextarea =
+            clone.querySelectorAll("textarea")[index];
 
-body{
+        if (!clonedTextarea) return;
 
-font-family:tahoma;
+        clonedTextarea.textContent =
+            textarea.value;
+    });
 
-padding:20px;
+    // حفظ القوائم المنسدلة
+    document.querySelectorAll("select").forEach((select, index) => {
 
-}
+        const clonedSelect =
+            clone.querySelectorAll("select")[index];
 
-table{
+        if (!clonedSelect) return;
 
-width:100%;
+        [...clonedSelect.options].forEach(option => {
+            option.removeAttribute("selected");
+        });
 
-border-collapse:collapse;
+        const selectedOption =
+            clonedSelect.options[select.selectedIndex];
 
-}
+        if (selectedOption) {
+            selectedOption.setAttribute(
+                "selected",
+                "selected"
+            );
+        }
+    });
 
-td{
-
-border:1px solid #ddd;
-
-padding:8px;
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<h2>
-
-${document.title}
-
-</h2>
-
-<table>
-
-`;
-
-    for (const key in data) {
-
-        html += `
-
-<tr>
-
-<td>
-${key}
-</td>
-
-<td>
-${data[key]}
-</td>
-
-</tr>
-
-`;
-
-    }
-
-    html += `
-
-</table>
-
-</body>
-
-</html>
-
-`;
+    const html =
+        "<!DOCTYPE html>\n" +
+        clone.outerHTML;
 
     const blob =
         new Blob(
             [html],
             {
-                type:
-                    "text/html"
+                type: "text/html;charset=utf-8"
             }
         );
 
     const url =
-        URL.createObjectURL(
-            blob
-        );
+        URL.createObjectURL(blob);
 
     const a =
-        document.createElement(
-            "a"
-        );
+        document.createElement("a");
 
-    a.href =
-        url;
+    a.href = url;
 
     a.download =
-        document.title +
-        ".html";
+        (document.title || "Case") + ".html";
+
+    document.body.appendChild(a);
 
     a.click();
 
-    URL.revokeObjectURL(
-        url
-    );
+    a.remove();
 
+    setTimeout(() => {
+        URL.revokeObjectURL(url);
+    }, 1000);
 }
