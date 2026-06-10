@@ -234,6 +234,26 @@ toolbar.className =
 
         };
 
+    
+    document
+        .getElementById(
+            "btnSaveDepartment"
+        )
+        .onclick =
+        () => {
+
+            if (
+                typeof  saveToDepartmentSheet ===
+                "function"
+            ) {
+
+                 saveToDepartmentSheet();
+
+            }
+
+        };
+
+
     document
         .getElementById(
             "btnUpdate"
