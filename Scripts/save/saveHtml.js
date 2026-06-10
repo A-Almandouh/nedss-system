@@ -1,5 +1,5 @@
 // saveHtml.js
-
+console.log("saveHtml loaded");
 async function saveHtml() {
 
     const data =
