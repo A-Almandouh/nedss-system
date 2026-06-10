@@ -59,9 +59,7 @@ toolbar.className =
 💾 HTML
 </button>
 
-<button id="btnPdf">
-📄 PDF
-</button>
+<!-- <button id="btnPdf">📄 PDF</button>-->
 
 <button id="btnDepartment">
 🏥 شيت الإدارة
