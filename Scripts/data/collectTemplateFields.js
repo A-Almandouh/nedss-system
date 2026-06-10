@@ -102,3 +102,9 @@ function collectTemplateFields() {
     return data;
 
 }
+
+
+console.log(
+    "Template Fields:",
+    collectTemplateFields()
+);
