@@ -158,31 +158,27 @@ toolbar.className =
 
         };
 
-    document
-        .getElementById(
-            "btnHtml"
-        )
-        .onclick =
-        () => {
+   document
+.getElementById("btnHtml")
+.onclick = () => {
 
-            if (
-                typeof saveHtml ===
-                "function"
-            ) {
+    console.log("HTML clicked");
 
-                saveHtml();
+    console.log(typeof saveHtml);
 
-            }
-            else {
+    if (typeof saveHtml === "function") {
 
-                alert(
-                    "saveHtml.js غير محمل"
-                );
+        saveHtml();
 
-            }
+    }
+    else {
 
-        };
+        alert("saveHtml غير موجود");
 
+    }
+
+};
+    
     document
         .getElementById(
             "btnPdf"
@@ -201,23 +197,26 @@ toolbar.className =
 
         };
 
-    document
-        .getElementById(
-            "btnDepartment"
-        )
-        .onclick =
-        () => {
+   document
+.getElementById("btnPdf")
+.onclick = () => {
 
-            if (
-                typeof saveDepartmentSheet ===
-                "function"
-            ) {
+    console.log("PDF clicked");
 
-                saveDepartmentSheet();
+    console.log(typeof savePdf);
 
-            }
+    if (typeof savePdf === "function") {
 
-        };
+        savePdf();
+
+    }
+    else {
+
+        alert("savePdf غير موجود");
+
+    }
+
+};
 
     document
         .getElementById(
