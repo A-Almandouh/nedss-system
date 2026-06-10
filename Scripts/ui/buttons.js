@@ -43,10 +43,12 @@ function createToolbar() {
             "div"
         );
 
-    toolbar.id =
-        "nedss-toolbar";
-    toolbar.className =
+  toolbar.id =
+    "nedss-toolbar";
+
+toolbar.className =
     "no-print";
+    
     toolbar.innerHTML = `
 
 <button id="btnPrint">
