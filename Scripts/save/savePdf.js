@@ -1,5 +1,5 @@
 // savePdf.js
-
+console.log("savePDF loaded");
 async function savePdf() {
 
     const element =
