@@ -133,3 +133,27 @@ function collectTemplateFields() {
     return data;
 
 }
+function collectTemplateFields() {
+
+    const data = {};
+
+    document
+        .querySelectorAll(
+            "#investigationForm input, #investigationForm select, #investigationForm textarea"
+        )
+        .forEach(el => {
+
+            data[
+                el.id || el.name
+            ] = el.value;
+
+        });
+
+    console.log(
+        "Template Fields",
+        data
+    );
+
+    return data;
+
+}
