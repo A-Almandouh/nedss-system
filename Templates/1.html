@@ -701,31 +701,36 @@ window.addEventListener("message", function (event) {
     // ==========================
     // QR CODE
     // ==========================
-    const qrContainer =
-        document.getElementById("qrcode");
+   const qrContainer = document.getElementById("qrcode");
 
-    if (qrContainer) {
+if (qrContainer) {
 
-        qrContainer.innerHTML = "";
+    qrContainer.innerHTML = "";
 
-        const myLink =
-            "https://nedss.mohp.gov.eg/nedss/WebPages/GeneralData/Ext_Brucellosis.aspx?action=edit&caseid="
-            + data.CaseID;
-        // إنشاء الرابط
-          const link = document.createElement("a");
-          link.href = myLink;
-          link.target = "_blank";   // يفتح في تبويب جديد
+    const myLink =
+        "https://nedss.mohp.gov.eg/nedss/WebPages/GeneralData/Ext_Brucellosis.aspx?action=edit&caseid="
+        + data.CaseID;
 
-        new QRCode(qrContainer, {
+    // إنشاء الرابط
+    const link = document.createElement("a");
+    link.href = myLink;
+    link.target = "_blank";   // يفتح في تبويب جديد
 
-            text: myLink,
-            width: 75,
-            height: 75
+    // عنصر الـ QR
+    const qrDiv = document.createElement("div");
 
-        });
+    new QRCode(qrDiv, {
+        text: myLink,
+        width: 75,
+        height: 75
+    });
 
-    }
+    // وضع الـ QR داخل الرابط
+    link.appendChild(qrDiv);
 
+    // إضافته للصفحة
+    qrContainer.appendChild(link);
+}
 
     // ==========================
     // الطباعة
