@@ -36,3 +36,25 @@ async function collectAllData() {
     return data;
 
 }
+
+async function collectAllData() {
+
+    const allData = {
+
+        ...window.caseData,
+
+        ...collectTemplateFields()
+
+    };
+
+    console.log(
+        "ALL DATA"
+    );
+
+    console.table(
+        allData
+    );
+
+    return allData;
+
+}
