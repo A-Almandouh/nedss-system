@@ -1,5 +1,30 @@
 // buttons.js
 
+// عدم إظهار شريط الأدوات أثناء الطباعة
+
+const style =
+    document.createElement(
+        "style"
+    );
+
+style.innerHTML = `
+
+@media print {
+
+    .no-print {
+
+        display:none !important;
+
+    }
+
+}
+
+`;
+
+document.head.appendChild(
+    style
+);
+
 createToolbar();
 
 function createToolbar() {
@@ -20,7 +45,8 @@ function createToolbar() {
 
     toolbar.id =
         "nedss-toolbar";
-
+    toolbar.className =
+    "no-print";
     toolbar.innerHTML = `
 
 <button id="btnPrint">
