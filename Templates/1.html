@@ -10,7 +10,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
 
 <style>
-/* إعدادات الصفحة والطباعة العامة */
+/* 1. إعدادات الصفحة والطباعة العامة */
 @page {
     size: A4 portrait;
     margin: 0;
@@ -20,57 +20,64 @@ body {
     background: #fff;
     font-family: Tahoma, Arial, sans-serif;
     font-size: 14px;
-    padding: 15px;
+    padding: 15px; /* القيمة الأكبر المحدثة */
     margin: 0;
 }
 
-/* تنسيق عناصر الفورم على الشاشة (البوردر الأحمر) */
+/* 2. تنسيق عناصر الفورم على الشاشة (البوردر الأحمر) */
 .input-error {
     border: 2px solid red !important;
     outline: none !important;
-    /* إزالة المظهر الافتراضي للمتصفح لتظهر الخلفية الحمراء في الـ select والـ input */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none; 
-    width: 100%; /* لملء العمود بالكامل */
-    background-color: #fff;
 }
 
-/* تنسيقات شبكة الفورم (استبدال .record بـ .row ليتوافق مع البوتستراب) */
-#investigationForm .row {
+/* 3. تنسيقات الهيدر */
+.form-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-header h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form-header h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+/* 4. تنسيقات السجلات والخلايا */
+.record {
     border: 1px solid #000;
     margin-bottom: 8px;
     page-break-inside: avoid;
     break-inside: avoid;
-    display: flex; /* لضمان تساوي الارتفاعات */
-    align-items: center;
 }
 
-/* تلوين الخط الفاصل بين التسمية والحقل */
-#investigationForm .row > [class^="col-"] {
+.record > div {
+    border-left: 1px solid #000;
     padding: 6px;
-    min-height: 35px;
+    min-height: 30px;
     box-sizing: border-box;
 }
 
-/* إضافة خط فاصل جهة اليسار للعمود الثاني فقط */
-#investigationForm .row > .col-3 {
-    border-left: 1px solid #000;
+.record > div:last-child {
+    border-left: none;
 }
 
 .lbl {
     font-weight: bold;
-    font-size: 14px;
-    margin: 0;
+    font-size: 12px;
+    margin-bottom: 4px;
 }
 
 .val {
     font-size: 14px;
     min-height: 22px;
-    padding: 4px 8px;
 }
 
-/* تنسيقات الطباعة فقط */
+/* 5. تنسيقات الطباعة فقط (تُطبق عند أمر الطباعة) */
 @media print {
     html, body {
         margin: 0;
@@ -78,28 +85,27 @@ body {
         background: #fff;
     }
 
-    /* إخفاء الإطار الأحمر تماماً عند الطباعة وإزالة الخلفيات */
+    /* إخفاء الإطار الأحمر تماماً عند الطباعة لجميع العناصر */
     .input-error {
         border: none !important;
         outline: none !important;
         background: transparent !important;
-        padding: 0 !important;
-        -webkit-appearance: none;
-        appearance: none;
+        padding: 0 !important; /* لضمان عدم ترك مساحات فارغة مكان البوردر */
     }
 
-    /* إخفاء سهم الـ select الافتراضي تماماً عند الطباعة */
-    select.input-error::-ms-expand {
-        display: none;
+    .container-fluid {
+        width: 100%;
+        margin: 0 auto;
+        padding: 6mm;
+        box-sizing: border-box;
     }
 
-    #investigationForm .row {
+    .record {
         page-break-inside: avoid;
         break-inside: avoid;
     }
 }
 </style>
-
 
 
 </head>
