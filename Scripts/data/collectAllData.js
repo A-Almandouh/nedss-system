@@ -1,5 +1,7 @@
 // collectAllData.js
-
+console.log(
+    "collectAllData loaded"
+);
 async function collectAllData() {
 
     //----------------------------------
