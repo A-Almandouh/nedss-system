@@ -1,7 +1,15 @@
+console.log(
+    "saveDepartmentSheet loaded"
+);
 
-const data =
-    await collectAllData();
+async function saveDepartmentSheet() {
 
-console.log(data);
+    const data =
+        await collectAllData();
 
-return;
+    console.log(
+        "Department Data",
+        data
+    );
+
+}
