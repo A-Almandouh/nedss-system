@@ -1,4 +1,4 @@
-const data = await collectAllData();
+const data = collectAllData();
 
 console.log("CSV DATA", data);
 async function saveCsv() {
