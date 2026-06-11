@@ -179,49 +179,74 @@ toolbar.className =
 
 };
     
+//----------------------------------
+// شيت الإدارة
+//----------------------------------
+
 const btn1 =
     document.getElementById(
-        "btnSaveDepartment"
+        "btnDepartment"
     );
 
 if (btn1) {
 
-    btn1.onclick =
-        saveDepartmentSheet;
+    btn1.onclick = () => {
+
+        if (
+            typeof saveDepartmentSheet ===
+            "function"
+        ) {
+
+            saveDepartmentSheet();
+
+        }
+
+    };
 
 }
 
 
+//----------------------------------
+// شيت المحافظة
+//----------------------------------
+
 const btn2 =
     document.getElementById(
-        "btnSaveGovernorate"
+        "btnGovernorate"
     );
 
 if (btn2) {
 
-    btn2.onclick =
-        saveGovernorateSheet;
+    btn2.onclick = () => {
+
+        if (
+            typeof saveGovernorateSheet ===
+            "function"
+        ) {
+
+            saveGovernorateSheet();
+
+        }
+
+    };
 
 }
-        };
+   document
+    .getElementById(
+        "btnUpdate"
+    )
+    .onclick =
+    () => {
 
+        if (
+            typeof updateCase ===
+            "function"
+        ) {
 
-    document
-        .getElementById(
-            "btnUpdate"
-        )
-        .onclick =
-        () => {
+            updateCase();
 
-            if (
-                typeof updateCase ===
-                "function"
-            ) {
+        }
 
-                updateCase();
-
-            }
-
-        };
+    };
 
 }
