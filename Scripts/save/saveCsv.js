@@ -2,147 +2,66 @@
 
 console.log("saveCsv loaded");
 
-// اختبار عند تحميل الملف
-try {
-
-    const testData = collectAllData();
-
-    console.log("TEST collectAllData =", testData);
-
-}
-catch (err) {
-
-    console.error(
-        "TEST ERROR",
-        err
-    );
-
-}
-
 async function saveCsv() {
 
     try {
 
-        console.log(
-            "saveCsv started"
-        );
+        console.log("saveCsv started");
 
-        // جمع البيانات
         const data =
             await collectAllData();
 
-        console.log(
-            "DATA =",
-            data
-        );
-
-        // فحص البيانات
-        if (!data) {
-
-            console.error(
-                "DATA IS NULL"
-            );
-
-            alert(
-                "لا توجد بيانات"
-            );
-
-            return;
-
-        }
-
-        console.log(
-            "DATA TYPE =",
-            typeof data
-        );
-
-        console.log(
-            "KEYS =",
-            Object.keys(data)
-        );
-
-        console.log(
-            "VALUES =",
-            Object.values(data)
-        );
+        console.log("DATA =", data);
 
         if (
+            !data ||
             Object.keys(data).length === 0
         ) {
 
-            alert(
-                "البيانات فارغة"
-            );
+            alert("لا توجد بيانات");
 
             return;
-
         }
 
-        // رؤوس الأعمدة
         const headers =
             Object.keys(data);
 
-        // القيم
         const values =
             Object.values(data);
 
-        // معالجة النصوص
         const escapeCsv =
             value => {
 
                 const str =
-                    String(
-                        value ?? ""
-                    );
+                    String(value ?? "");
 
-                return (
-                    '"' +
+                return '"' +
                     str.replace(
                         /"/g,
                         '""'
                     ) +
-                    '"'
-                );
+                    '"';
 
             };
 
-        // إنشاء CSV
         const csv =
             "\uFEFF" +
             headers
-                .map(
-                    escapeCsv
-                )
+                .map(escapeCsv)
                 .join(",") +
             "\r\n" +
             values
-                .map(
-                    escapeCsv
-                )
+                .map(escapeCsv)
                 .join(",");
 
-        console.log(
-            "CSV CONTENT:"
-        );
-
-        console.log(
-            csv
-        );
-
-        // إنشاء الملف
         const blob =
             new Blob(
                 [csv],
                 {
                     type:
-                        "text/csv;charset=utf-8"
+                    "text/csv;charset=utf-8"
                 }
             );
-
-        console.log(
-            "BLOB SIZE =",
-            blob.size
-        );
 
         const url =
             URL.createObjectURL(
@@ -156,13 +75,17 @@ async function saveCsv() {
 
         a.href = url;
 
+        // اسم الملف
+        const diseaseId =
+            data.DiseaseID ||
+            "UnknownDisease";
+
+        const caseId =
+            data.CaseID ||
+            "UnknownCase";
+
         a.download =
-            (
-                data.PatientName ||
-                data.CaseID ||
-                "Case"
-            ) +
-            ".csv";
+            `${diseaseId} - ${caseId}.csv`;
 
         document.body.appendChild(
             a
@@ -172,20 +95,13 @@ async function saveCsv() {
 
         a.remove();
 
-        setTimeout(
-            () => {
+        setTimeout(() => {
 
-                URL.revokeObjectURL(
-                    url
-                );
+            URL.revokeObjectURL(
+                url
+            );
 
-            },
-            1000
-        );
-
-        console.log(
-            "CSV SAVED"
-        );
+        }, 1000);
 
     }
     catch (err) {
