@@ -1,5 +1,7 @@
 // collectTemplateFields.js
-
+console.log(
+    "collectTemplateFields loaded"
+);
 function collectTemplateFields() {
 
     const form =
