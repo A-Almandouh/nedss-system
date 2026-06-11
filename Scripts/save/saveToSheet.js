@@ -30,3 +30,16 @@ async function saveToGovernorateSheet() {
 
     return;
 }
+(async function () {
+
+    console.log("TEST");
+
+    const data =
+        await collectAllData();
+
+    console.log(
+        "ALL DATA",
+        data
+    );
+
+})();
