@@ -653,97 +653,196 @@ window.addEventListener("message", function (event) {
 
 <script>
 
-window.addEventListener("message", function (event) {
+async function getDiseaseLink(data) {
 
-    if (!event.data || event.data.type !== "FILL_DATA")
-        return;
+    try {
 
-    const data = event.data.data;
-     window.caseData = data;
-    // ==========================
-    // تعبئة الحقول
-    // ==========================
-    console.log("DATA RECEIVED", data);
-
-    for (const key in data) {
-
-        const el =
-            document.querySelector(
-                `[data-field="${key}"]`
+        const response =
+            await fetch(
+                "https://a-almandouh.github.io/nedss-system/Config/disease-routing.json"
             );
 
-        if (el) {
+        const routes =
+            await response.json();
 
-            el.textContent =
-                data[key] || "";
+        const route =
+            routes[data.DiseaseID];
 
-        }
-    }
+        if (
+            !route ||
+            !route.url
+        ) {
 
+            console.warn(
+                "No route found for DiseaseID:",
+                data.DiseaseID
+            );
 
-    // ==========================
-    // عنوان الصفحة
-    // ==========================
-    let month = "";
-    let year = "";
-
-    if (data.ReportDate) {
-
-        const parts =
-            data.ReportDate.split("/");
-
-        if (parts.length === 3) {
-
-            month = parts[1];
-            year = parts[2];
+            return null;
 
         }
+
+        let url =
+            route.url;
+
+        if (
+            route.appendCaseId
+        ) {
+
+            url +=
+                "&caseid=" +
+                data.CaseID;
+
+        }
+
+        return url;
+
+    }
+    catch (err) {
+
+        console.error(
+            "Disease route error",
+            err
+        );
+
+        return null;
+
     }
 
-    document.title = [
-
-        data.ResidenceGovernorate,
-        data.ResidenceDistrict,
-        data.DiseaseName,
-        month,
-        year,
-        data.FirstName,
-        data.FatherName,
-        data.GrandFatherName
-
-    ]
-    .filter(Boolean)
-    .join(" - ");
-
-
-    // ==========================
-    // QR CODE
-    // ==========================
-  const qrContainer = document.getElementById("qrcode");
-
-if (qrContainer) {
-
-    qrContainer.innerHTML = "";
-
-    const myLink =
-        "https://nedss.mohp.gov.eg/nedss/WebPages/GeneralData/Ext_Brucellosis.aspx?action=edit&caseid="
-        + data.CaseID;
-
-    new QRCode(qrContainer, {
-        text: myLink,
-        width: 75,
-        height: 75
-    });
-
-    qrContainer.style.cursor = "pointer";
-
-    qrContainer.onclick = function () {
-        window.open(myLink, "_blank");
-    };
 }
-   
 
-});
+window.addEventListener(
+    "message",
+    async function (event) {
+
+        if (
+            !event.data ||
+            event.data.type !== "FILL_DATA"
+        ) {
+            return;
+        }
+
+        const data =
+            event.data.data;
+
+        window.caseData =
+            data;
+
+        console.log(
+            "DATA RECEIVED",
+            data
+        );
+
+        // ==========================
+        // تعبئة الحقول
+        // ==========================
+
+        for (const key in data) {
+
+            const el =
+                document.querySelector(
+                    `[data-field="${key}"]`
+                );
+
+            if (el) {
+
+                el.textContent =
+                    data[key] || "";
+
+            }
+
+        }
+
+        // ==========================
+        // عنوان الصفحة
+        // ==========================
+
+        let month = "";
+        let year = "";
+
+        if (data.ReportDate) {
+
+            const parts =
+                data.ReportDate.split("/");
+
+            if (
+                parts.length === 3
+            ) {
+
+                month =
+                    parts[1];
+
+                year =
+                    parts[2];
+
+            }
+
+        }
+
+        document.title = [
+
+            data.ResidenceGovernorate,
+            data.ResidenceDistrict,
+            data.DiseaseName,
+            month,
+            year,
+            data.FirstName,
+            data.FatherName,
+            data.GrandFatherName
+
+        ]
+        .filter(Boolean)
+        .join(" - ");
+
+        // ==========================
+        // QR CODE
+        // ==========================
+
+        const qrContainer =
+            document.getElementById(
+                "qrcode"
+            );
+
+        if (qrContainer) {
+
+            qrContainer.innerHTML =
+                "";
+
+            const myLink =
+                await getDiseaseLink(
+                    data
+                );
+
+            if (myLink) {
+
+                new QRCode(
+                    qrContainer,
+                    {
+                        text: myLink,
+                        width: 75,
+                        height: 75
+                    }
+                );
+
+                qrContainer.style.cursor =
+                    "pointer";
+
+                qrContainer.onclick =
+                    function () {
+
+                        window.open(
+                            myLink,
+                            "_blank"
+                        );
+
+                    };
+
+            }
+
+        }
+
+    }
+);
 
 </script>
 
