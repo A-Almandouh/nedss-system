@@ -1,5 +1,5 @@
 function createToolbar() {
-
+  console.log("createToolbar called");
     if (
         document.getElementById(
             "nedss-toolbar"
