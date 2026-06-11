@@ -38,16 +38,22 @@ async function saveToGovernorateSheet() {
         await collectAllData();
 const result = splitData(data);
 
-console.log("GENERAL DATA");
+console.log(
+    "GENERAL DATA",
+    JSON.stringify(
+        result.generalData,
+        null,
+        2
+    )
+);
 
-console.table(result.generalData);
-
-console.log("DISEASE DATA");
-
-console.table(result.diseaseData);
-    console.log(
-        "ALL DATA",
-        data
-    );
+console.log(
+    "DISEASE DATA",
+    JSON.stringify(
+        result.diseaseData,
+        null,
+        2
+    )
+);
 
 })();
