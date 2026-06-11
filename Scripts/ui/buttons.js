@@ -126,6 +126,34 @@ function createToolbar() {
 
         };
 
+     //-----------------------------
+    //csv
+    //-----------------------
+    document
+    .getElementById("btnCsv")
+    .onclick =
+    () => {
+
+        if (
+            typeof saveCsv ===
+            "function"
+        ) {
+
+            saveCsv();
+
+        }
+        else {
+
+            alert(
+                "saveCsv غير موجود"
+            );
+
+        }
+
+    };
+    
+
+
     //----------------------------------
     // شيت الإدارة
     //----------------------------------
