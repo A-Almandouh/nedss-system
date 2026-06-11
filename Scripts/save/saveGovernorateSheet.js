@@ -1,6 +1,15 @@
-const data =
-    await collectAllData();
+console.log(
+    "saveGovernorateSheet loaded"
+);
 
-console.log(data);
+async function saveGovernorateSheet() {
 
-return;
+    const data =
+        await collectAllData();
+
+    console.log(
+        "Governorate Data",
+        data
+    );
+
+}
