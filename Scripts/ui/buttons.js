@@ -56,42 +56,59 @@ function createToolbar() {
     //----------------------------------
 
     Object.assign(
-        toolbar.style,
-        {
-            position: "sticky",
-            top: "0",
-            zIndex: "9999",
-            background: "#ffffff",
-            padding: "10px",
-            borderBottom:
-                "1px solid #ddd",
-            display: "flex",
-            gap: "10px",
-            flexWrap: "wrap"
+    toolbar.style,
+    {
+        position: "sticky",
+        top: "0",
+        zIndex: "9999",
+        background: "#ffffff",
+        padding: "10px",
+        borderBottom: "1px solid #ddd",
+        display: "flex",
+        gap: "10px",
+        flexWrap: "wrap"
+    }
+);
+
+toolbar.classList.add("no-print");
+
+if (!document.getElementById("nedss-print-style")) {
+
+    const style =
+        document.createElement("style");
+
+    style.id =
+        "nedss-print-style";
+
+    style.textContent = `
+        @media print {
+            #nedss-toolbar,
+            .no-print {
+                display: none !important;
+            }
         }
-    );
+    `;
 
-    toolbar
-        .querySelectorAll(
-            "button"
-        )
-        .forEach(btn => {
+    document.head.appendChild(style);
+}
 
-            Object.assign(
-                btn.style,
-                {
-                    border: "0",
-                    padding: "8px 15px",
-                    borderRadius: "8px",
-                    cursor: "pointer",
-                    background: "#0d6efd",
-                    color: "white"
-                }
-            );
+toolbar
+    .querySelectorAll("button")
+    .forEach(btn => {
 
-        });
+        Object.assign(
+            btn.style,
+            {
+                border: "0",
+                padding: "8px 15px",
+                borderRadius: "8px",
+                cursor: "pointer",
+                background: "#0d6efd",
+                color: "white"
+            }
+        );
 
-    //----------------------------------
+    });    //----------------------------------
     // طباعة
     //----------------------------------
 
