@@ -1,5 +1,7 @@
 // buttons.js
-
+console.log(
+    "buttons loaded"
+);
 // عدم إظهار شريط الأدوات أثناء الطباعة
 
 const style =
