@@ -29,6 +29,10 @@ function createToolbar() {
 💾 HTML
 </button>
 
+<button id="btnCsv">
+📊 CSV
+</button>
+
 <button id="btnDepartment">
 🏥 شيت الإدارة
 </button>
@@ -101,6 +105,32 @@ function createToolbar() {
 
         };
 
+    //-----------------------------
+    //csv
+    //-----------------------
+    document
+    .getElementById("btnCsv")
+    .onclick =
+    () => {
+
+        if (
+            typeof saveCsv ===
+            "function"
+        ) {
+
+            saveCsv();
+
+        }
+        else {
+
+            alert(
+                "saveCsv غير موجود"
+            );
+
+        }
+
+    };
+    
     //----------------------------------
     // HTML
     //----------------------------------
