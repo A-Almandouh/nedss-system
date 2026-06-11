@@ -1,37 +1,5 @@
-// buttons.js
-console.log(
-    "buttons loaded"
-);
-// عدم إظهار شريط الأدوات أثناء الطباعة
-
-const style =
-    document.createElement(
-        "style"
-    );
-
-style.innerHTML = `
-
-@media print {
-
-    .no-print {
-
-        display:none !important;
-
-    }
-
-}
-
-`;
-
-document.head.appendChild(
-    style
-);
-
-createToolbar();
-
 function createToolbar() {
 
-    // منع إنشاء الشريط أكثر من مرة
     if (
         document.getElementById(
             "nedss-toolbar"
@@ -45,12 +13,12 @@ function createToolbar() {
             "div"
         );
 
-  toolbar.id =
-    "nedss-toolbar";
+    toolbar.id =
+        "nedss-toolbar";
 
-toolbar.className =
-    "no-print";
-    
+    toolbar.className =
+        "no-print";
+
     toolbar.innerHTML = `
 
 <button id="btnPrint">
@@ -60,8 +28,6 @@ toolbar.className =
 <button id="btnHtml">
 💾 HTML
 </button>
-
-<!-- <button id="btnPdf">📄 PDF</button>-->
 
 <button id="btnDepartment">
 🏥 شيت الإدارة
@@ -81,31 +47,23 @@ toolbar.className =
         toolbar
     );
 
-    // تنسيق الشريط
+    //----------------------------------
+    // تنسيق الأزرار
+    //----------------------------------
 
     Object.assign(
         toolbar.style,
         {
-
             position: "sticky",
-
             top: "0",
-
             zIndex: "9999",
-
             background: "#ffffff",
-
             padding: "10px",
-
             borderBottom:
                 "1px solid #ddd",
-
             display: "flex",
-
             gap: "10px",
-
             flexWrap: "wrap"
-
         }
     );
 
@@ -113,140 +71,118 @@ toolbar.className =
         .querySelectorAll(
             "button"
         )
-        .forEach(
-            btn => {
+        .forEach(btn => {
 
-                Object.assign(
-                    btn.style,
-                    {
+            Object.assign(
+                btn.style,
+                {
+                    border: "0",
+                    padding: "8px 15px",
+                    borderRadius: "8px",
+                    cursor: "pointer",
+                    background: "#0d6efd",
+                    color: "white"
+                }
+            );
 
-                        border: "0",
-
-                        padding:
-                            "8px 15px",
-
-                        borderRadius:
-                            "8px",
-
-                        cursor:
-                            "pointer",
-
-                        background:
-                            "#0d6efd",
-
-                        color:
-                            "white"
-
-                    }
-                );
-
-            }
-        );
+        });
 
     //----------------------------------
-    // الأحداث
+    // طباعة
     //----------------------------------
 
     document
         .getElementById(
             "btnPrint"
         )
-        .onclick =
-        () => {
+        .onclick = () => {
 
             window.print();
 
         };
 
-   document
-.getElementById("btnHtml")
-.onclick = () => {
+    //----------------------------------
+    // HTML
+    //----------------------------------
 
-    console.log("HTML clicked");
+    document
+        .getElementById(
+            "btnHtml"
+        )
+        .onclick = () => {
 
-    console.log(typeof saveHtml);
+            if (
+                typeof saveHtml ===
+                "function"
+            ) {
 
-    if (typeof saveHtml === "function") {
+                saveHtml();
 
-        saveHtml();
+            }
 
-    }
-    else {
+        };
 
-        alert("saveHtml غير موجود");
+    //----------------------------------
+    // شيت الإدارة
+    //----------------------------------
 
-    }
+    document
+        .getElementById(
+            "btnDepartment"
+        )
+        .onclick = () => {
 
-};
-    
-//----------------------------------
-// شيت الإدارة
-//----------------------------------
+            if (
+                typeof saveDepartmentSheet ===
+                "function"
+            ) {
 
-const btn1 =
-    document.getElementById(
-        "btnDepartment"
-    );
+                saveDepartmentSheet();
 
-if (btn1) {
+            }
 
-    btn1.onclick = () => {
+        };
 
-        if (
-            typeof saveDepartmentSheet ===
-            "function"
-        ) {
+    //----------------------------------
+    // شيت المحافظة
+    //----------------------------------
 
-            saveDepartmentSheet();
+    document
+        .getElementById(
+            "btnGovernorate"
+        )
+        .onclick = () => {
 
-        }
+            if (
+                typeof saveGovernorateSheet ===
+                "function"
+            ) {
 
-    };
+                saveGovernorateSheet();
 
-}
+            }
 
+        };
 
-//----------------------------------
-// شيت المحافظة
-//----------------------------------
+    //----------------------------------
+    // تحديث
+    //----------------------------------
 
-const btn2 =
-    document.getElementById(
-        "btnGovernorate"
-    );
+    document
+        .getElementById(
+            "btnUpdate"
+        )
+        .onclick = () => {
 
-if (btn2) {
+            if (
+                typeof updateCase ===
+                "function"
+            ) {
 
-    btn2.onclick = () => {
+                updateCase();
 
-        if (
-            typeof saveGovernorateSheet ===
-            "function"
-        ) {
+            }
 
-            saveGovernorateSheet();
-
-        }
-
-    };
-
-}
-   document
-    .getElementById(
-        "btnUpdate"
-    )
-    .onclick =
-    () => {
-
-        if (
-            typeof updateCase ===
-            "function"
-        ) {
-
-            updateCase();
-
-        }
-
-    };
+        };
 
 }
