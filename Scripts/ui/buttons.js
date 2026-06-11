@@ -218,3 +218,5 @@ function createToolbar() {
         };
 
 }
+
+function createToolbar()
