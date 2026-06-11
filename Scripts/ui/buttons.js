@@ -219,4 +219,4 @@ function createToolbar() {
 
 }
 
-function createToolbar()
+createToolbar()
