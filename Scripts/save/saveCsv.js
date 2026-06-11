@@ -1,5 +1,6 @@
-console.log("saveCsv loaded");
+const data = await collectAllData();
 
+console.log("CSV DATA", data);
 async function saveCsv() {
 
     try {
