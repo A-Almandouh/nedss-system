@@ -179,80 +179,30 @@ toolbar.className =
 
 };
     
-    document
-        .getElementById(
-            "btnPdf"
-        )
-        .onclick =
-        () => {
+const btn1 =
+    document.getElementById(
+        "btnSaveDepartment"
+    );
 
-            if (
-                typeof savePdf ===
-                "function"
-            ) {
+if (btn1) {
 
-                savePdf();
+    btn1.onclick =
+        saveDepartmentSheet;
 
-            }
+}
 
-        };
 
-   document
-.getElementById("btnPdf")
-.onclick = () => {
+const btn2 =
+    document.getElementById(
+        "btnSaveGovernorate"
+    );
 
-    console.log("PDF clicked");
+if (btn2) {
 
-    console.log(typeof savePdf);
+    btn2.onclick =
+        saveGovernorateSheet;
 
-    if (typeof savePdf === "function") {
-
-        savePdf();
-
-    }
-    else {
-
-        alert("savePdf غير موجود");
-
-    }
-
-};
-
-    document
-        .getElementById(
-            "btnGovernorate"
-        )
-        .onclick =
-        () => {
-
-            if (
-                typeof saveGovernorateSheet ===
-                "function"
-            ) {
-
-                saveGovernorateSheet();
-
-            }
-
-        };
-
-    
-    document
-        .getElementById(
-            "btnSaveDepartment"
-        )
-        .onclick =
-        () => {
-
-            if (
-                typeof  saveToDepartmentSheet ===
-                "function"
-            ) {
-
-                 saveToDepartmentSheet();
-
-            }
-
+}
         };
 
 
