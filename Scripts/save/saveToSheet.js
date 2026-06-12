@@ -1,59 +1,37 @@
-console.log(
-    "saveToSheet loaded"
-);
+console.log("saveToSheet loaded");
 
-async function saveToDepartmentSheet() {
+async function saveToSheet() {
 
-    console.log(
-        "saveToDepartmentSheet"
-    );
+    try {
 
-    const data =
-        await collectAllData();
+        //----------------------------------
+        // شيت الإدارة
+        //----------------------------------
 
-    console.log(data);
+        await saveDepartmentSheet();
 
-    return;
+        //----------------------------------
+        // شيت المحافظة
+        //----------------------------------
+
+        await saveGovernorateSheet();
+
+        //----------------------------------
+
+        alert(
+            "تم حفظ البيانات فى شيت الإدارة وشيت المحافظة بنجاح"
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert(
+            "حدث خطأ أثناء حفظ البيانات"
+        );
+
+    }
+
 }
-
-
-async function saveToGovernorateSheet() {
-
-    console.log(
-        "saveToGovernorateSheet"
-    );
-
-    const data =
-        await collectAllData();
-
-    console.log(data);
-
-    return;
-}
-(async function () {
-
-    console.log("TEST");
-
-    const data =
-        await collectAllData();
-const result = splitData(data);
-
-console.log(
-    "GENERAL DATA",
-    JSON.stringify(
-        result.generalData,
-        null,
-        2
-    )
-);
-
-console.log(
-    "DISEASE DATA",
-    JSON.stringify(
-        result.diseaseData,
-        null,
-        2
-    )
-);
-
-})();
