@@ -33,6 +33,10 @@ function createToolbar() {
 📊 CSV
 </button>
 
+<button id="btnSave">
+☁ حفظ البيانات
+</button>
+
 <button id="btnDepartment">
 🏥 شيت الإدارة
 </button>
@@ -169,7 +173,30 @@ toolbar
 
     };
     
+//---------------------------حفظ اون لاين  جوجل شيت -------------
 
+  const btnSave =
+    document.getElementById(
+        "btnSave"
+    );
+
+if (btnSave) {
+
+    btnSave.onclick = () => {
+
+        if (
+            typeof saveToSheet ===
+            "function"
+        ) {
+
+            saveToSheet();
+
+        }
+
+    };
+
+}
+  
 
     //----------------------------------
     // شيت الإدارة
