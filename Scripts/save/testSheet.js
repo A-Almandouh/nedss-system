@@ -27,7 +27,7 @@ async function testSheet() {
     const response = await fetch(
         "https://script.google.com/macros/s/AKfycbzbasd78UdrLoqpPgvtmBBb3YOX43A0bGcPgORXLRgJYwxX_7oZGZCaDfOppZdRgR9z/exec",
         {
-            method: "POST",
+            method: "GET",
             headers: {
                 "Content-Type": "application/json"
             },
