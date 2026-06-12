@@ -25,7 +25,7 @@ async function testSheet() {
     };
 
     const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbyawpMOpj-ubnIivLU1E4jt1T6azDQwL0dPVZhEp3iP30nngvtR0sD5RH3sqNL3HWcz/exec",
+        "https://script.google.com/macros/s/AKfycbzbasd78UdrLoqpPgvtmBBb3YOX43A0bGcPgORXLRgJYwxX_7oZGZCaDfOppZdRgR9z/exec",
         {
             method: "POST",
             headers: {
