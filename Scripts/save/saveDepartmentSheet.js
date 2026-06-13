@@ -13,11 +13,15 @@ async function saveDepartmentSheet() {
         govSheetId = settings.governorateSheet;
         deptSheetId = settings.departmentSheet;
         driveFolderId = settings.driveFolderId; // سيتم قراءته مباشرة من إعدادات الإضافة
+        console.log(govSheetId);
+        console.log(deptSheetId);
+        console.log(driveFolderId);
     } else {
         console.log("تنبيه: الكود يعمل خارج إضافة كروم، تم استخدام المعرّفات الافتراضية للاختبار.");
         govSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
         deptSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
         driveFolderId = "1O4fbgDHYXjYV9Garh_zsJAL__PhSk_5c"; // 💡 يمكنك وضع الـ Folder ID الخاص بك هنا للاختبار في الـ Console
+        
     }
 
     if (!govSheetId && !deptSheetId) {
