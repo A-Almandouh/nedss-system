@@ -1,4 +1,4 @@
-console.log("saveDepartmentSheet loaded");
+console.log("saveGovernorateSheet loaded");
 
 async function saveDepartmentSheet() {
 
