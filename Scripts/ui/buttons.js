@@ -34,19 +34,7 @@ function createToolbar() {
 </button>
 
 <button id="btnSave">
-☁ حفظ البيانات
-</button>
-
-<button id="btnDepartment">
-🏥 شيت الإدارة
-</button>
-
-<button id="btnGovernorate">
-🏢 شيت المحافظة
-</button>
-
-<button id="btnUpdate">
-🔄 تحديث
+☁ حفظ البيانات On-Line
 </button>
 
 `;
@@ -198,69 +186,7 @@ if (btnSave) {
 }
   
 
-    //----------------------------------
-    // شيت الإدارة
-    //----------------------------------
-
-    document
-        .getElementById(
-            "btnDepartment"
-        )
-        .onclick = () => {
-
-            if (
-                typeof saveDepartmentSheet ===
-                "function"
-            ) {
-
-                saveDepartmentSheet();
-
-            }
-
-        };
-
-    //----------------------------------
-    // شيت المحافظة
-    //----------------------------------
-
-    document
-        .getElementById(
-            "btnGovernorate"
-        )
-        .onclick = () => {
-
-            if (
-                typeof saveGovernorateSheet ===
-                "function"
-            ) {
-
-                saveGovernorateSheet();
-
-            }
-
-        };
-
-    //----------------------------------
-    // تحديث
-    //----------------------------------
-
-    document
-        .getElementById(
-            "btnUpdate"
-        )
-        .onclick = () => {
-
-            if (
-                typeof updateCase ===
-                "function"
-            ) {
-
-                updateCase();
-
-            }
-
-        };
-
+    
 }
 
 createToolbar()
