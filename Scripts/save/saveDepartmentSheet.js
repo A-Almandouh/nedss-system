@@ -3,7 +3,7 @@ console.log("saveDepartmentSheet loaded");
 async function saveDepartmentSheet() {
 
     //--------------------------------
-    // مؤقتاً للاختبار
+    // للاختبار
     //--------------------------------
 
     const spreadsheetId =
@@ -20,19 +20,49 @@ async function saveDepartmentSheet() {
         );
 
     //--------------------------------
-    // G-Data
+    // حفظ البيانات العامة
     //--------------------------------
 
-    await fetch(
+    const response =
+        await fetch(
 
-        GOOGLE_SCRIPT_URL,
+            GOOGLE_SCRIPT_URL,
 
-        {
+            {
 
-            method: "POST",
+                method: "POST",
 
-            body: JSON.stringify({
+                headers: {
 
-                spreadsheetId,
+                    "Content-Type":
+                        "application/json"
 
-               
+                },
+
+                body:
+                    JSON.stringify({
+
+                        spreadsheetId:
+
+                            spreadsheetId,
+
+                        sheetName:
+
+                            "G-Data",
+
+                        data:
+
+                            result.generalData
+
+                    })
+
+            }
+
+        );
+
+    const json =
+        await response.json();
+
+    console.log(json);
+
+}
