@@ -1,15 +1,93 @@
-console.log(
-    "saveGovernorateSheet loaded"
-);
+console.log("saveDepartmentSheet loaded");
 
-async function saveGovernorateSheet() {
+async function saveDepartmentSheet() {
 
-    const data =
+    const settings =
+        (
+            await chrome.storage.local.get(
+                "settings"
+            )
+        ).settings || {};
+
+    const spreadsheetId =
+        settings.departmentSheet;
+
+    if (!spreadsheetId) {
+
+        alert(
+            "لم يتم تحديد ملف الإدارة"
+        );
+
+        return;
+
+    }
+
+    //--------------------------------
+    // جمع البيانات
+    //--------------------------------
+
+    const allData =
         await collectAllData();
 
-    console.log(
-        "Governorate Data",
-        data
+    const result =
+        splitData(
+            allData
+        );
+
+    //--------------------------------
+    // البيانات العامة
+    //--------------------------------
+
+    await fetch(
+
+        GOOGLE_SCRIPT_URL,
+
+        {
+
+            method: "POST",
+
+            body: JSON.stringify({
+
+                spreadsheetId,
+
+                sheetName:
+                    "G-Data",
+
+                data:
+                    result.generalData
+
+            })
+
+        }
+
+    );
+
+    //--------------------------------
+    // بيانات المرض
+    //--------------------------------
+
+    await fetch(
+
+        GOOGLE_SCRIPT_URL,
+
+        {
+
+            method: "POST",
+
+            body: JSON.stringify({
+
+                spreadsheetId,
+
+                sheetName:
+                    allData.DiseaseID,
+
+                data:
+                    result.diseaseData
+
+            })
+
+        }
+
     );
 
 }
