@@ -17,7 +17,7 @@ async function saveDepartmentSheet() {
         console.log("تنبيه: الكود يعمل خارج إضافة كروم، تم استخدام المعرّفات الافتراضية للاختبار.");
         govSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
         deptSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
-        driveFolderId = ""; // 💡 يمكنك وضع الـ Folder ID الخاص بك هنا للاختبار في الـ Console
+        driveFolderId = "1O4fbgDHYXjYV9Garh_zsJAL__PhSk_5c"; // 💡 يمكنك وضع الـ Folder ID الخاص بك هنا للاختبار في الـ Console
     }
 
     if (!govSheetId && !deptSheetId) {
