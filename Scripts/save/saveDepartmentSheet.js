@@ -24,21 +24,23 @@ async function saveDepartmentSheet() {
     //--------------------------------
 
     const response =
-        await fetch(
+       await fetch(
+    GOOGLE_SCRIPT_URL,
+    {
+        method: "POST",
 
-            GOOGLE_SCRIPT_URL,
+        body: JSON.stringify({
 
-            {
+            spreadsheetId,
 
-                method: "POST",
+            sheetName: "G-Data",
 
-                headers: {
+            data: result.generalData
 
-                    "Content-Type":
-                        "application/json"
+        })
 
-                },
-
+    }
+);
                 body:
                     JSON.stringify({
 
