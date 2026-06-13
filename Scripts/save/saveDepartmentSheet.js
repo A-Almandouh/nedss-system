@@ -1,6 +1,6 @@
 
-//const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzQg3y9K4q3J6Icc5VwKNsQ0TQ-4zipO9nnq2lQhazBrTEPj_GgdS7I_bZwUqwFZ-7_/exec";
-console.log("saveDepartmentSheet loaded - Version 7");
+//const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzhQ7qPMq_kQpwT_wUzTJ4SbfYKhwpfb6S-Tuxbc3_dCmciR5-FE5IA5QcIllyumySY/exec";
+console.log("saveDepartmentSheet loaded - Version 8");
 
 async function saveDepartmentSheet() {
     let govSheetId = "";
@@ -37,7 +37,7 @@ async function saveDepartmentSheet() {
     const allData = await collectAllData();
     const result = splitData(allData);
 
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzQg3y9K4q3J6Icc5VwKNsQ0TQ-4zipO9nnq2lQhazBrTEPj_GgdS7I_bZwUqwFZ-7_/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzhQ7qPMq_kQpwT_wUzTJ4SbfYKhwpfb6S-Tuxbc3_dCmciR5-FE5IA5QcIllyumySY/exec";
     let summaryMessages = [];
 
     //---------------------------------------------------------
