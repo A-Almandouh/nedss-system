@@ -4,84 +4,94 @@
 console.log("saveDepartmentSheet loaded");
 
 async function saveDepartmentSheet() {
-    let spreadsheetId = "";
+    let governorateSheetId = "";
+    let departmentSheetId = "";
 
-    // فحص ما إذا كان الكود يعمل داخل إضافة كروم ولديه صلاحية الوصول للذاكرة
+    // 1. جلب المعرفات بناءً على بيئة التشغيل (إضافة كروم أم الـ Console للاختبار)
     if (typeof chrome !== "undefined" && chrome.storage && chrome.storage.local) {
         const settings = (await chrome.storage.local.get("settings")).settings || {};
-        spreadsheetId = settings.departmentSheet;
+        governorateSheetId = settings.governorateSheet; // ملف المحافظة
+        departmentSheetId = settings.departmentSheet;   // ملف الإدارة
     } else {
-        //---------------------------------------------------------
-        // القيمة الافتراضية للاختبار والتجربة من الـ Console العادي
-        //---------------------------------------------------------
-        console.log("تنبيه: الكود يعمل خارج إضافة كروم، تم استخدام المعرّف الافتراضي للاختبار.");
-        spreadsheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
+        console.log("تنبيه: الكود يعمل خارج إضافة كروم، تم استخدام المعرفات الافتراضية للاختبار.");
+        // ضع هنا المعرفات الافتراضية الخاصة بك للاختبار في الـ Console
+        governorateSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
+        departmentSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
     }
 
-    // إذا لم يجد معرف في الحالتين يظهر التنبيه ويتوقف
-    if (!spreadsheetId) {
-        alert("لم يتم تحديد ملف الإدارة");
+    // 2. التحقق من وجود الملفات وإظهار التنبيهات المناسبة دون إيقاف الكود
+    if (!governorateSheetId && !departmentSheetId) {
+        alert("⚠️ خطأ: لم يتم تحديد ملف المحافظة ولا ملف الإدارة في الإعدادات! تم إلغاء الحفظ.");
         return;
     }
+    if (!governorateSheetId) {
+        console.warn("تنبيه: ملف المحافظة غير محدد، سيتم الحفظ في ملف الإدارة فقط.");
+    }
+    if (!departmentSheetId) {
+        console.warn("تنبيه: ملف الإدارة غير محدد، سيتم الحفظ في ملف المحافظة فقط.");
+    }
 
-    //--------------------------------
-    // جمع البيانات
-    //--------------------------------
+    // 3. جمع البيانات وتجهيزها
     const allData = await collectAllData();
     const result = splitData(allData);
 
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbywVVr1NoIYGnyaAlbbBGayNJQVgFVmCVUKNEakWBXlMZ05uIrEm-YseLVyaRmvqQe-/exec";
+    const GOOGLE_SCRIPT_URL = "https://google.com";
     
-    try {
-        //--------------------------------
-        // 1. حفظ البيانات العامة
-        //--------------------------------
-        console.log("جاري حفظ البيانات العامة...");
-        const responseGeneral = await fetch(GOOGLE_SCRIPT_URL, {
-            method: "POST",
-            mode: "cors",
-            headers: {
-                "Content-Type": "text/plain;charset=utf-8"
-            },
-            body: JSON.stringify({
-                spreadsheetId: spreadsheetId,
-                sheetName: "G-Data",
-                data: result.generalData
-            })
-        });
+    // مصفوفة لتتبع نتائج الحفظ لعرضها في تنبيه نهائي للمستخدم
+    let summaryMessages = [];
 
-        const resGeneralJson = await responseGeneral.json();
-        console.log("نتيجة حفظ البيانات العامة:", resGeneralJson);
+    // 4. دالة داخلية مساعدة لإرسال البيانات لملف محدد (تمنع تكرار الكود وتضمن عدم توقف السكريبت بالكامل)
+    async function sendToSpreadsheet(spreadsheetId, label) {
+        try {
+            // أ. إرسال البيانات العامة "G-Data"
+            const responseGeneral = await fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                mode: "cors",
+                headers: { "Content-Type": "text/plain;charset=utf-8" },
+                body: JSON.stringify({
+                    spreadsheetId: spreadsheetId,
+                    sheetName: "G-Data",
+                    data: result.generalData
+                })
+            });
+            const resGeneralJson = await responseGeneral.json();
 
-        //--------------------------------
-        // 2. حفظ بيانات المرض
-        //--------------------------------
-        console.log(`جاري حفظ بيانات المرض في الشيت: ${allData.DiseaseID}...`);
-        const responseDisease = await fetch(GOOGLE_SCRIPT_URL, {
-            method: "POST",
-            mode: "cors",
-            headers: {
-                "Content-Type": "text/plain;charset=utf-8"
-            },
-            body: JSON.stringify({
-                spreadsheetId: spreadsheetId,
-                sheetName: allData.DiseaseID, 
-                data: result.diseaseData
-            })
-        });
+            // ب. إرسال بيانات المرض
+            const responseDisease = await fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                mode: "cors",
+                headers: { "Content-Type": "text/plain;charset=utf-8" },
+                body: JSON.stringify({
+                    spreadsheetId: spreadsheetId,
+                    sheetName: allData.DiseaseID, 
+                    data: result.diseaseData
+                })
+            });
+            const resDiseaseJson = await responseDisease.json();
 
-        const resDiseaseJson = await responseDisease.json();
-        console.log("نتيجة حفظ بيانات المرض:", resDiseaseJson);
-
-        // تنبيه للمستخدم بنجاح العمليتين
-        if (resGeneralJson.success && resDiseaseJson.success) {
-            alert("تم حفظ البيانات العامة وبيانات المرض بنجاح في جوجل شيت!");
-        } else {
-            alert("تم إرسال البيانات ولكن حدثت مشكلة في الشيت، راجع الـ Console لمعرفة السبب.");
+            if (resGeneralJson.success && resDiseaseJson.success) {
+                summaryMessages.push(`✅ تم الحفظ/التحديث بنجاح في ${label}.`);
+            } else {
+                summaryMessages.push(`❌ حدث خطأ داخلي أثناء الحفظ في ${label}.`);
+            }
+        } catch (error) {
+            console.error(`خطأ أثناء الاتصال بـ ${label}:`, error);
+            summaryMessages.push(`❌ فشل الاتصال بالسيرفر لحفظ بيانات ${label}.`);
         }
-
-    } catch (error) {
-        console.error("حدث خطأ أثناء عملية الاتصال بحفظ البيانات:", error);
-        alert("فشلت عملية الحفظ، يرجى التحقق من اتصال الإنترنت أو من إعدادات السكريبت.");
     }
+
+    // 5. تنفيذ الحفظ للملفات المتاحة فقط بالتوازي
+    const tasks = [];
+    if (governorateSheetId) {
+        tasks.push(sendToSpreadsheet(governorateSheetId, "ملف المحافظة"));
+    }
+    if (departmentSheetId) {
+        tasks.push(sendToSpreadsheet(departmentSheetId, "ملف الإدارة"));
+    }
+
+    // الانتظار حتى تنتهي كافة المحاولات
+    await Promise.all(tasks);
+
+    // 6. عرض النتيجة النهائية للمستخدم بناءً على ما حدث فعلياً
+    alert(summaryMessages.join("\n"));
 }
