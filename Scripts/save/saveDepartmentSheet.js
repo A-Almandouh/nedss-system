@@ -1,11 +1,24 @@
-console.log("saveDepartmentSheet loaded");
+
 //const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbywVVr1NoIYGnyaAlbbBGayNJQVgFVmCVUKNEakWBXlMZ05uIrEm-YseLVyaRmvqQe-/exec";
 
+console.log("saveDepartmentSheet loaded");
 
 async function saveDepartmentSheet() {
-    const settings = (await chrome.storage.local.get("settings")).settings || {};
-    const spreadsheetId = settings.departmentSheet;
+    let spreadsheetId = "";
 
+    // فحص ما إذا كان الكود يعمل داخل إضافة كروم ولديه صلاحية الوصول للذاكرة
+    if (typeof chrome !== "undefined" && chrome.storage && chrome.storage.local) {
+        const settings = (await chrome.storage.local.get("settings")).settings || {};
+        spreadsheetId = settings.departmentSheet;
+    } else {
+        //---------------------------------------------------------
+        // القيمة الافتراضية للاختبار والتجربة من الـ Console العادي
+        //---------------------------------------------------------
+        console.log("تنبيه: الكود يعمل خارج إضافة كروم، تم استخدام المعرّف الافتراضي للاختبار.");
+        spreadsheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
+    }
+
+    // إذا لم يجد معرف في الحالتين يظهر التنبيه ويتوقف
     if (!spreadsheetId) {
         alert("لم يتم تحديد ملف الإدارة");
         return;
@@ -17,8 +30,8 @@ async function saveDepartmentSheet() {
     const allData = await collectAllData();
     const result = splitData(allData);
 
-    // تأكيد الرابط الخاص بك (تأكد من تعريفه في مكان ما بالكود أو استبدل المتغير بالرابط المباشر)
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbywVVr1NoIYGnyaAlbbBGayNJQVgFVmCVUKNEakWBXlMZ05uIrEm-YseLVyaRmvqQe-/exec";
+    
     try {
         //--------------------------------
         // 1. حفظ البيانات العامة
@@ -28,7 +41,7 @@ async function saveDepartmentSheet() {
             method: "POST",
             mode: "cors",
             headers: {
-                "Content-Type": "text/plain;charset=utf-8" // التحايل لتخطي CORS
+                "Content-Type": "text/plain;charset=utf-8"
             },
             body: JSON.stringify({
                 spreadsheetId: spreadsheetId,
@@ -48,11 +61,11 @@ async function saveDepartmentSheet() {
             method: "POST",
             mode: "cors",
             headers: {
-                "Content-Type": "text/plain;charset=utf-8" // التحايل لتخطي CORS
+                "Content-Type": "text/plain;charset=utf-8"
             },
             body: JSON.stringify({
                 spreadsheetId: spreadsheetId,
-                sheetName: allData.DiseaseID, // اسم الشيت هو رقم المرض
+                sheetName: allData.DiseaseID, 
                 data: result.diseaseData
             })
         });
