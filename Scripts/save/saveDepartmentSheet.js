@@ -1,33 +1,32 @@
 
 //const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbywVVr1NoIYGnyaAlbbBGayNJQVgFVmCVUKNEakWBXlMZ05uIrEm-YseLVyaRmvqQe-/exec";
-
-console.log("saveDepartmentSheet loaded");
+console.log("saveDepartmentSheet loaded2");
 
 async function saveDepartmentSheet() {
-    let governorateSheetId = "";
-    let departmentSheetId = "";
+    let govSheetId = "";
+    let deptSheetId = "";
 
-    // 1. جلب المعرفات بناءً على بيئة التشغيل (إضافة كروم أم الـ Console للاختبار)
+    // 1. جلب معرفات الملفات من ذاكرة الإضافة أو استخدام الافتراضي للاختبار
     if (typeof chrome !== "undefined" && chrome.storage && chrome.storage.local) {
         const settings = (await chrome.storage.local.get("settings")).settings || {};
-        governorateSheetId = settings.governorateSheet; // ملف المحافظة
-        departmentSheetId = settings.departmentSheet;   // ملف الإدارة
+        govSheetId = settings.governorateSheet; // ملف المحافظة
+        deptSheetId = settings.departmentSheet;  // ملف الإدارة
     } else {
-        console.log("تنبيه: الكود يعمل خارج إضافة كروم، تم استخدام المعرفات الافتراضية للاختبار.");
-        // ضع هنا المعرفات الافتراضية الخاصة بك للاختبار في الـ Console
-        governorateSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
-        departmentSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
+        console.log("تنبيه: الكود يعمل خارج إضافة كروم، تم استخدام المعرّفات الافتراضية للاختبار.");
+        govSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; // معرف شيت المحافظة الافتراضي للاختبار
+        deptSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; // معرف شيت الإدارة الافتراضي للاختبار
     }
 
     // 2. التحقق من وجود الملفات وإظهار التنبيهات المناسبة دون إيقاف الكود
-    if (!governorateSheetId && !departmentSheetId) {
-        alert("⚠️ خطأ: لم يتم تحديد ملف المحافظة ولا ملف الإدارة في الإعدادات! تم إلغاء الحفظ.");
+    if (!govSheetId && !deptSheetId) {
+        alert("⚠️ خطأ: لم يتم تحديد ملف المحافظة أو ملف الإدارة! تم إلغاء عملية الحفظ.");
         return;
     }
-    if (!governorateSheetId) {
+
+    if (!govSheetId) {
         console.warn("تنبيه: ملف المحافظة غير محدد، سيتم الحفظ في ملف الإدارة فقط.");
     }
-    if (!departmentSheetId) {
+    if (!deptSheetId) {
         console.warn("تنبيه: ملف الإدارة غير محدد، سيتم الحفظ في ملف المحافظة فقط.");
     }
 
@@ -35,15 +34,18 @@ async function saveDepartmentSheet() {
     const allData = await collectAllData();
     const result = splitData(allData);
 
+    // الرابط المحدد والخاص بك تم تثبيته هنا بشكل مباشر ومحمي
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbywVVr1NoIYGnyaAlbbBGayNJQVgFVmCVUKNEakWBXlMZ05uIrEm-YseLVyaRmvqQe-/exec";
     
-    // مصفوفة لتتبع نتائج الحفظ لعرضها في تنبيه نهائي للمستخدم
+    // مصفوفة لتتبع نتائج الحفظ لعرض التقرير النهائي
     let summaryMessages = [];
 
-    // 4. دالة داخلية مساعدة لإرسال البيانات لملف محدد (تمنع تكرار الكود وتضمن عدم توقف السكريبت بالكامل)
-    async function sendToSpreadsheet(spreadsheetId, label) {
+    //---------------------------------------------------------
+    // دالة فرعية داخلية لإرسال البيانات للشيت المحدد
+    //---------------------------------------------------------
+    async function sendToGoogleSheet(spreadsheetId, label) {
         try {
-            // أ. إرسال البيانات العامة "G-Data"
+            // أ. إرسال البيانات العامة
             const responseGeneral = await fetch(GOOGLE_SCRIPT_URL, {
                 method: "POST",
                 mode: "cors",
@@ -54,7 +56,7 @@ async function saveDepartmentSheet() {
                     data: result.generalData
                 })
             });
-            const resGeneralJson = await responseGeneral.json();
+            const resGenJson = await responseGeneral.json();
 
             // ب. إرسال بيانات المرض
             const responseDisease = await fetch(GOOGLE_SCRIPT_URL, {
@@ -63,35 +65,40 @@ async function saveDepartmentSheet() {
                 headers: { "Content-Type": "text/plain;charset=utf-8" },
                 body: JSON.stringify({
                     spreadsheetId: spreadsheetId,
-                    sheetName: allData.DiseaseID, 
+                    sheetName: allData.DiseaseID,
                     data: result.diseaseData
                 })
             });
-            const resDiseaseJson = await responseDisease.json();
+            const resDisJson = await responseDisease.json();
 
-            if (resGeneralJson.success && resDiseaseJson.success) {
-                summaryMessages.push(`✅ تم الحفظ/التحديث بنجاح في ${label}.`);
+            if (resGenJson.success && resDisJson.success) {
+                summaryMessages.push(`✅ تم حفظ/تحديث البيانات بنجاح في (${label}).`);
             } else {
-                summaryMessages.push(`❌ حدث خطأ داخلي أثناء الحفظ في ${label}.`);
+                summaryMessages.push(`❌ حدثت مشكلة أثناء الحفظ الداخلي في (${label}).`);
             }
+
         } catch (error) {
             console.error(`خطأ أثناء الاتصال بـ ${label}:`, error);
-            summaryMessages.push(`❌ فشل الاتصال بالسيرفر لحفظ بيانات ${label}.`);
+            summaryMessages.push(`⚠️ فشل الاتصال بالسيرفر أثناء الحفظ في (${label}).`);
         }
     }
 
-    // 5. تنفيذ الحفظ للملفات المتاحة فقط بالتوازي
-    const tasks = [];
-    if (governorateSheetId) {
-        tasks.push(sendToSpreadsheet(governorateSheetId, "ملف المحافظة"));
-    }
-    if (departmentSheetId) {
-        tasks.push(sendToSpreadsheet(departmentSheetId, "ملف الإدارة"));
+    //---------------------------------------------------------
+    // تنفيذ عمليات الحفظ بشكل مستقل ومتتابع
+    //---------------------------------------------------------
+    
+    // تنفيذ الحفظ لملف المحافظة إذا كان موجوداً
+    if (govSheetId) {
+        console.log("بدء الحفظ في ملف المحافظة...");
+        await sendToGoogleSheet(govSheetId, "ملف المحافظة");
     }
 
-    // الانتظار حتى تنتهي كافة المحاولات
-    await Promise.all(tasks);
+    // تنفيذ الحفظ لملف الإدارة إذا كان موجوداً
+    if (deptSheetId) {
+        console.log("بدء الحفظ في ملف الإدارة...");
+        await sendToGoogleSheet(deptSheetId, "ملف الإدارة");
+    }
 
-    // 6. عرض النتيجة النهائية للمستخدم بناءً على ما حدث فعلياً
+    // 4. عرض التقرير النهائي للمستخدم بناءً على ما حدث
     alert(summaryMessages.join("\n"));
 }
