@@ -2,28 +2,13 @@ console.log("saveDepartmentSheet loaded");
 
 async function saveDepartmentSheet() {
 
-    const settings =
-        (
-            await chrome.storage.local.get(
-                "settings"
-            )
-        ).settings || {};
+    //--------------------------------
+    // مؤقتاً للاختبار
+    //--------------------------------
 
     const spreadsheetId =
-        settings.departmentSheet;
+        "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
 
-    if (!spreadsheetId) {
-
-        alert(
-            "لم يتم تحديد ملف الإدارة"
-        );
-
-        return;
-
-    }
-
-    //--------------------------------
-    // جمع البيانات
     //--------------------------------
 
     const allData =
@@ -35,7 +20,7 @@ async function saveDepartmentSheet() {
         );
 
     //--------------------------------
-    // البيانات العامة
+    // G-Data
     //--------------------------------
 
     await fetch(
@@ -50,44 +35,4 @@ async function saveDepartmentSheet() {
 
                 spreadsheetId,
 
-                sheetName:
-                    "G-Data",
-
-                data:
-                    result.generalData
-
-            })
-
-        }
-
-    );
-
-    //--------------------------------
-    // بيانات المرض
-    //--------------------------------
-
-    await fetch(
-
-        GOOGLE_SCRIPT_URL,
-
-        {
-
-            method: "POST",
-
-            body: JSON.stringify({
-
-                spreadsheetId,
-
-                sheetName:
-                    allData.DiseaseID,
-
-                data:
-                    result.diseaseData
-
-            })
-
-        }
-
-    );
-
-}
+               
