@@ -113,11 +113,11 @@ async function saveDepartmentSheet() {
         await sendToGoogleSheet(deptSheetId, "ملف الإدارة");
     }
 
-    //---------------------------------------------------------
+        //---------------------------------------------------------
     // ب. رفع ملف الـ HTML وتمرير الـ folderId المختار برمجياً
     //---------------------------------------------------------
     try {
-        console.log("جاري رفع نسخة الـ HTML إلى Google Drive...");
+        console.log("جاري رفع نسخة الـ HTML إلى Google Drive... باستخدام المجلد:", driveFolderId);
         const responseHTML = await fetch(GOOGLE_SCRIPT_URL, {
             method: "POST",
             mode: "cors",
@@ -126,17 +126,21 @@ async function saveDepartmentSheet() {
                 action: "uploadHTML",
                 htmlContent: fullHtmlString,
                 fileName: htmlFileName,
-                folderId: driveFolderId // 💡 يتم إرسال معرف المجلد القادم من إعدادات المتصفح هنا
+                folderId: driveFolderId 
             })
         });
+        
         const resHtmlJson = await responseHTML.json();
+        console.log("الرد الكامل لملف الـ HTML من السيرفر:", resHtmlJson); // سيكشف لك سبب رفض جوجل بدقة
+
         if (resHtmlJson.success) {
             summaryMessages.push(`☁️ تم رفع نسخة الـ HTML بنجاح إلى المجلد المحدد في Google Drive.`);
         } else {
-            summaryMessages.push(`❌ فشل رفع ملف الـ HTML: ${resHtmlJson.error}`);
+            // طباعة تفاصيل الخطأ القادم من محرك جوجل
+            summaryMessages.push(`❌ فشل رفع ملف الـ HTML. السبب: ${resHtmlJson.error || "خطأ غير معروف"}`);
         }
     } catch (err) {
-        console.error("خطأ أثناء رفع ملف الـ HTML:", err);
+        console.error("خطأ أثناء رفع ملف الـ HTML في المتصفح:", err);
         summaryMessages.push("⚠️ فشل الاتصال بالسيرفر أثناء رفع ملف الـ HTML.");
     }
 
