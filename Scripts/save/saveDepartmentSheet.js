@@ -1,20 +1,23 @@
 
-//const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwPYz2EK2bLj6ToVLJa0bJktLhbBAkdbjxZP8SBUpiseBraA5EgxbC1iWp9JjyO1747/exec";
-console.log("saveDepartmentSheet loaded3");
+//const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz76KHoZNQGO_HqvEuvIIInfk1FLdEWBb-ipA6oYzJ2n-2It6i6ZCz1pzBZhKlCJhjr/exec";
+console.log("saveDepartmentSheet loaded");
 
 async function saveDepartmentSheet() {
     let govSheetId = "";
     let deptSheetId = "";
+    let driveFolderId = ""; // المتغير الجديد لربطه بصفحة الإعدادات مستقبلاً
 
-    // 1. جلب معرفات الملفات من ذاكرة الإضافة أو استخدام الافتراضي للاختبار
+    // 1. جلب معرفات الملفات والمجلد من ذاكرة الإضافة أو استخدام الافتراضي للاختبار
     if (typeof chrome !== "undefined" && chrome.storage && chrome.storage.local) {
         const settings = (await chrome.storage.local.get("settings")).settings || {};
         govSheetId = settings.governorateSheet;
         deptSheetId = settings.departmentSheet;
+        driveFolderId = settings.driveFolderId; // سيتم قراءته مباشرة من إعدادات الإضافة
     } else {
         console.log("تنبيه: الكود يعمل خارج إضافة كروم، تم استخدام المعرّفات الافتراضية للاختبار.");
         govSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
-        deptSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
+        deptSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
+        driveFolderId = ""; // 💡 يمكنك وضع الـ Folder ID الخاص بك هنا للاختبار في الـ Console
     }
 
     if (!govSheetId && !deptSheetId) {
@@ -22,15 +25,15 @@ async function saveDepartmentSheet() {
         return;
     }
 
-    // 2. جمع البيانات النصية وتجهيزها للشيتات
+    // 2. جمع البيانات النصية وتجهيزها
     const allData = await collectAllData();
     const result = splitData(allData);
 
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwPYz2EK2bLj6ToVLJa0bJktLhbBAkdbjxZP8SBUpiseBraA5EgxbC1iWp9JjyO1747/exec";
+    const GOOGLE_SCRIPT_URL = "https://google.com";
     let summaryMessages = [];
 
     //---------------------------------------------------------
-    // أ. جلب كود الـ HTML المحدث والمطوّر برمجياً لرفعه للسحابة
+    // أ. تجهيز نسخة الـ HTML برمجياً
     //---------------------------------------------------------
     const clone = document.documentElement.cloneNode(true);
     const toolbar = clone.querySelector("#nedss-toolbar");
@@ -59,37 +62,26 @@ async function saveDepartmentSheet() {
     });
 
     const fullHtmlString = "<!DOCTYPE html>\n" + clone.outerHTML;
-    // اسم ملف الـ HTML سيكون اسم المريض متبوعاً بالرقم التعريفي
     const htmlFileName = `${allData.PatientName || document.title || "Case"}_${allData.CaseID || ""}.html`;
 
     //---------------------------------------------------------
-    // دالة فرعية داخلية لإرسال البيانات وجدول الـ HTML للشيت المحدد
+    // دالة فرعية داخلية لإرسال البيانات للشيتات
     //---------------------------------------------------------
     async function sendToGoogleSheet(spreadsheetId, label) {
         try {
-            // أولاً: إرسال البيانات العامة للشيت
             const responseGeneral = await fetch(GOOGLE_SCRIPT_URL, {
                 method: "POST",
                 mode: "cors",
                 headers: { "Content-Type": "text/plain;charset=utf-8" },
-                body: JSON.stringify({
-                    spreadsheetId: spreadsheetId,
-                    sheetName: "G-Data",
-                    data: result.generalData
-                })
+                body: JSON.stringify({ spreadsheetId: spreadsheetId, sheetName: "G-Data", data: result.generalData })
             });
             const resGenJson = await responseGeneral.json();
 
-            // ثانياً: إرسال بيانات المرض للشيت
             const responseDisease = await fetch(GOOGLE_SCRIPT_URL, {
                 method: "POST",
                 mode: "cors",
                 headers: { "Content-Type": "text/plain;charset=utf-8" },
-                body: JSON.stringify({
-                    spreadsheetId: spreadsheetId,
-                    sheetName: allData.DiseaseID,
-                    data: result.diseaseData
-                })
+                body: JSON.stringify({ spreadsheetId: spreadsheetId, sheetName: allData.DiseaseID, data: result.diseaseData })
             });
             const resDisJson = await responseDisease.json();
 
@@ -98,7 +90,6 @@ async function saveDepartmentSheet() {
             } else {
                 summaryMessages.push(`❌ حدثت مشكلة أثناء الحفظ الداخلي في (${label}).`);
             }
-
         } catch (error) {
             console.error(`خطأ أثناء الاتصال بـ ${label}:`, error);
             summaryMessages.push(`⚠️ فشل الاتصال بالسيرفر أثناء الحفظ في (${label}).`);
@@ -106,24 +97,23 @@ async function saveDepartmentSheet() {
     }
 
     //---------------------------------------------------------
-    // تنفيذ عمليات الحفظ المتتابعة
+    // تنفيذ عمليات الحفظ المتتابعة للـ Sheets
     //---------------------------------------------------------
-    
-    // 1. حفظ ملف المحافظة
     if (govSheetId) {
         console.log("بدء الحفظ في ملف المحافظة...");
         await sendToGoogleSheet(govSheetId, "ملف المحافظة");
     }
 
-    // 2. حفظ ملف الإدارة
     if (deptSheetId) {
         console.log("بدء الحفظ في ملف الإدارة...");
         await sendToGoogleSheet(deptSheetId, "ملف الإدارة");
     }
 
-    // 3. رفع ملف الـ HTML إلى Google Drive تلقائياً
+    //---------------------------------------------------------
+    // ب. رفع ملف الـ HTML وتمرير الـ folderId المختار برمجياً
+    //---------------------------------------------------------
     try {
-        console.log("جاري رفع نسخة الـ HTML إلى Google Drive سحابياً...");
+        console.log("جاري رفع نسخة الـ HTML إلى Google Drive...");
         const responseHTML = await fetch(GOOGLE_SCRIPT_URL, {
             method: "POST",
             mode: "cors",
@@ -131,20 +121,20 @@ async function saveDepartmentSheet() {
             body: JSON.stringify({
                 action: "uploadHTML",
                 htmlContent: fullHtmlString,
-                fileName: htmlFileName
+                fileName: htmlFileName,
+                folderId: driveFolderId // 💡 يتم إرسال معرف المجلد القادم من إعدادات المتصفح هنا
             })
         });
         const resHtmlJson = await responseHTML.json();
         if (resHtmlJson.success) {
-            summaryMessages.push(`☁️ تم رفع نسخة الـ HTML بأمان لـ Google Drive في مجلد NEDSS_Saved_Cases.`);
+            summaryMessages.push(`☁️ تم رفع نسخة الـ HTML بنجاح إلى المجلد المحدد في Google Drive.`);
         } else {
-            summaryMessages.push(`❌ فشل رفع ملف الـ HTML على السحابة: ${resHtmlJson.error}`);
+            summaryMessages.push(`❌ فشل رفع ملف الـ HTML: ${resHtmlJson.error}`);
         }
     } catch (err) {
         console.error("خطأ أثناء رفع ملف الـ HTML:", err);
         summaryMessages.push("⚠️ فشل الاتصال بالسيرفر أثناء رفع ملف الـ HTML.");
     }
 
-    // 4. عرض التقرير النهائي الشامل للمستخدم
     alert(summaryMessages.join("\n"));
 }
