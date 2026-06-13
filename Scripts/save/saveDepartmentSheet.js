@@ -1,31 +1,35 @@
 
 //const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzQg3y9K4q3J6Icc5VwKNsQ0TQ-4zipO9nnq2lQhazBrTEPj_GgdS7I_bZwUqwFZ-7_/exec";
-console.log("saveDepartmentSheet loaded6");
+console.log("saveDepartmentSheet loaded - Version 7");
 
 async function saveDepartmentSheet() {
     let govSheetId = "";
     let deptSheetId = "";
-    let driveFolderId = ""; // المتغير الجديد لربطه بصفحة الإعدادات مستقبلاً
+    let driveFolderId = "";
 
-    // 1. جلب معرفات الملفات والمجلد من ذاكرة الإضافة أو استخدام الافتراضي للاختبار
+    // 1. جلب معرفات الملفات والمجلد من ذاكرة الإضافة مع التحقق الذكي من صحتها
     if (typeof chrome !== "undefined" && chrome.storage && chrome.storage.local) {
+        console.log("🔍 جاري التحقق من بيانات الإعدادات في ذاكرة الإضافة محلياً...");
         const settings = (await chrome.storage.local.get("settings")).settings || {};
-        govSheetId = settings.governorateSheet;
-        deptSheetId = settings.departmentSheet;
-        driveFolderId = settings.driveFolderId; // سيتم قراءته مباشرة من إعدادات الإضافة
-        console.log(govSheetId);
-        console.log(deptSheetId);
-        console.log(driveFolderId);
+        
+        govSheetId = settings.governorateSheet || "";
+        deptSheetId = settings.departmentSheet || "";
+        driveFolderId = settings.driveFolderId || "";
+
+        // فحص وصول البيانات للـ Console
+        console.log("📊 [ملف المحافظة]:", govSheetId ? "✅ متوفر: " + govSheetId : "❌ غير معرف بالإعدادات");
+        console.log("📊 [ملف الإدارة]:", deptSheetId ? "✅ متوفر: " + deptSheetId : "❌ غير معرف بالإعدادات");
+        console.log("📊 [مجلد درايف]:", driveFolderId ? "✅ متوفر: " + driveFolderId : "❌ غير معرف بالإعدادات");
     } else {
-        console.log("تنبيه: الكود يعمل خارج إضافة كروم، تم استخدام المعرّفات الافتراضية للاختبار.");
+        console.log("⚠️ تنبيه: الكود يعمل خارج إضافة كروم (الـ Console العام). تم تطبيق قيم الاختبار الافتراضية.");
         govSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
         deptSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
-        driveFolderId = "1O4fbgDHYXjYV9Garh_zsJAL__PhSk_5c"; // 💡 يمكنك وضع الـ Folder ID الخاص بك هنا للاختبار في الـ Console
-        
+        driveFolderId = "1O4fbgDHYXjYV9Garh_zsJAL__PhSk_5c"; 
     }
 
+    // التحقق الفوري لعدم إضاعة الوقت في حال غياب الشيتات
     if (!govSheetId && !deptSheetId) {
-        alert("⚠️ خطأ: لم يتم تحديد ملف المحافظة أو ملف الإدارة! تم إلغاء عملية الحفظ.");
+        alert("⚠️ خطأ: لم يتم جلب ملف المحافظة أو ملف الإدارة من الإعدادات! تم إلغاء عملية الحفظ.");
         return;
     }
 
@@ -113,35 +117,39 @@ async function saveDepartmentSheet() {
         await sendToGoogleSheet(deptSheetId, "ملف الإدارة");
     }
 
-        //---------------------------------------------------------
+    //---------------------------------------------------------
     // ب. رفع ملف الـ HTML وتمرير الـ folderId المختار برمجياً
     //---------------------------------------------------------
-    try {
-        console.log("جاري رفع نسخة الـ HTML إلى Google Drive... باستخدام المجلد:", driveFolderId);
-        const responseHTML = await fetch(GOOGLE_SCRIPT_URL, {
-            method: "POST",
-            mode: "cors",
-            headers: { "Content-Type": "text/plain;charset=utf-8" },
-            body: JSON.stringify({
-                action: "uploadHTML",
-                htmlContent: fullHtmlString,
-                fileName: htmlFileName,
-                folderId: driveFolderId 
-            })
-        });
-        
-        const resHtmlJson = await responseHTML.json();
-        console.log("الرد الكامل لملف الـ HTML من السيرفر:", resHtmlJson); // سيكشف لك سبب رفض جوجل بدقة
+    if (driveFolderId) {
+        try {
+            console.log("جاري رفع نسخة الـ HTML إلى Google Drive... المجلد المستخدم:", driveFolderId);
+            const responseHTML = await fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                mode: "cors",
+                headers: { "Content-Type": "text/plain;charset=utf-8" },
+                body: JSON.stringify({
+                    action: "uploadHTML",
+                    htmlContent: fullHtmlString,
+                    fileName: htmlFileName,
+                    folderId: driveFolderId 
+                })
+            });
+            
+            const resHtmlJson = await responseHTML.json();
+            console.log("الرد الكامل لملف الـ HTML من السيرفر:", resHtmlJson);
 
-        if (resHtmlJson.success) {
-            summaryMessages.push(`☁️ تم رفع نسخة الـ HTML بنجاح إلى المجلد المحدد في Google Drive.`);
-        } else {
-            // طباعة تفاصيل الخطأ القادم من محرك جوجل
-            summaryMessages.push(`❌ فشل رفع ملف الـ HTML. السبب: ${resHtmlJson.error || "خطأ غير معروف"}`);
+            if (resHtmlJson.success) {
+                summaryMessages.push(`☁️ تم رفع نسخة الـ HTML بنجاح إلى المجلد المحدد في Google Drive.`);
+            } else {
+                summaryMessages.push(`❌ فشل رفع ملف الـ HTML. السبب: ${resHtmlJson.error || "خطأ غير معروف"}`);
+            }
+        } catch (err) {
+            console.error("خطأ أثناء رفع ملف الـ HTML في المتصفح:", err);
+            summaryMessages.push("⚠️ فشل الاتصال بالسيرفر أثناء رفع ملف الـ HTML.");
         }
-    } catch (err) {
-        console.error("خطأ أثناء رفع ملف الـ HTML في المتصفح:", err);
-        summaryMessages.push("⚠️ فشل الاتصال بالسيرفر أثناء رفع ملف الـ HTML.");
+    } else {
+        console.warn("تنبيه: تم تخطي رفع ملف الـ HTML لأن معرف المجلد (driveFolderId) فارغ.");
+        summaryMessages.push("⚠️ لم يتم رفع ملف الـ HTML لعدم توفر معرّف المجلد.");
     }
 
     alert(summaryMessages.join("\n"));
