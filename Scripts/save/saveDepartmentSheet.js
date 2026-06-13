@@ -1,5 +1,5 @@
 
-//const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz76KHoZNQGO_HqvEuvIIInfk1FLdEWBb-ipA6oYzJ2n-2It6i6ZCz1pzBZhKlCJhjr/exec";
+//const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzQg3y9K4q3J6Icc5VwKNsQ0TQ-4zipO9nnq2lQhazBrTEPj_GgdS7I_bZwUqwFZ-7_/exec";
 console.log("saveDepartmentSheet loaded6");
 
 async function saveDepartmentSheet() {
@@ -33,7 +33,7 @@ async function saveDepartmentSheet() {
     const allData = await collectAllData();
     const result = splitData(allData);
 
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz76KHoZNQGO_HqvEuvIIInfk1FLdEWBb-ipA6oYzJ2n-2It6i6ZCz1pzBZhKlCJhjr/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzQg3y9K4q3J6Icc5VwKNsQ0TQ-4zipO9nnq2lQhazBrTEPj_GgdS7I_bZwUqwFZ-7_/exec";
     let summaryMessages = [];
 
     //---------------------------------------------------------
