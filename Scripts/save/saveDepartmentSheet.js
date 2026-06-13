@@ -1,6 +1,6 @@
 
 //const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz76KHoZNQGO_HqvEuvIIInfk1FLdEWBb-ipA6oYzJ2n-2It6i6ZCz1pzBZhKlCJhjr/exec";
-console.log("saveDepartmentSheet loaded");
+console.log("saveDepartmentSheet loaded4");
 
 async function saveDepartmentSheet() {
     let govSheetId = "";
@@ -29,7 +29,7 @@ async function saveDepartmentSheet() {
     const allData = await collectAllData();
     const result = splitData(allData);
 
-    const GOOGLE_SCRIPT_URL = "https://google.com";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz76KHoZNQGO_HqvEuvIIInfk1FLdEWBb-ipA6oYzJ2n-2It6i6ZCz1pzBZhKlCJhjr/exec";
     let summaryMessages = [];
 
     //---------------------------------------------------------
