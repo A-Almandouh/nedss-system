@@ -35,7 +35,7 @@ async function saveDepartmentSheet() {
     const allData = await collectAllData();
     const result = splitData(allData);
 
-    const GOOGLE_SCRIPT_URL = "https://google.com";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbywVVr1NoIYGnyaAlbbBGayNJQVgFVmCVUKNEakWBXlMZ05uIrEm-YseLVyaRmvqQe-/exec";
     
     // مصفوفة لتتبع نتائج الحفظ لعرضها في تنبيه نهائي للمستخدم
     let summaryMessages = [];
