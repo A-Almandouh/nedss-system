@@ -425,132 +425,205 @@ body{
 ```
 
 <div class="container" id="Private-questions">
+   
     <div class="row g-0 ">
         <div class="col-9">
-            <span class="lbl">هل شارك المريض فى التعامل مع حيوان خلال الشهر السابق لمرضه؟</span>
+            <span class="lbl">هل كان المريض مخالطاً لشخص مريض بنفس المرض؟</span>
         </div>
         <div class="col-3">
-            <span class="val" data-field="AnimalDeal"></span>
+            <span class="val" data-field="Cont"></span>
         </div>
     </div>
     <div class="row g-0 ">
         <div class="col-9">
-            <span class="lbl">هل حدث اجهاض أو نفوق لأحد الحيوانات المتعامل معها؟</span>
+            <span class="lbl">اذكر نوع المخالطة؟</span>
         </div>
         <div class="col-3">
-            <span class="val" data-field="AbortionAnimal"></span>
+            <span class="val" data-field="txtContactType"></span>
         </div>
     </div>
     <div class="row g-0 ">
         <div class="col-9">
-            <span class="lbl">جاموس</span>
+            <span class="lbl">هل المريض جزء من تفشى وبائى؟</span>
         </div>
         <div class="col-3">
-            <span class="val" data-field="Buffalo"></span>
+            <span class="val" data-field="Out"></span>
         </div>
     </div>
     <div class="row g-0 ">
         <div class="col-9">
-            <span class="lbl">جمل</span>
+            <span class="lbl">هل أجريت للمريض أى تدخلات جراحيه أو للأسنان؟</span>
         </div>
         <div class="col-3">
-            <span class="val" data-field="Camel"></span>
+            <span class="val" data-field="Surg"></span>
         </div>
     </div>
     <div class="row g-0 ">
         <div class="col-9">
-            <span class="lbl">بقر</span>
+            <span class="lbl">هل تمت إجراء اي نوع من المناظير؟</span>
         </div>
         <div class="col-3">
-            <span class="val" data-field="Cow"></span>
+            <span class="val" data-field="Perspectives"></span>
         </div>
     </div>
     <div class="row g-0 ">
         <div class="col-9">
-            <span class="lbl">ماعز</span>
+            <span class="lbl">هل تلقى نقل دم أو مشتقاته؟</span>
         </div>
         <div class="col-3">
-            <span class="val" data-field="Goat"></span>
+            <span class="val" data-field="Trans"></span>
         </div>
     </div>
     <div class="row g-0 ">
         <div class="col-9">
-            <span class="lbl">غنم</span>
+            <span class="lbl">هل تم اجراء اي غسيل كلوي للمريض؟</span>
         </div>
         <div class="col-3">
-            <span class="val" data-field="Sheep"></span>
+            <span class="val" data-field="Dialysis"></span>
         </div>
     </div>
     <div class="row g-0 ">
         <div class="col-9">
-            <span class="lbl">حيوانات أخري</span>
+            <span class="lbl">هل تم ختانه؟</span>
         </div>
         <div class="col-3">
-            <span class="val" data-field="OtherAnimals"></span>
+            <span class="val" data-field="Cicum"></span>
         </div>
     </div>
     <div class="row g-0 ">
         <div class="col-9">
-            <span class="lbl">لبن حليب غير معامل حرارياً</span>
+            <span class="lbl">يذكر المكان</span>
         </div>
         <div class="col-3">
-            <span class="val" data-field="Milk"></span>
+            <span class="val" data-field="txtCircumcision"></span>
         </div>
     </div>
     <div class="row g-0 ">
         <div class="col-9">
-            <span class="lbl">جبن أبيض قريش</span>
+            <span class="lbl">هل تلقى المريض أى حقن؟</span>
         </div>
         <div class="col-3">
-            <span class="val" data-field="Qureish"></span>
+            <span class="val" data-field="Injc"></span>
         </div>
     </div>
     <div class="row g-0 ">
         <div class="col-9">
-            <span class="lbl">أنواع أخرى من الجبن</span>
+            <span class="lbl">هل حدث له وخز بإبر؟</span>
         </div>
         <div class="col-3">
-            <span class="val" data-field="OtherCheese"></span>
+            <span class="val" data-field="Needle"></span>
         </div>
     </div>
     <div class="row g-0 ">
         <div class="col-9">
-            <span class="lbl">أيس كريم من الباعة الجائلين</span>
+            <span class="lbl">هل تم عمل أى وخز للجلد (وشم- أدوات حلاقة مشتركة – حجامة – ثقب اذن)؟</span>
         </div>
         <div class="col-3">
-            <span class="val" data-field="Ice"></span>
+            <span class="val" data-field="Percut"></span>
         </div>
     </div>
     <div class="row g-0 ">
         <div class="col-9">
-            <span class="lbl">أنواع أخرى من منتجات الألبان</span>
+            <span class="lbl">هل المريض من مدمنى المخدرات بالحقن؟</span>
         </div>
         <div class="col-3">
-            <span class="val" data-field="OtherDairy"></span>
+            <span class="val" data-field="Drug"></span>
         </div>
     </div>
     <div class="row g-0 ">
         <div class="col-9">
-            <span class="lbl">هل تم التعرض لطعم البروسيلا للحيوانات أو ميكروب البروسيلا بالمعامل خلال الشهر السابق لظهور المرض؟</span>
+            <span class="lbl">هل المريضة حامل؟</span>
         </div>
         <div class="col-3">
-            <span class="val" data-field="Taste"></span>
+            <span class="val" data-field="Pregnant"></span>
         </div>
     </div>
     <div class="row g-0 ">
         <div class="col-9">
-            <span class="lbl">هل توجد حالات تعاني من نفس الأعرض بالمنزل أو منطقة السكن؟</span>
+            <span class="lbl">هل تم تحصينه بعدد 3 جرعات ضد الإلتهاب الكبدى (بي)؟</span>
         </div>
         <div class="col-3">
-            <span class="val" data-field="CasesSuffer"></span>
+            <span class="val" data-field="Vaccin"></span>
         </div>
     </div>
     <div class="row g-0 ">
         <div class="col-9">
-            <span class="lbl">التاريخ</span>
+            <span class="lbl">تاريخ اخر جرعة</span>
         </div>
         <div class="col-3">
-            <span class="val" data-field="Date"></span>
+            <span class="val" data-field="TxtDate"></span>
+        </div>
+    </div>
+    <div class="row g-0 ">
+        <div class="col-9">
+            <span class="lbl">حمى</span>
+        </div>
+        <div class="col-3">
+            <span class="val" data-field="Fever"></span>
+        </div>
+    </div>
+    <div class="row g-0 ">
+        <div class="col-9">
+            <span class="lbl">مده الحمى(ايام)</span>
+        </div>
+        <div class="col-3">
+            <span class="val" data-field="hep"></span>
+        </div>
+    </div>
+    <div class="row g-0 ">
+        <div class="col-9">
+            <span class="lbl">أقصى درجه حراره</span>
+        </div>
+        <div class="col-3">
+            <span class="val" data-field="hep"></span>
+        </div>
+    </div>
+    <div class="row g-0 ">
+        <div class="col-9">
+            <span class="lbl">يرقان (صفراء)</span>
+        </div>
+        <div class="col-3">
+            <span class="val" data-field="Jaun"></span>
+        </div>
+    </div>
+    <div class="row g-0 ">
+        <div class="col-9">
+            <span class="lbl">بول داكن</span>
+        </div>
+        <div class="col-3">
+            <span class="val" data-field="Durin"></span>
+        </div>
+    </div>
+    <div class="row g-0 ">
+        <div class="col-9">
+            <span class="lbl">غثيان</span>
+        </div>
+        <div class="col-3">
+            <span class="val" data-field="Fatig"></span>
+        </div>
+    </div>
+    <div class="row g-0 ">
+        <div class="col-9">
+            <span class="lbl">إرهاق</span>
+        </div>
+        <div class="col-3">
+            <span class="val" data-field="Malas"></span>
+        </div>
+    </div>
+    <div class="row g-0 ">
+        <div class="col-9">
+            <span class="lbl">الم فى أعلى البطن الأيمن</span>
+        </div>
+        <div class="col-3">
+            <span class="val" data-field="Urqtend"></span>
+        </div>
+    </div>
+    <div class="row g-0 ">
+        <div class="col-9">
+            <span class="lbl">أعراض أخرى</span>
+        </div>
+        <div class="col-3">
+            <span class="val" data-field="txtOther"></span>
         </div>
     </div>
     <div class="row g-0 ">
@@ -569,7 +642,7 @@ body{
             <span class="val" data-field="txtOH"></span>
         </div>
     </div>
-</div>
+
 <!-------------------------------------الفورم -----------------------!>
 
  <form id="investigationForm">
