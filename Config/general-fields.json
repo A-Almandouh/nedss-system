@@ -217,5 +217,12 @@
     "type": "text",
     "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_txtSchool"
      },
-  
+  "EducationLevel": {
+    "type": "radio",
+    "group": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_EducationLevel1_rdoEducationLevel"
+  },
+  "EducationClasification": {
+    "type": "radio",
+    "group": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_EducationClassification1_rdoEducationClasification"
+  }
 }
