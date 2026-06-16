@@ -1,0 +1,74 @@
+{
+  "AnimalDeal": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_AnimalDeal_ddlYesNo"
+  },
+  "AbortionAnimal": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_abortionAnimal_ddlYesNo"
+  },
+  "Buffalo": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_Buffalo_ddlYesNo"
+  },
+  "Camel": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_Camel_ddlYesNo"
+  },
+  "Cow": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_Cow_ddlYesNo"
+  },
+  "Goat": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_Goat_ddlYesNo"
+  },
+  "Sheep": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_Sheep_ddlYesNo"
+  },
+  "OtherAnimals": {
+    "type": "textarea",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_tbOtherAnimals"
+  },
+  "Milk": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_milk_ddlYesNo"
+  },
+  "Qureish": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_Qureish_ddlYesNo"
+  },
+  "OtherCheese": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_otherCheese_ddlYesNo"
+  },
+  "Ice": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_ice_ddlYesNo"
+  },
+  "OtherDairy": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_OtherDairy_ddlYesNo"
+  },
+  "Taste": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_taste_ddlYesNo"
+  },
+  "CasesSuffer": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_casesSuffer_ddlYesNo"
+  },
+  "Date": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_Calender1_Date_TxtDate"
+  },
+  "TxtDate": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_Common_Ext_Data1_SurveyDateCalender_TxtDate"
+  },
+  "txtOH": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_Common_Ext_Data1_txtOH"
+  }
+}
