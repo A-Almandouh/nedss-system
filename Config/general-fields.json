@@ -208,6 +208,14 @@
    "FinalDiagnosis": {
     "type": "text",
     "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_txtFinalDiagnosis"
-  }
+  },
+  "BirthDate": {
+    "type": "text",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_cln_BirthDate_TxtDate"
+     },
+"School": {
+    "type": "text",
+    "id": "ctl00_ContentPlaceHolder1_generalform1_TabContainer1_TabPanel2_txtSchool"
+     },
   
 }
