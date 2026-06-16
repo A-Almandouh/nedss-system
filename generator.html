@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>مولد الأكواد الذكي</title>
+    <style>
+        body { font-family: Tahoma, sans-serif; margin: 20px; background-color: #f4f6f9; color: #333; }
+        .box { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        textarea { width: 100%; height: 200px; box-sizing: border-box; font-family: monospace; padding: 10px; margin-top: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        button { background-color: #007bff; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 4px; cursor: pointer; margin-left: 10px; margin-top: 10px; }
+        button:hover { background-color: #0056b3; }
+        .btn-success { background-color: #28a745; }
+        .btn-success:hover { background-color: #218838; }
+        pre { background: #272822; color: #f8f8f2; padding: 15px; border-radius: 4px; overflow-x: auto; max-height: 250px; text-align: left; dir: ltr; }
+    </style>
+</head>
+<body>
+
+    <h2>🛠️ مولد ملفات HTML و JSON المستخرجة</h2>
+    
+    <!-- مربع إدخال الكود القديم -->
+    <div class="box">
+        <label><strong>الصق كود الـ HTML المراد تحليله هنا:</strong></label>
+        <textarea id="htmlInput" placeholder="<div id='ctl00_content... ' > ... </table>"></textarea>
+        <button onclick="processHTML()">⚡ توليد الملفات الآن</button>
+    </div>
+
+    <!-- قسم المخرجات وأزرار التحميل -->
+    <div class="box" id="outputs" style="display:none;">
+        <h3>📊 المعاينة والتحميل:</h3>
+        
+        <p><strong>1. ملف JSON المولد:</strong></p>
+        <button class="btn-success" onclick="downloadFile('1.json', jsonResult)">💾 تحميل 1.json</button>
+        <pre><code id="jsonPreview"></code></pre>
+
+        <p><strong>2. ملف HTML المولد:</strong></p>
+        <button class="btn-success" onclick="downloadFile('1.html', htmlResult)">💾 تحميل 1.html</button>
+        <pre><code id="htmlPreview"></code></pre>
+    </div>
+
+<script>
+// متغيرات عالمية لحفظ النصوص الناتجة لغرض التحميل
+let jsonResult = "";
+let htmlResult = "";
+
+function processHTML() {
+    const rawHTML = document.getElementById("htmlInput").value;
+    if (!rawHTML.trim()) {
+        alert("الرجاء لصق كود HTML أولاً!");
+        return;
+    }
+
+    // إنشاء عنصر وهمي في الذاكرة لتحليل الـ HTML بدون مكتبات خارجية
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = rawHTML;
+
+    const jsonObject = {};
+    let htmlRows = [];
+
+    // جلب جميع أسطر الجدول
+    const rows = tempDiv.querySelectorAll("tr");
+
+    rows.forEach(row => {
+        const tds = row.querySelectorAll("td");
+        
+        // التحقق من وجود خلية للعنوان وخلية أخرى تحتوي على حقل إدخال
+        if (tds.length >= 2) {
+            const labelText = tds[0].textContent.trim();
+            const field = tds[1].querySelector("select, textarea, input");
+
+            if (field && labelText) {
+                const fieldId = field.getAttribute("id") || "";
+                let fieldType = field.tagName.toLowerCase();
+
+                if (fieldType === "input") {
+                    fieldType = field.getAttribute("type") || "text";
+                }
+
+                // استخراج الكلمة البرمجية المفتاحية (Key) من الـ ID بواسطة الـ Regex
+                let fieldKey = "";
+                const match = fieldId.match(/YesNoList_([a-zA-Z0-9]+)_|_(tb[a-zA-Z0-9]+)|_(Calender\d+_[a-zA-Z0-9]+)/);
+                
+                if (match) {
+                    // تصفية النتيجة من الكلمات الزائدة مثل tb أو Calender
+                    const rawKey = match[1] || match[2] || match[3];
+                    fieldKey = rawKey.replace("tb", "").replace(/Calender\d+_/g, "");
+                    // جعل الحرف الأول كبير (Capitalized) ليطابق التنسيق المطلوب
+                    fieldKey = fieldKey.charAt(0).toUpperCase() + fieldKey.slice(1);
+                } else {
+                    // حل بديل في حال لم يطابق النمط المعتاد: يأخذ آخر كلمة بعد الـ _
+                    const parts = fieldId.split("_");
+                    fieldKey = parts[parts.length - 1];
+                }
+
+                // 1. بناء الـ JSON object
+                jsonObject[fieldKey] = {
+                    type: fieldType,
+                    id: fieldId
+                };
+
+                // إضافة علامة استفهام ذكية للأسئلة العربية
+                let cleanLabel = labelText;
+                if ((cleanLabel.startsWith("هل") || cleanLabel.startsWith("اذكر")) && !cleanLabel.endsWith("؟")) {
+                    cleanLabel += "؟";
+                }
+
+                // 2. بناء هيكل سطر الـ HTML الجديد
+                const rowTemplate = `    <div class="row g-0 ">
+        <div class="col-9">
+            <span class="lbl">${cleanLabel}</span>
+        </div>
+        <div class="col-3">
+            <span class="val" data-field="${fieldKey}"></span>
+        </div>
+    </div>`;
+                htmlRows.push(rowTemplate);
+            }
+        }
+    });
+
+    // تحويل الكائنات إلى نصوص جاهزة للعرض والتحميل
+    jsonResult = JSON.stringify(jsonObject, null, 2);
+    htmlResult = `<div class="container" id="Private-questions">\n${htmlRows.join("\n")}\n</div>`;
+
+    // عرض النتائج في الصفحة
+    document.getElementById("jsonPreview").textContent = jsonResult;
+    document.getElementById("htmlPreview").textContent = htmlResult;
+    document.getElementById("outputs").style.display = "block";
+}
+
+// دالة تتيح للمستخدم تحميل الملفات الناتجة مباشرة من المتصفح
+function downloadFile(filename, text) {
+    const element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+}
+</script>
+
+</body>
+</html>
