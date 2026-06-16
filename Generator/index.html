@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>NEDSS Generator</title>
+
+<style>
+
+body{
+    font-family:tahoma;
+    margin:20px;
+}
+
+textarea{
+    width:100%;
+    height:300px;
+    margin-bottom:20px;
+}
+
+button{
+    padding:10px 30px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>HTML الخام</h2>
+
+<textarea id="sourceHtml"></textarea>
+
+<button id="btnGenerate">
+
+إنشاء
+
+</button>
+
+<hr>
+
+<h2>JSON</h2>
+
+<textarea id="jsonResult"></textarea>
+
+<hr>
+
+<h2>Template HTML</h2>
+
+<textarea id="templateResult"></textarea>
+
+<script src="jsonBuilder.js"></script>
+
+<script src="htmlBuilder.js"></script>
+
+<script src="generator.js"></script>
+
+</body>
+
+</html>
