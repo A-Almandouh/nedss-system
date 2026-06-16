@@ -1,74 +1,103 @@
 {
-  "AnimalDeal": {
+  "Cont": {
     "type": "select",
-    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_AnimalDeal_ddlYesNo"
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel1_YesNoList_cont_hep_ddlYesNo"
   },
-  "AbortionAnimal": {
-    "type": "select",
-    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_abortionAnimal_ddlYesNo"
-  },
-  "Buffalo": {
-    "type": "select",
-    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_Buffalo_ddlYesNo"
-  },
-  "Camel": {
-    "type": "select",
-    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_Camel_ddlYesNo"
-  },
-  "Cow": {
-    "type": "select",
-    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_Cow_ddlYesNo"
-  },
-  "Goat": {
-    "type": "select",
-    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_Goat_ddlYesNo"
-  },
-  "Sheep": {
-    "type": "select",
-    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_Sheep_ddlYesNo"
-  },
-  "OtherAnimals": {
-    "type": "textarea",
-    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_tbOtherAnimals"
-  },
-  "Milk": {
-    "type": "select",
-    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_milk_ddlYesNo"
-  },
-  "Qureish": {
-    "type": "select",
-    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_Qureish_ddlYesNo"
-  },
-  "OtherCheese": {
-    "type": "select",
-    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_otherCheese_ddlYesNo"
-  },
-  "Ice": {
-    "type": "select",
-    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_ice_ddlYesNo"
-  },
-  "OtherDairy": {
-    "type": "select",
-    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_OtherDairy_ddlYesNo"
-  },
-  "Taste": {
-    "type": "select",
-    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_taste_ddlYesNo"
-  },
-  "CasesSuffer": {
-    "type": "select",
-    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_YesNoList_casesSuffer_ddlYesNo"
-  },
-  "Date": {
+  "txtContactType": {
     "type": "text",
-    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_Calender1_Date_TxtDate"
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel1_txtContactType"
+  },
+  "Out": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel1_YesNoList_out_hep_ddlYesNo"
+  },
+  "Surg": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel1_YesNoList_surg_hep_ddlYesNo"
+  },
+  "Perspectives": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel1_YesNoList_perspectives_ddlYesNo"
+  },
+  "Trans": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel1_YesNoList_trans_hep_ddlYesNo"
+  },
+  "Dialysis": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel1_YesNoList_dialysis_ddlYesNo"
+  },
+  "Cicum": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel1_YesNoList_cicum_hep_ddlYesNo"
+  },
+  "txtCircumcision": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel1_txtCircumcision"
+  },
+  "Injc": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel1_YesNoList_injc_mea1_ddlYesNo"
+  },
+  "Needle": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel1_YesNoList_needle_hep_ddlYesNo"
+  },
+  "Percut": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel1_YesNoList_percut_hep_ddlYesNo"
+  },
+  "Drug": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel1_YesNoList_drug_hep_ddlYesNo"
+  },
+  "Pregnant": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel1_YesNoList_pregnant_ddlYesNo"
+  },
+  "Vaccin": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel1_YesNoList_vaccin_hep_ddlYesNo"
   },
   "TxtDate": {
     "type": "text",
-    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_Common_Ext_Data1_SurveyDateCalender_TxtDate"
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_Common_Ext_Data1_SurveyDateCalender_TxtDate"
+  },
+  "Fever": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel2_YesNoList_fever_hep_ddlYesNo"
+  },
+  "hep": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel2_txt_maxtemp_hep"
+  },
+  "Jaun": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel2_YesNoList_jaun_hep_ddlYesNo"
+  },
+  "Durin": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel2_YesNoList_durin_hep_ddlYesNo"
+  },
+  "Fatig": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel2_YesNoList_fatig_hep_ddlYesNo"
+  },
+  "Malas": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel2_YesNoList_malas_hep_ddlYesNo"
+  },
+  "Urqtend": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel2_YesNoList_urqtend_hep_ddlYesNo"
+  },
+  "txtOther": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_TabContainer1_TabPanel2_txtOther"
   },
   "txtOH": {
     "type": "text",
-    "id": "ctl00_contentplaceholder1_Ext_Brucellosis1_Common_Ext_Data1_txtOH"
+    "id": "ctl00_contentplaceholder1_GD_Ext_Hepatitis1_Common_Ext_Data1_txtOH"
   }
 }
+2. ملف HTML المولد:
