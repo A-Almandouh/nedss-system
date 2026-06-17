@@ -1,161 +1,55 @@
 // collectTemplateFields.js
-console.log(
-    "collectTemplateFields loaded"
-);
+console.log("collectTemplateFields loaded");
+
+/**
+ * دالة جمع بيانات النموذج
+ * تقوم باستخراج البيانات من كافة الحقول مع مراعاة أنواعها (Checkbox, Radio, Select)
+ */
 function collectTemplateFields() {
-
-    const form =
-        document.getElementById(
-            "investigationForm"
-        );
-
+    const form = document.getElementById("investigationForm");
+    
+    // إذا لم يتم العثور على النموذج، نرجع كائناً فارغاً
     if (!form) {
-
+        console.warn("Form #investigationForm not found!");
         return {};
-
     }
 
     const data = {};
-
-    const fields =
-        form.querySelectorAll(
-            "input, select, textarea"
-        );
+    const fields = form.querySelectorAll("input, select, textarea");
 
     fields.forEach(field => {
+        const key = field.name || field.id;
+        if (!key) return;
 
-        const key =
-            field.name ||
-            field.id;
-
-        if (!key)
-            return;
-
-        //----------------------------------
-        // Radio
-        //----------------------------------
-
-        if (
-            field.type === "radio"
-        ) {
-
-            if (
-                field.checked
-            ) {
-
-                data[key] =
-                    field.value;
-
+        // 1. التعامل مع Radio Buttons
+        if (field.type === "radio") {
+            if (field.checked) {
+                data[key] = field.value;
             }
-
+            // ملاحظة: إذا لم يكن محدداً، لن نضعه في الـ data أو نتركه كما هو
             return;
-
         }
 
-        //----------------------------------
-        // Checkbox
-        //----------------------------------
-
-        if (
-            field.type === "checkbox"
-        ) {
-
-            data[key] =
-                field.checked;
-
+        // 2. التعامل مع Checkboxes (هذا هو التصحيح الذي كنت تحتاجه)
+        if (field.type === "checkbox") {
+            // سيعيد true إذا تم اختياره، و false إذا لم يتم
+            data[key] = field.checked;
             return;
-
         }
 
-        //----------------------------------
-        // Select
-        //----------------------------------
-
-        if (
-            field.tagName ===
-            "SELECT"
-        ) {
-
-            data[key] =
-                field.options[
-                    field.selectedIndex
-                ]?.text || "";
-
+        // 3. التعامل مع القوائم المنسدلة (Select)
+        if (field.tagName === "SELECT") {
+            data[key] = field.options[field.selectedIndex]?.text || "";
             return;
-
         }
 
-        //----------------------------------
-        // Input/Textarea
-        //----------------------------------
-
-        data[key] =
-            (
-                field.value || ""
-            ).trim();
-
+        // 4. التعامل مع حقول النص (Text, Number, Date, Textarea)
+        data[key] = (field.value || "").trim();
     });
 
-    console.log(
-        "Template Data",
-        data
-    );
-
+    console.log("Template Data Collected Successfully:", data);
     return data;
-
 }
 
-
-console.log(
-    "Template Fields:",
-    collectTemplateFields()
-);
-
-function collectTemplateFields() {
-
-    const data = {};
-
-    document
-        .querySelectorAll(
-            "#investigationForm input, #investigationForm select, #investigationForm textarea"
-        )
-        .forEach(el => {
-
-            data[
-                el.id || el.name
-            ] = el.value;
-
-        });
-
-    console.log(
-        "Template Fields",
-        data
-    );
-
-    return data;
-
-}
-function collectTemplateFields() {
-
-    const data = {};
-
-    document
-        .querySelectorAll(
-            "#investigationForm input, #investigationForm select, #investigationForm textarea"
-        )
-        .forEach(el => {
-
-            data[
-                el.id || el.name
-            ] = el.value;
-
-        });
-
-    console.log(
-        "Template Fields",
-        data
-    );
-
-    return data;
-
-}
+// تنفيذ أولي للتأكد من عمل الكود
+console.log("Template Fields Initial Collection:", collectTemplateFields());
