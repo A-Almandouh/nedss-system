@@ -11,7 +11,7 @@ function splitData(allData) {
         "CaseID",
         "DiseaseID",
 
-        "PatiantName",
+        "PatientName",
 
         "FirstName",
         "FatherName",
