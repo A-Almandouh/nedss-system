@@ -35,11 +35,11 @@ function splitData(allData) {
         "ResidenceGovernorate",
         "ResidenceDistrict",
         "ResidenceAdministration",
-        "Address"
+        "ResidenceStreet"
 
         "DiseaseName",
         "OnsetDate",
-        "",
+        "CaseStatus",
         "OutCome",
         "FinalDiagnosis",
         "Occupation","OccupationOther","School","EducationLevel","EducationClasification"
