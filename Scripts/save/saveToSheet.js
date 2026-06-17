@@ -10,12 +10,7 @@ async function saveToSheet() {
 
         await saveDepartmentSheet();
 
-        
-        //----------------------------------
-
-        alert(
-            "تم حفظ البيانات بنجاح"
-        );
+               
 
     }
 
