@@ -20,22 +20,28 @@ function splitData(allData) {
 
         "NationalID",
         "Age",
-        "Gender",
-
+        "geType",
+        "Sex",
+        "MaritalStatus",
         "Phone",
 
         "ReportingGov",
         "ReportingDistrict",
         "ReportingAdministration",
+        "IsolationPlace",
+         "NotificationDate",
+        "ReportDate",
 
         "ResidenceGovernorate",
         "ResidenceDistrict",
-
-        "NotificationDate",
-        "ReportDate",
-
-        "HospitalName",
+        "ResidenceAdministration",
         "Address"
+
+        "DiseaseName",
+        "OnsetDate",
+        "OutCome",
+        "FinalDiagnosis",
+        "Occupation","OccupationOther","","","",
 
     ];
 
