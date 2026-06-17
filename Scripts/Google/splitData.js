@@ -39,10 +39,11 @@ function splitData(allData) {
 
         "DiseaseName",
         "OnsetDate",
+        "",
         "OutCome",
         "FinalDiagnosis",
-        "Occupation","OccupationOther","","","",
-
+        "Occupation","OccupationOther","School","EducationLevel","EducationClasification"
+		
     ];
 
     //------------------------------------
