@@ -1,0 +1,208 @@
+```json
+{
+  "InvestigationDate": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtInvestigationDate"
+  },
+  "SchoolGov": {
+    "type": "select",
+    "id": "ContentPlaceHolder2_AddNewRes1_ddlSchoolGov"
+  },
+  "Job": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtJob"
+  },
+  "SchoolName": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtSchoolName"
+  },
+  "LastVisitDate": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtLastVisitDate"
+  },
+  "TravelAbroad": {
+    "type": "radio",
+    "id": "ContentPlaceHolder2_AddNewRes1_rdoTravelAbroad"
+  },
+  "Country": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtCountry"
+  },
+  "ReturnDate": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtReturnDate"
+  },
+  "HibVaccine": {
+    "type": "radio",
+    "id": "ContentPlaceHolder2_AddNewRes1_rdoHibVaccine"
+  },
+  "HibVaccineDate": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtHibVaccineDate"
+  },
+  "SchoolVaccine": {
+    "type": "radio",
+    "id": "ContentPlaceHolder2_AddNewRes1_rdoSchoolVaccine"
+  },
+  "SchoolVaccineDate": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtSchoolVaccineDate"
+  },
+  "TravelVaccine": {
+    "type": "radio",
+    "id": "ContentPlaceHolder2_AddNewRes1_rdoTravelVaccine"
+  },
+  "TravelVaccineDate": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtTravelVaccineDate"
+  },
+  "ContactWithPatient": {
+    "type": "radio",
+    "id": "ContentPlaceHolder2_AddNewRes1_rdoContactWithPatient"
+  },
+  "ContactPatientName": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtContactPatientName"
+  },
+  "RelationType": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtRelationType"
+  },
+  "ContactHospitalized": {
+    "type": "radio",
+    "id": "ContentPlaceHolder2_AddNewRes1_rdoContactHospitalized"
+  },
+  "ContactHospitalName": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtContactHospitalName"
+  },
+  "ContactHospitalDate": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtContactHospitalDate"
+  },
+  "ContactDiagnosis": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtContactDiagnosis"
+  },
+  "ContactsTravel": {
+    "type": "radio",
+    "id": "ContentPlaceHolder2_AddNewRes1_rdoContactsTravel"
+  },
+  "ContactsReturnDate": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtContactsReturnDate"
+  },
+  "Movements": {
+    "type": "textarea",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtMovements"
+  },
+  "TotalContacts": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtTotalContacts"
+  },
+  "HomeContacts": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtHomeContacts"
+  },
+  "WorkSchoolContacts": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtWorkSchoolContacts"
+  },
+  "TreatedCount": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtTreatedCount"
+  },
+  "MedicationType": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtMedicationType"
+  },
+  "ContactsCountry": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtContactsCountry"
+  },
+  "CaseSummary": {
+    "type": "textarea",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtCaseSummary"
+  },
+  "Notes": {
+    "type": "textarea",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtNotes"
+  },
+  "FollowUp48h": {
+    "type": "checkbox",
+    "id": "ContentPlaceHolder2_AddNewRes1_chkFollowUp48h"
+  },
+  "FollowUp14d": {
+    "type": "checkbox",
+    "id": "ContentPlaceHolder2_AddNewRes1_chkFollowUp14d"
+  },
+  "FollowUp28d": {
+    "type": "checkbox",
+    "id": "ContentPlaceHolder2_AddNewRes1_chkFollowUp28d"
+  },
+  "HasComplications": {
+    "type": "radio",
+    "id": "ContentPlaceHolder2_AddNewRes1_rdoHasComplications"
+  },
+  "DeathDate": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_txtDeathDate"
+  },
+  "ComplicationDate": {
+    "type": "text",
+    "id": "ContentPlaceHolder2_AddNewRes1_clnComplicationDate_TxtDate"
+  },
+  "Seizures": {
+    "type": "checkbox",
+    "id": "ContentPlaceHolder2_AddNewRes1_chkSeizures"
+  },
+  "Epileptic": {
+    "type": "checkbox",
+    "id": "ContentPlaceHolder2_AddNewRes1_chkEpileptic"
+  },
+  "HearingImpairment": {
+    "type": "checkbox",
+    "id": "ContentPlaceHolder2_AddNewRes1_chkHearingImpairment"
+  },
+  "HearingLoss": {
+    "type": "checkbox",
+    "id": "ContentPlaceHolder2_AddNewRes1_chkHearingLoss"
+  },
+  "VisionImpairment": {
+    "type": "checkbox",
+    "id": "ContentPlaceHolder2_AddNewRes1_chkVisionImpairment"
+  },
+  "VisionLoss": {
+    "type": "checkbox",
+    "id": "ContentPlaceHolder2_AddNewRes1_chkVisionLoss"
+  },
+  "SpeechImpairment": {
+    "type": "checkbox",
+    "id": "ContentPlaceHolder2_AddNewRes1_chkSpeechImpairment"
+  },
+  "SpeechLoss": {
+    "type": "checkbox",
+    "id": "ContentPlaceHolder2_AddNewRes1_chkSpeechLoss"
+  },
+  "EyeDisability": {
+    "type": "checkbox",
+    "id": "ContentPlaceHolder2_AddNewRes1_ChkEyeDisability"
+  },
+  "MemoryImpairment": {
+    "type": "checkbox",
+    "id": "ContentPlaceHolder2_AddNewRes1_chkMemoryImpairment"
+  },
+  "CommunicationImpairment": {
+    "type": "checkbox",
+    "id": "ContentPlaceHolder2_AddNewRes1_chkCommunicationImpairment"
+  },
+  "LimbImpairment": {
+    "type": "checkbox",
+    "id": "ContentPlaceHolder2_AddNewRes1_chkLimbImpairment"
+  },
+  "LimbLoss": {
+    "type": "checkbox",
+    "id": "ContentPlaceHolder2_AddNewRes1_chkLimbLoss"
+  }
+}
+```
