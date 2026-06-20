@@ -1,4 +1,3 @@
-```json
 {
   "InvestigationDate": {
     "type": "text",
@@ -205,4 +204,4 @@
     "id": "ContentPlaceHolder2_AddNewRes1_chkLimbLoss"
   }
 }
-```
+
