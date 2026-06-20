@@ -7,6 +7,11 @@
     "type": "select",
     "id": "ContentPlaceHolder2_AddNewRes1_ddlSchoolGov"
   },
+  "SchoolDist": {
+    "type": "select",
+    "id": "ContentPlaceHolder2_AddNewRes1_ddlAdmin"
+  },
+  
   "Job": {
     "type": "text",
     "id": "ContentPlaceHolder2_AddNewRes1_txtJob"
