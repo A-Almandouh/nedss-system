@@ -444,17 +444,18 @@ body{
 <div class="row g-0 ">
         <div class="col-6">
           <span class="lbl fw-bold" style="text-decoration: underline">   • أولا: هل كان المريض مخالطا لمريض مصاب بنفس الأعراض خلال 10 أيام سابقة؟</span>  
-            
+            <span class="val" data-field="ContactWithPatient"></span>
         </div>
 
         <div class="col-4">
             <span class="lbl">فى حالة نعم اذكر اسم المخالط : </span>
-            
+           <span class="val" data-field="ContactPatientName"></span>
+     
         </div>      
 
         <div class="col-2">
             <span class="lbl"> صلة القرابة : </span>
-            
+             <span class="val" data-field="RelationType"></span>
         </div>
 
 </div>
@@ -462,21 +463,23 @@ body{
 <div class="row g-0 ">
         <div class="col-3">
            <span class="lbl"> وهل تم حجز/ تردد المريض المخالط على مستشفى؟</span>
-            
+             <span class="val" data-field="ContactHospitalized"></span>
+     
         </div>
 
         <div class="col-3">
             <span class="lbl">فى حالة نعم اذكر اسم المستشفى : </span>
-            
+             <span class="val" data-field="ContactHospitalName"></span>
+    
         </div>      
 
         <div class="col-3">
             <span class="lbl">تاريخ الدخول : </span>
-            
+             <span class="val" data-field="ContactHospitalDate"></span>
         </div>
          <div class="col-3">
             <span class="lbl">التشخيص النهائى  : </span>
-            
+            <span class="val" data-field="ContactDiagnosis"></span>
         </div>
 
 </div>
@@ -487,24 +490,25 @@ body{
         <div class="col-6">
            <span class="lbl fw-bold" style="text-decoration: underline">   • ثانيا: هل يوجد أحد من المخالطين  قادم من سفر إلي الخارج أو (حج – عمرة)  : </span> 
             
+    
         </div>
 
         <div class="col-3">
             <span class="lbl">فى حالة نعم اذكر الدولة : </span>
-            
+              <span class="val" data-field="ContactsTravel"></span>
         </div>      
 
         <div class="col-3">
             <span class="lbl">تاريخ القدوم : </span>
-            
+             <span class="val" data-field="ContactsReturnDate"></span>
         </div>
 
 </div>
 
 <div class="row g-0 "><span class="lbl fw-bold" style="text-decoration: underline"> رابعا تحركات الحالة :</span></div>   
-<div class="row g-0 "><span></span></div>
+<div class="row g-0 ">   <span class="val" data-field="Movements"></span>     </div>
 <div class="row g-0 "><span class="lbl fw-bold" style="text-decoration: underline">   خامسا: حصر المخالطين المباشرين (بالمنزل – بالعمل / بالمدرسة........./ مكان التجمع ) :</span></div>   
-<div class="row g-0 "><div class="col-12"><span class="lbl fw-bold" >بلغ عدد المخالطين</span> <span class="val"></span> <span class="lbl fw-bold">و قائمة السرد الخطي ، و ما تم من إجراءات وقائية لهم كاالتي :</span></div></div>
+<div class="row g-0 "><div class="col-12"><span class="lbl fw-bold" >بلغ عدد المخالطين</span> <span class="val" data-field="TotalContacts"></span> <span class="lbl fw-bold">و قائمة السرد الخطي ، و ما تم من إجراءات وقائية لهم كاالتي :</span></div></div>
 
 <div class="row g-0 "><div class="col-12" style="text-decoration: underline"><span class="lbl fw-bold" > متابعة حدوث المضاعفات للحالة خالل 48 ساعة </span> <span class="val"></span></div></div>
 <div class="row g-0 "><div class="col-12" ><span class="lbl fw-bold" >في حالة نعم هل الحالة أصيبت بأي مضاعفات ؟ </span> <span class="val"></span><span>في حالة نعم أذكر نوع المضاعفات</span></div></div>
@@ -549,95 +553,19 @@ body{
 <div class="container" id="Private-questions">
 
 ```html
-<div class="container" id="Private-questions">
 
-<div class="row g-0">
-    <div class="col-9">
-        <span class="lbl">هل كان المريض مخالطا لمريض مصاب بنفس الأعراض خلال 10 أيام سابقة؟</span>
-    </div>
-    <div class="col-3">
-        <span class="val" data-field="ContactWithPatient"></span>
-    </div>
+
 </div>
 
-<div class="row g-0">
-    <div class="col-9">
-        <span class="lbl">اسم المريض المخالط</span>
-    </div>
-    <div class="col-3">
-        <span class="val" data-field="ContactPatientName"></span>
-    </div>
-</div>
 
-<div class="row g-0">
-    <div class="col-9">
-        <span class="lbl">صلة القرابة</span>
-    </div>
-    <div class="col-3">
-        <span class="val" data-field="RelationType"></span>
-    </div>
-</div>
 
-<div class="row g-0">
-    <div class="col-9">
-        <span class="lbl">هل تم حجز أو تردد المريض المخالط على مستشفى؟</span>
-    </div>
-    <div class="col-3">
-        <span class="val" data-field="ContactHospitalized"></span>
-    </div>
-</div>
-
-<div class="row g-0">
-    <div class="col-9">
-        <span class="lbl">اسم المستشفى تم حجز بها المخالط</span>
-    </div>
-    <div class="col-3">
-        <span class="val" data-field="ContactHospitalName"></span>
-    </div>
-</div>
-
-<div class="row g-0">
-    <div class="col-9">
-        <span class="lbl">تاريخ دخول المستشفى</span>
-    </div>
-    <div class="col-3">
-        <span class="val" data-field="ContactHospitalDate"></span>
-    </div>
-</div>
-
-<div class="row g-0">
-    <div class="col-9">
-        <span class="lbl">التشخيص</span>
-    </div>
-    <div class="col-3">
-        <span class="val" data-field="ContactDiagnosis"></span>
-    </div>
-</div>
-
-<div class="row g-0">
-    <div class="col-9">
-        <span class="lbl">هل يوجد أحد من المخالطين قادم من سفر إلى الخارج أو حج أو عمرة؟</span>
-    </div>
-    <div class="col-3">
-        <span class="val" data-field="ContactsTravel"></span>
-    </div>
-</div>
-
-<div class="row g-0">
-    <div class="col-9">
-        <span class="lbl">تاريخ القدوم من الخارج</span>
-    </div>
-    <div class="col-3">
-        <span class="val" data-field="ContactsReturnDate"></span>
-    </div>
-</div>
 
 <div class="row g-0">
     <div class="col-9">
         <span class="lbl">تحركات الحالة قبل حجزها فى المستشفى</span>
     </div>
     <div class="col-3">
-        <span class="val" data-field="Movements"></span>
+     
     </div>
 </div>
 
@@ -646,7 +574,7 @@ body{
         <span class="lbl">إجمالى عدد المخالطين</span>
     </div>
     <div class="col-3">
-        <span class="val" data-field="TotalContacts"></span>
+        
     </div>
 </div>
 
