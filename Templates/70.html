@@ -461,23 +461,25 @@ body{
 </div>
 
 <div class="row g-0 ">
-        <div class="col-3">
+        <div class="col-6">
            <span class="lbl"> وهل تم حجز/ تردد المريض المخالط على مستشفى؟</span>
              <span class="val" data-field="ContactHospitalized"></span>
      
         </div>
 
-        <div class="col-3">
+        <div class="col-6">
             <span class="lbl">فى حالة نعم اذكر اسم المستشفى : </span>
              <span class="val" data-field="ContactHospitalName"></span>
     
         </div>      
+</div>
 
-        <div class="col-3">
+<div class="row g-0 ">
+        <div class="col-6">
             <span class="lbl">تاريخ الدخول : </span>
              <span class="val" data-field="ContactHospitalDate"></span>
         </div>
-         <div class="col-3">
+         <div class="col-6">
             <span class="lbl">التشخيص النهائى  : </span>
             <span class="val" data-field="ContactDiagnosis"></span>
         </div>
@@ -505,10 +507,28 @@ body{
 
 </div>
 
-<div class="row g-0 "><span class="lbl fw-bold" style="text-decoration: underline"> رابعا تحركات الحالة :</span></div>   
+<div class="row g-0 "><span class="lbl fw-bold" style="text-decoration: underline"> ثالثا تحركات الحالة :</span></div>   
 <div class="row g-0 ">   <span class="val" data-field="Movements"></span>     </div>
 <div class="row g-0 "><span class="lbl fw-bold" style="text-decoration: underline">   خامسا: حصر المخالطين المباشرين (بالمنزل – بالعمل / بالمدرسة........./ مكان التجمع ) :</span></div>   
 <div class="row g-0 "><div class="col-12"><span class="lbl fw-bold" >بلغ عدد المخالطين</span> <span class="val" data-field="TotalContacts"></span> <span class="lbl fw-bold">و قائمة السرد الخطي ، و ما تم من إجراءات وقائية لهم كاالتي :</span></div></div>
+
+ <div class="table-responsive">
+    <table class="table table-bordered table-striped text-center align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>م</th>
+                <th>الاسم</th>
+                <th>السن</th>
+                <th>صلة القرابة بالحالة</th>
+                <th>الموقف التطعيمي</th>
+                <th>العقار المستخدم</th>
+                <th>الجرعة</th>
+            </tr>
+        </table>
+    </div>
+
+   
+</div>
 
 <div class="row g-0 "><div class="col-12" style="text-decoration: underline"><span class="lbl fw-bold" > متابعة حدوث المضاعفات للحالة خالل 48 ساعة </span> <span class="val"></span></div></div>
 <div class="row g-0 "><div class="col-12" ><span class="lbl fw-bold" >في حالة نعم هل الحالة أصيبت بأي مضاعفات ؟ </span> <span class="val"></span><span>في حالة نعم أذكر نوع المضاعفات</span></div></div>
@@ -892,5 +912,53 @@ window.addEventListener(
 
 </script>
 
+ <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // 1. جلب العنصر الذي يحتوي على العدد الإجمالي
+    const totalContactsSpan = document.querySelector('.val[data-field="TotalContacts"]');
+    
+    if (totalContactsSpan) {
+        // 2. تحويل القيمة النصية إلى رقم صحيح
+        const targetCount = parseInt(totalContactsSpan.textContent.trim()) || 0;
+        
+        // 3. جلب الـ tbody الخاص بالجدول
+        const tbody = document.getElementById("contacts");
+        
+        if (tbody) {
+            // 4. معرفة عدد الصفوف الموجودة حالياً (إن وجدت) لتكملة العدد
+            const currentCount = tbody.rows.length;
+            
+            // 5. حساب عدد الصفوف المتبقي إنشاؤها
+            const rowsToAdd = targetCount - currentCount;
+            
+            // 6. إنشاء الصفوف المطلوبة ديناميكياً
+            for (let i = 0; i < rowsToAdd; i++) {
+                const nextIndex = tbody.rows.length + 1; // الترقيم التلقائي للمسلسل
+                
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${nextIndex}</td>
+                    <td><input type="text" class="form-control form-control-sm" name="name_${nextIndex}"></td>
+                    <td><input type="number" class="form-control form-control-sm" name="age_${nextIndex}"></td>
+                    <td><input type="text" class="form-control form-control-sm" name="relation_${nextIndex}"></td>
+                    <td>
+                        <select class="form-select form-select-sm" name="vaccine_status_${nextIndex}">
+                            <option value="">اختر الموقف...</option>
+                            <option value="مطعّم">مطعّم</option>
+                            <option value="غير مطعّم">غير مطعّم</option>
+                            <option value="جرعة أولى">جرعة أولى فقط</option>
+                        </select>
+                    </td>
+                    <td><input type="text" class="form-control form-control-sm" name="vaccine_name_${nextIndex}"></td>
+                    <td><input type="text" class="form-control form-control-sm" name="dose_${nextIndex}"></td>
+                `;
+                
+                tbody.appendChild(row);
+            }
+        }
+    }
+});
+
+ </script>
 </body>
    </html>
