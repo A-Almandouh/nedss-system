@@ -126,31 +126,11 @@ async function saveDepartmentSheet() {
             selectedOption.setAttribute("selected", "selected");
         }
     });
-    const reportDateRaw = allData.ReportDate || allData.InvestigationDate || "";
-    let reportMonth = "";
-    let reportYear = "";
-
-    if (reportDateRaw) {
-        const parsedDate = new Date(reportDateRaw);
-        // التحقق من أن التاريخ صالح وليس نصاً عشوائياً
-        if (!isNaN(parsedDate.getTime())) {
-            reportMonth = parsedDate.getMonth() + 1; // إضافة 1 لأن الشهور تبدأ من 0
-            reportYear = parsedDate.getFullYear();
-        }
-    }
-
-    // في حال عدم العثور على تاريخ تقرير صالح، يتم استخدام تاريخ اليوم كخيار احتياطي بديل
-    if (!reportMonth || !reportYear) {
-        const fallbackDate = new Date();
-        reportMonth = fallbackDate.getMonth() + 1;
-        reportYear = fallbackDate.getFullYear();
-        console.log("⚠️ لم يتم العثور على تاريخ تقرير صالح، تم استخدام تاريخ اليوم كبديل.");
-    }
-
+   
     const fullHtmlString = "<!DOCTYPE html>\n" + clone.outerHTML;
-    
-    const htmlFileName = `${allData.DiseaseID || "مرض"}_${reportMonth}_${reportYear}_${allData.PatientName || "مريض"}.html`;
+    const htmlFileName = `${allData.DiseaseID || allData.PatientName || document.title || "Case"}_${allData.CaseID || ""}.html`;
 
+   
     // دالة داخلية لإرسال البيانات لـ Google Sheet
     async function sendToGoogleSheet(spreadsheetId, label) {
         try {
