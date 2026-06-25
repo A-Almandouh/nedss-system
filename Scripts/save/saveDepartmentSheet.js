@@ -1,6 +1,6 @@
 
 //const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzhQ7qPMq_kQpwT_wUzTJ4SbfYKhwpfb6S-Tuxbc3_dCmciR5-FE5IA5QcIllyumySY/exec";
-console.log("saveDepartmentSheet loaded - Version 9");
+console.log("saveDepartmentSheet loaded - Version 8");
 
 async function saveDepartmentSheet() {
     let govSheetId = "";
@@ -24,39 +24,8 @@ async function saveDepartmentSheet() {
         console.log("⚠️ تنبيه: الكود يعمل خارج إضافة كروم (الـ Console العام). تم تطبيق قيم الاختبار الافتراضية.");
         govSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
         deptSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
-        driveFolderId = "1OImES8vUr4D_qyG3G1KLAgvkPNcOHVCb"; 
+        driveFolderId = "1O4fbgDHYXjYV9Garh_zsJAL__PhSk_5c"; 
     }
-
-    // 2. التحقق من معرف مجلد درايف وتطبيق القيم الافتراضية الذكية بناءً على المنطقة
-    if (!driveFolderId) {
-        console.log("🔄 لم يتم العثور على driveFolderId في الإعدادات، يتم الفحص بناءً على المنطقة...");
-        
-        // خريطة المجلدات حسب اسم المنطقة (مكتوبة بالصيغة النقية التي تبدأ بالحرف مباشرة)
-        const folderMap = {
-            "الحمام": "GRuw0fNeOZNFE-NrP014rNmDuUhrySnW",
-            "العلمين": "KSG4-Q754StABwYqh8NxuAGh5zG2GpM0",
-            "الضبعه": "NVwy8oujcRiCaWLWrSA5EmaKinUpt0wX",
-            "مطروح": "POq1hlYgjh0BWus7Wgv4DwtPo896hOuy",
-            "النجيليه": "RcKYywc6GSQ6kna6gp5O4rcg2xxeeMIV",
-            "بسيدى برانى": "U7J2ZgXSQjWIeGfsDIQHtgP5Ga4Oje32",
-            "السلوم": "XJw4uTc2IyxLl3UDBHn9DM4zgW28WWNn",
-            "سيوة": "ZmRwdWHzuE-eHq1uZcka0aiQ3HIIBHus"
-        };
-
-        // التحقق من وجود الكائن allData والمنطقة المطلوبة داخل الخريطة
-        const currentDistrict = typeof allData !== "undefined" && allData.ResidenceDistrict ? allData.ResidenceDistrict.trim() : "";
-        
-        if (currentDistrict && folderMap[currentDistrict]) {
-            driveFolderId = folderMap[currentDistrict];
-            console.log(`📁 تم تعيين مجلد المنطقة تلقائياً [${currentDistrict}]: ${driveFolderId}`);
-        } else {
-            // الخيار الأخير (تقصيات المحافظات) بدون رقم 1 في البداية ليصبح المعرف نقياً
-            driveFolderId = "OImES8vUr4D_qyG3G1KLAgvkPNcOHVCb";
-            console.log("📁 تم تطبيق المجلد الافتراضي الأخير [تقصيات المحافظات]:", driveFolderId);
-        }
-    }
-
-
 
     // التحقق الفوري لعدم إضاعة الوقت في حال غياب الشيتات
     if (!govSheetId && !deptSheetId) {
