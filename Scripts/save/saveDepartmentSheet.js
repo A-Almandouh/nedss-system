@@ -1,13 +1,13 @@
 
 //const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzhQ7qPMq_kQpwT_wUzTJ4SbfYKhwpfb6S-Tuxbc3_dCmciR5-FE5IA5QcIllyumySY/exec";
-console.log("saveDepartmentSheet loaded - Version 9");
+console.log("saveDepartmentSheet loaded - Version 8");
 
 async function saveDepartmentSheet() {
     let govSheetId = "";
     let deptSheetId = "";
     let driveFolderId = "";
 
-    // 1. محاولة جلب البيانات من ذاكرة الإضافة أولاً
+    // 1. جلب معرفات الملفات والمجلد من ذاكرة الإضافة مع التحقق الذكي من صحتها
     if (typeof chrome !== "undefined" && chrome.storage && chrome.storage.local) {
         console.log("🔍 جاري التحقق من بيانات الإعدادات في ذاكرة الإضافة محلياً...");
         const settings = (await chrome.storage.local.get("settings")).settings || {};
@@ -15,90 +15,17 @@ async function saveDepartmentSheet() {
         govSheetId = settings.governorateSheet || "";
         deptSheetId = settings.departmentSheet || "";
         driveFolderId = settings.driveFolderId || "";
+
+        // فحص وصول البيانات للـ Console
+        console.log("📊 [ملف المحافظة]:", govSheetId ? "✅ متوفر: " + govSheetId : "❌ غير معرف بالإعدادات");
+        console.log("📊 [ملف الإدارة]:", deptSheetId ? "✅ متوفر: " + deptSheetId : "❌ غير معرف بالإعدادات");
+        console.log("📊 [مجلد درايف]:", driveFolderId ? "✅ متوفر: " + driveFolderId : "❌ غير معرف بالإعدادات");
+    } else {
+        console.log("⚠️ تنبيه: الكود يعمل خارج إضافة كروم (الـ Console العام). تم تطبيق قيم الاختبار الافتراضية.");
+        govSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
+        deptSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
+        driveFolderId = "1O4fbgDHYXjYV9Garh_zsJAL__PhSk_5c"; 
     }
-
-    // 2. إذا كانت الإعدادات فارغة (سواء بسبب عدم وجودها بالإضافة أو لأننا نعمل خارج الإضافة بالـ Console)
-    if (!govSheetId || !deptSheetId || !driveFolderId) {
-        console.log("🔄 الإعدادات غير مكتملة أو الكود يعمل بالـ Console الفردي. يتم تطبيق القيم الافتراضية بناءً على الإدارة...");
-
-        // تنظيف اسم الإدارة من أي مسافات زائدة
-        const district = typeof allData !== "undefined" && allData.ResidenceDistrict ? allData.ResidenceDistrict.trim() : "";
-
-        switch (district) {
-            case "الحمام":
-                console.log("📍 إدارة الحمام");
-                govSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
-                deptSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
-                driveFolderId = "1GRuw0fNeOZNFE-NrP014rNmDuUhrySnW"; 
-                break;
-
-            case "العلمين":
-                console.log("📍 إدارة العلمين");
-                govSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
-                deptSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
-                driveFolderId = "1KSG4-Q754StABwYqh8NxuAGh5zG2GpM0"; 
-                break;
-
-            case "الضبعه":
-                console.log("📍 إدارة الضبعه");
-                govSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
-                deptSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
-                driveFolderId = "1NVwy8oujcRiCaWLWrSA5EmaKinUpt0wX"; 
-                break;
-
-            case "مطروح":
-                console.log("📍 إدارة مطروح");
-                govSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
-                deptSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
-                driveFolderId = "1POq1hlYgjh0BWus7Wgv4DwtPo896hOuy"; 
-                break;
-
-            case "النجيليه":
-                console.log("📍 إدارة النجيليه");
-                govSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
-                deptSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
-                driveFolderId = "1RcKYywc6GSQ6kna6gp5O4rcg2xxeeMIV"; 
-                break;
-
-            case "بسيدى برانى":
-                console.log("📍 إدارة بسيدى برانى");
-                govSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
-                deptSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
-                driveFolderId = "1U7J2ZgXSQjWIeGfsDIQHtgP5Ga4Oje32"; 
-                break;
-
-            case "السلوم":
-                console.log("📍 إدارة السلوم");
-                govSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
-                deptSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
-                driveFolderId = "1XJw4uTc2IyxLl3UDBHn9DM4zgW28WWNn"; 
-                break;
-
-            case "سيوة":
-                console.log("📍 إدارة سيوة");
-                govSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
-                deptSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
-                driveFolderId = "1ZmRwdWHzuE-eHq1uZcka0aiQ3HIIBHus"; 
-                break;
-
-            default:
-                // الخيار الأخير (تقصيات المحافظات) في حال لم تطابق الإدارة أي مما سبق
-                console.log("⚠️ تم تطبيق الخيار الأخير [تقصيات المحافظات]");
-                govSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
-                deptSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
-                driveFolderId = "1OImES8vUr4D_qyG3G1KLAgvkPNcOHVCb"; 
-                break;
-        }
-    }
-
-    // طباعة النتيجة النهائية للتأكيد
-    console.log("📊 [ملف المحافظة النهائي]:", govSheetId);
-    console.log("📊 [ملف المحافظة النهائي]:", govSheetId);
-    console.log("📊 [ملف الإدارة النهائي]:", deptSheetId);
-    console.log("📊 [مجلد درايف النهائي]:", driveFolderId);
-
-      console.log(district);
-      console.log(allData.ResidenceDistrict);
 
     // التحقق الفوري لعدم إضاعة الوقت في حال غياب الشيتات
     if (!govSheetId && !deptSheetId) {
