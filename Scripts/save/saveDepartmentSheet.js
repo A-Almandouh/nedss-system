@@ -27,6 +27,37 @@ async function saveDepartmentSheet() {
         driveFolderId = "1O4fbgDHYXjYV9Garh_zsJAL__PhSk_5c"; 
     }
 
+    // 2. التحقق من معرف مجلد درايف وتطبيق القيم الافتراضية الذكية بناءً على المنطقة
+    if (!driveFolderId) {
+        console.log("🔄 لم يتم العثور على driveFolderId في الإعدادات، يتم الفحص بناءً على المنطقة...");
+        
+        // خريطة المجلدات حسب اسم المنطقة (مكتوبة بالصيغة النقية التي تبدأ بالحرف مباشرة)
+        const folderMap = {
+            "الحمام": "GRuw0fNeOZNFE-NrP014rNmDuUhrySnW",
+            "العلمين": "KSG4-Q754StABwYqh8NxuAGh5zG2GpM0",
+            "الضبعه": "NVwy8oujcRiCaWLWrSA5EmaKinUpt0wX",
+            "مطروح": "POq1hlYgjh0BWus7Wgv4DwtPo896hOuy",
+            "النجيليه": "RcKYywc6GSQ6kna6gp5O4rcg2xxeeMIV",
+            "بسيدى برانى": "U7J2ZgXSQjWIeGfsDIQHtgP5Ga4Oje32",
+            "السلوم": "XJw4uTc2IyxLl3UDBHn9DM4zgW28WWNn",
+            "سيوة": "ZmRwdWHzuE-eHq1uZcka0aiQ3HIIBHus"
+        };
+
+        // التحقق من وجود الكائن allData والمنطقة المطلوبة داخل الخريطة
+        const currentDistrict = typeof allData !== "undefined" && allData.ResidenceDistrict ? allData.ResidenceDistrict.trim() : "";
+        
+        if (currentDistrict && folderMap[currentDistrict]) {
+            driveFolderId = folderMap[currentDistrict];
+            console.log(`📁 تم تعيين مجلد المنطقة تلقائياً [${currentDistrict}]: ${driveFolderId}`);
+        } else {
+            // الخيار الأخير (تقصيات المحافظات) بدون رقم 1 في البداية ليصبح المعرف نقياً
+            driveFolderId = "OImES8vUr4D_qyG3G1KLAgvkPNcOHVCb";
+            console.log("📁 تم تطبيق المجلد الافتراضي الأخير [تقصيات المحافظات]:", driveFolderId);
+        }
+    }
+
+
+
     // التحقق الفوري لعدم إضاعة الوقت في حال غياب الشيتات
     if (!govSheetId && !deptSheetId) {
         alert("⚠️ خطأ: لم يتم جلب ملف المحافظة أو ملف الإدارة من الإعدادات! تم إلغاء عملية الحفظ.");
