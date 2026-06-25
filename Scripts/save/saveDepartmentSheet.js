@@ -1,33 +1,130 @@
 
-//const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzhQ7qPMq_kQpwT_wUzTJ4SbfYKhwpfb6S-Tuxbc3_dCmciR5-FE5IA5QcIllyumySY/exec";
 console.log("saveDepartmentSheet loaded - Version 9");
- console.log("ادارة السكن", allData.ResidenceDistrict);
+
 async function saveDepartmentSheet() {
+
     let govSheetId = "";
     let deptSheetId = "";
     let driveFolderId = "";
 
-    
-    // 1. جلب معرفات الملفات والمجلد من ذاكرة الإضافة مع التحقق الذكي من صحتها
-    if (typeof chrome !== "undefined" && chrome.storage && chrome.storage.local) {
-        console.log("🔍 جاري التحقق من بيانات الإعدادات في ذاكرة الإضافة محلياً...");
-        const settings = (await chrome.storage.local.get("settings")).settings || {};
-        
-        govSheetId = settings.governorateSheet || "";
-        deptSheetId = settings.departmentSheet || "";
-        driveFolderId = settings.driveFolderId || "";
+    //---------------------------------------------------------
+    // 1. جلب الإعدادات من Chrome Storage
+    //---------------------------------------------------------
+    if (typeof chrome !== "undefined" &&
+        chrome.storage &&
+        chrome.storage.local) {
 
-        // فحص وصول البيانات للـ Console
-        console.log("📊 [ملف المحافظة]:", govSheetId ? "✅ متوفر: " + govSheetId : "❌ غير معرف بالإعدادات");
-        console.log("📊 [ملف الإدارة]:", deptSheetId ? "✅ متوفر: " + deptSheetId : "❌ غير معرف بالإعدادات");
-        console.log("📊 [مجلد درايف]:", driveFolderId ? "✅ متوفر: " + driveFolderId : "❌ غير معرف بالإعدادات");
-    } else {
-        console.log("⚠️ تنبيه: الكود يعمل خارج إضافة كروم (الـ Console العام). تم تطبيق قيم الاختبار الافتراضية.");
-        govSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
-        deptSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
-        driveFolderId = "1O4fbgDHYXjYV9Garh_zsJAL__PhSk_5c"; 
+        console.log("🔍 قراءة الإعدادات...");
+
+        const settings =
+            (await chrome.storage.local.get("settings")).settings || {};
+
+        govSheetId =
+            settings.governorateSheet || "";
+
+        deptSheetId =
+            settings.departmentSheet || "";
+
+        driveFolderId =
+            settings.driveFolderId || "";
+
+        console.log("📊 [GovernorateSheet]", govSheetId || "غير موجود");
+        console.log("📊 [DepartmentSheet]", deptSheetId || "غير موجود");
+        console.log("📊 [DriveFolder]", driveFolderId || "غير موجود");
     }
 
+    //---------------------------------------------------------
+    // 2. جمع البيانات مبكراً لمعرفة الإدارة
+    //---------------------------------------------------------
+    const allData = await collectAllData();
+
+    //---------------------------------------------------------
+    // 3. إذا كانت الإعدادات ناقصة استخدم التعيين التلقائي
+    //---------------------------------------------------------
+    if (!govSheetId || !deptSheetId || !driveFolderId) {
+
+        const district =
+            (allData.ResidenceDistrict || "").trim();
+
+        console.log("📍 ResidenceDistrict =", district);
+
+        switch (district) {
+
+            case "الحمام":
+                govSheetId = govSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
+                deptSheetId = deptSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
+                driveFolderId = driveFolderId || "1GRuw0fNeOZNFE-NrP014rNmDuUhrySnW";
+                break;
+
+            case "العلمين":
+                govSheetId = govSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
+                deptSheetId = deptSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
+                driveFolderId = driveFolderId || "1KSG4-Q754StABwYqh8NxuAGh5zG2GpM0";
+                break;
+
+            case "الضبعه":
+                govSheetId = govSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
+                deptSheetId = deptSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
+                driveFolderId = driveFolderId || "1NVwy8oujcRiCaWLWrSA5EmaKinUpt0wX";
+                break;
+
+            case "مطروح":
+                govSheetId = govSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
+                deptSheetId = deptSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
+                driveFolderId = driveFolderId || "1POq1hlYgjh0BWus7Wgv4DwtPo896hOuy";
+                break;
+
+            case "النجيليه":
+                govSheetId = govSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
+                deptSheetId = deptSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
+                driveFolderId = driveFolderId || "1RcKYywc6GSQ6kna6gp5O4rcg2xxeeMIV";
+                break;
+
+            case "بسيدى برانى":
+                govSheetId = govSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
+                deptSheetId = deptSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
+                driveFolderId = driveFolderId || "1U7J2ZgXSQjWIeGfsDIQHtgP5Ga4Oje32";
+                break;
+
+            case "السلوم":
+                govSheetId = govSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
+                deptSheetId = deptSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
+                driveFolderId = driveFolderId || "1XJw4uTc2IyxLl3UDBHn9DM4zgW28WWNn";
+                break;
+
+            case "سيوة":
+                govSheetId = govSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
+                deptSheetId = deptSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
+                driveFolderId = driveFolderId || "1ZmRwdWHzuE-eHq1uZcka0aiQ3HIIBHus";
+                break;
+
+            default:
+                govSheetId = govSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
+                deptSheetId = deptSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
+                driveFolderId = driveFolderId || "1OImES8vUr4D_qyG3G1KLAgvkPNcOHVCb";
+                break;
+        }
+    }
+
+    //---------------------------------------------------------
+    // 4. تأكيد القيم النهائية
+    //---------------------------------------------------------
+    console.log("📊 Final GovernorateSheet =", govSheetId);
+    console.log("📊 Final DepartmentSheet =", deptSheetId);
+    console.log("📊 Final DriveFolder =", driveFolderId);
+
+    //---------------------------------------------------------
+    // التحقق النهائي
+    //---------------------------------------------------------
+    if (!govSheetId && !deptSheetId) {
+        alert("⚠️ لا يوجد ملف محافظة أو إدارة صالح للحفظ");
+        return;
+    }
+
+    //---------------------------------------------------------
+    // استكمال الكود القديم
+    //---------------------------------------------------------
+    const result = splitData(allData);
     // التحقق الفوري لعدم إضاعة الوقت في حال غياب الشيتات
     if (!govSheetId && !deptSheetId) {
         alert("⚠️ خطأ: لم يتم جلب ملف المحافظة أو ملف الإدارة من الإعدادات! تم إلغاء عملية الحفظ.");
