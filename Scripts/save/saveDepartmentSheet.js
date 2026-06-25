@@ -6,7 +6,8 @@ async function saveDepartmentSheet() {
     let govSheetId = "";
     let deptSheetId = "";
     let driveFolderId = "";
-
+ console.log(allData.ResidenceDistrict);
+    
     // 1. جلب معرفات الملفات والمجلد من ذاكرة الإضافة مع التحقق الذكي من صحتها
     if (typeof chrome !== "undefined" && chrome.storage && chrome.storage.local) {
         console.log("🔍 جاري التحقق من بيانات الإعدادات في ذاكرة الإضافة محلياً...");
