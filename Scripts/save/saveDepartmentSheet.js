@@ -1,6 +1,6 @@
 
 //const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzhQ7qPMq_kQpwT_wUzTJ4SbfYKhwpfb6S-Tuxbc3_dCmciR5-FE5IA5QcIllyumySY/exec";
-console.log("saveDepartmentSheet loaded - Version 8");
+console.log("saveDepartmentSheet loaded - Version 9");
 
 async function saveDepartmentSheet() {
     let govSheetId = "";
@@ -23,7 +23,8 @@ async function saveDepartmentSheet() {
 
         // تنظيف اسم الإدارة من أي مسافات زائدة
         const district = typeof allData !== "undefined" && allData.ResidenceDistrict ? allData.ResidenceDistrict.trim() : "";
-
+  console.log(district);
+        console.log(allData.ResidenceDistrict);
         switch (district) {
             case "الحمام":
                 console.log("📍 إدارة الحمام");
@@ -92,6 +93,7 @@ async function saveDepartmentSheet() {
     }
 
     // طباعة النتيجة النهائية للتأكيد
+    console.log("📊 [ملف المحافظة النهائي]:", govSheetId);
     console.log("📊 [ملف المحافظة النهائي]:", govSheetId);
     console.log("📊 [ملف الإدارة النهائي]:", deptSheetId);
     console.log("📊 [مجلد درايف النهائي]:", driveFolderId);
