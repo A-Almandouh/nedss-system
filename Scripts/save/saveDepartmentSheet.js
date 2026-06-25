@@ -1,12 +1,12 @@
 
 //const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzhQ7qPMq_kQpwT_wUzTJ4SbfYKhwpfb6S-Tuxbc3_dCmciR5-FE5IA5QcIllyumySY/exec";
-console.log("saveDepartmentSheet loaded - Version 8");
-
+console.log("saveDepartmentSheet loaded - Version 9");
+ console.log("ادارة السكن", allData.ResidenceDistrict);
 async function saveDepartmentSheet() {
     let govSheetId = "";
     let deptSheetId = "";
     let driveFolderId = "";
- console.log(allData.ResidenceDistrict);
+
     
     // 1. جلب معرفات الملفات والمجلد من ذاكرة الإضافة مع التحقق الذكي من صحتها
     if (typeof chrome !== "undefined" && chrome.storage && chrome.storage.local) {
