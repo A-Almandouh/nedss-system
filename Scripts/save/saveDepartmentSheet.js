@@ -23,8 +23,7 @@ async function saveDepartmentSheet() {
 
         // تنظيف اسم الإدارة من أي مسافات زائدة
         const district = typeof allData !== "undefined" && allData.ResidenceDistrict ? allData.ResidenceDistrict.trim() : "";
-  console.log(district);
-        console.log(allData.ResidenceDistrict);
+
         switch (district) {
             case "الحمام":
                 console.log("📍 إدارة الحمام");
@@ -98,7 +97,8 @@ async function saveDepartmentSheet() {
     console.log("📊 [ملف الإدارة النهائي]:", deptSheetId);
     console.log("📊 [مجلد درايف النهائي]:", driveFolderId);
 
-
+      console.log(district);
+      console.log(allData.ResidenceDistrict);
 
     // التحقق الفوري لعدم إضاعة الوقت في حال غياب الشيتات
     if (!govSheetId && !deptSheetId) {
