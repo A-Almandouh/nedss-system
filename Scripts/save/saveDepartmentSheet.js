@@ -1,4 +1,4 @@
-console.log("saveDepartmentSheet loaded - Version 9 - Fixed");
+console.log("saveDepartmentSheet loaded - Version 8 - Fixed");
 
 async function saveDepartmentSheet() {
     let govSheetId = "";
