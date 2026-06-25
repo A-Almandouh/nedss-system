@@ -24,7 +24,7 @@ async function saveDepartmentSheet() {
         console.log("⚠️ تنبيه: الكود يعمل خارج إضافة كروم (الـ Console العام). تم تطبيق قيم الاختبار الافتراضية.");
         govSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M"; 
         deptSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
-        driveFolderId = "1O4fbgDHYXjYV9Garh_zsJAL__PhSk_5c"; 
+        driveFolderId = "1OImES8vUr4D_qyG3G1KLAgvkPNcOHVCb"; 
     }
 
     // 2. التحقق من معرف مجلد درايف وتطبيق القيم الافتراضية الذكية بناءً على المنطقة
