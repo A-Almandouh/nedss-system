@@ -1,6 +1,6 @@
 
 //const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzhQ7qPMq_kQpwT_wUzTJ4SbfYKhwpfb6S-Tuxbc3_dCmciR5-FE5IA5QcIllyumySY/exec";
-console.log("saveDepartmentSheet loaded - Version 8");
+console.log("saveDepartmentSheet loaded - Version 9");
 
 async function saveDepartmentSheet() {
     let govSheetId = "";
