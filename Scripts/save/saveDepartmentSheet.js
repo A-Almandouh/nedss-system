@@ -127,10 +127,10 @@ async function saveDepartmentSheet() {
         }
     });
        // استخراج الشهر والسنة من تاريخ التقرير المتاح في البيانات
-    const reportDateRaw = allData.ReportDate || allData.InvestigationDate || "";
+    const reportDateRaw = allData.ReportDate || "";
     let reportMonth = "";
     let reportYear = "";
-
+consol.log( allData.ReportDate)
     if (reportDateRaw) {
         const parsedDate = new Date(reportDateRaw);
         // التحقق من أن التاريخ صالح وليس نصاً عشوائياً
