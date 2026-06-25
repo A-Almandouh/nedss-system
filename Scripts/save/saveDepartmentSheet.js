@@ -1,4 +1,4 @@
-console.log("saveDepartmentSheet loaded - Version 8 - Fixed");
+console.log("saveDepartmentSheet loaded - Version 10");
 
 async function saveDepartmentSheet() {
     let govSheetId = "";
@@ -126,26 +126,26 @@ async function saveDepartmentSheet() {
             selectedOption.setAttribute("selected", "selected");
         }
     });
-       // استخراج الشهر والسنة من تاريخ التقرير المتاح في البيانات
-    const reportDateRaw = allData.ReportDate || "";
+      const reportDateRaw = (allData.ReportDate || "").trim();
     let reportMonth = "";
     let reportYear = "";
-consol.log(allData.ReportDate);
-    if (reportDateRaw) {
-        const parsedDate = new Date(reportDateRaw);
-        // التحقق من أن التاريخ صالح وليس نصاً عشوائياً
-        if (!isNaN(parsedDate.getTime())) {
-            reportMonth = parsedDate.getMonth() + 1; // إضافة 1 لأن الشهور تبدأ من 0
-            reportYear = parsedDate.getFullYear();
+
+    if (reportDateRaw && reportDateRaw.includes("/")) {
+        const dateParts = reportDateRaw.split("/"); // تقسيم النص عند كل "/"
+        
+        // التأكد من أن النص تم تقسيمه إلى 3 أجزاء (يوم، شهر، سنة)
+        if (dateParts.length === 3) {
+            reportMonth = dateParts[1].trim(); // الجزء الثاني هو الشهر (مثال: 06)
+            reportYear = dateParts[2].trim();  // الجزء الثالث هو السنة (مثال: 2026)
         }
     }
 
-    // في حال عدم العثور على تاريخ تقرير صالح، يتم استخدام تاريخ اليوم كخيار احتياطي بديل
+    // في حال عدم العثور على تاريخ تقرير صالح أو كان الحقل فارغاً، يتم استخدام تاريخ اليوم كاحتياطي
     if (!reportMonth || !reportYear) {
         const fallbackDate = new Date();
-        reportMonth = fallbackDate.getMonth() + 1;
-        reportYear = fallbackDate.getFullYear();
-        console.log("⚠️ لم يتم العثور على تاريخ تقرير صالح، تم استخدام تاريخ اليوم كبديل.");
+        reportMonth = String(fallbackDate.getMonth() + 1).padStart(2, '0'); // يضمن ظهور الشهر بخانتين مثل 06
+        reportYear = String(fallbackDate.getFullYear());
+        console.log("⚠️ لم يتم العثور على تاريخ تقرير بصيغة صحيحة، تم استخدام تاريخ اليوم كبديل.");
     }
 
     // صياغة اسم الملف: اسم المرض - الشهر - السنة - اسم المريض
