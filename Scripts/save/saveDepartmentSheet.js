@@ -130,7 +130,7 @@ async function saveDepartmentSheet() {
     const reportDateRaw = allData.ReportDate || "";
     let reportMonth = "";
     let reportYear = "";
-consol.log( allData.ReportDate)
+consol.log(allData.ReportDate)
     if (reportDateRaw) {
         const parsedDate = new Date(reportDateRaw);
         // التحقق من أن التاريخ صالح وليس نصاً عشوائياً
