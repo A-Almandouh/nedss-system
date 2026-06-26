@@ -511,13 +511,11 @@ body{
 <div class="row g-0 ">   <span class="val" data-field="Movements"></span>     </div>
 <div class="row g-0 "><span class="lbl fw-bold" style="text-decoration: underline">   خامسا: حصر المخالطين المباشرين (بالمنزل – بالعمل / بالمدرسة........./ مكان التجمع ) :</span></div>   
 <div class="row g-0 "><div class="col-12"><span class="lbl fw-bold" >بلغ عدد المخالطين</span> <span class="val" data-field="TotalContacts"></span> <span class="lbl fw-bold">و قائمة السرد الخطي ، و ما تم من إجراءات وقائية لهم كاالتي :</span></div></div>
--------------------------------------------------------
-
    
         <!-- هيكل الجدول المربع -->
         <div class="table-responsive">
             <table class="table table-bordered table-striped text-center align-middle">
-                <thead class="table-dark">
+                <thead class="table-Secondary">
                     <tr>
                         <th>م</th>
                         <th>الاسم</th>
@@ -535,7 +533,6 @@ body{
             </table>
         </div>
 
-------------------------------------------------------
 <div class="row g-0 "><div class="col-12" style="text-decoration: underline"><span class="lbl fw-bold" > متابعة حدوث المضاعفات للحالة خالل 48 ساعة </span> <span class="val"></span></div></div>
 <div class="row g-0 "><div class="col-12" ><span class="lbl fw-bold" >في حالة نعم هل الحالة أصيبت بأي مضاعفات ؟ </span> <span class="val"></span><span>في حالة نعم أذكر نوع المضاعفات</span></div></div>
 <div class="row g-0 "><div class="col-12" ></div>
@@ -575,70 +572,6 @@ body{
                 </div>
 
 
-```
-<div class="container" id="Private-questions">
-
-```html
-
-
-</div>
-
-
-
-
-<div class="row g-0">
-    <div class="col-9">
-        <span class="lbl">تحركات الحالة قبل حجزها فى المستشفى</span>
-    </div>
-    <div class="col-3">
-     
-    </div>
-</div>
-
-<div class="row g-0">
-    <div class="col-9">
-        <span class="lbl">إجمالى عدد المخالطين</span>
-    </div>
-    <div class="col-3">
-        
-    </div>
-</div>
-
-<div class="row g-0">
-    <div class="col-9">
-        <span class="lbl">عدد المخالطين بالمنزل</span>
-    </div>
-    <div class="col-3">
-        <span class="val" data-field="HomeContacts"></span>
-    </div>
-</div>
-
-<div class="row g-0">
-    <div class="col-9">
-        <span class="lbl">عدد المخالطين بالتجمع</span>
-    </div>
-    <div class="col-3">
-        <span class="val" data-field="WorkSchoolContacts"></span>
-    </div>
-</div>
-
-<div class="row g-0">
-    <div class="col-9">
-        <span class="lbl">عدد من تجريعهم</span>
-    </div>
-    <div class="col-3">
-        <span class="val" data-field="TreatedCount"></span>
-    </div>
-</div>
-
-<div class="row g-0">
-    <div class="col-9">
-        <span class="lbl">نوع العقار المستخدم</span>
-    </div>
-    <div class="col-3">
-        <span class="val" data-field="MedicationType"></span>
-    </div>
-</div>
 
 <div class="row g-0">
     <div class="col-9">
@@ -659,7 +592,6 @@ body{
 </div>
 
 </div>
-```
  
 <hr>
 <div class="row g-0 ">
@@ -752,9 +684,10 @@ function buildContactsTable() {
                     <td>
                         <select class="form-select form-select-sm" name="vaccine_status_${nextIndex}">
                             <option value="">اختر...</option>
-                            <option value="1">مطعّم بالكامل</option>
-                            <option value="2">جرعة أولى فقط</option>
+                            <option value="1">مطعّم</option>
+                            <option value="2">متطعم جزئي</option>
                             <option value="0">غير مطعّم</option>
+                            <option value="0">غير معروف</option>
                         </select>
                     </td>
                     <td><input type="text" class="form-control form-control-sm" name="vaccine_name_${nextIndex}"></td>
