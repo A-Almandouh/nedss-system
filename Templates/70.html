@@ -704,272 +704,144 @@ body{
  <script src="https://a-almandouh.github.io/nedss-system/Scripts/save/saveDepartmentSheet.js"></script>
 
 <script src="https://a-almandouh.github.io/nedss-system/Scripts/ui/buttons.js"></script>
- <script>
-window.addEventListener("message", function (event) {
+<script>
+async function getDiseaseLink(data) {
+    try {
+        const response = await fetch("https://a-almandouh.github.io/nedss-system/Config/disease-routing.json");
+        const routes = await response.json();
+        const route = routes[data.DiseaseID];
 
+        if (!route || !route.url) {
+            console.warn("No route found for DiseaseID:", data.DiseaseID);
+            return null;
+        }
+
+        let url = route.url;
+        if (route.appendCaseId) {
+            url += "&caseid=" + data.CaseID;
+        }
+        return url;
+    } catch (err) {
+        console.error("Disease route error", err);
+        return null;
+    }
+}
+
+// دالة منفصلة لإنشاء الجدول، سيتم استدعاؤها بعد تعبئة البيانات
+function buildContactsTable() {
+    const totalContactsSpan = document.querySelector('.val[data-field="TotalContacts"]');
+    
+    if (totalContactsSpan) {
+        // تحويل النص المستلم حديثاً إلى رقم صحيح
+        const targetCount = parseInt(totalContactsSpan.textContent.trim()) || 0;
+        
+        const tbody = document.getElementById("contacts");
+        
+        if (tbody) {
+            // تفريغ الجدول أولاً لمنع تكرار الصفوف إذا تم إرسال الرسالة أكثر من مرة
+            tbody.innerHTML = ""; 
+            
+            const currentCount = tbody.rows.length;
+            const rowsToAdd = targetCount - currentCount;
+            
+            for (let i = 0; i < rowsToAdd; i++) {
+                const nextIndex = tbody.rows.length + 1;
+                
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${nextIndex}</td>
+                    <td><input type="text" class="form-control form-control-sm" name="name_${nextIndex}"></td>
+                    <td><input type="number" class="form-control form-control-sm" name="age_${nextIndex}"></td>
+                    <td><input type="text" class="form-control form-control-sm" name="relation_${nextIndex}"></td>
+                    <td>
+                        <select class="form-select form-select-sm" name="vaccine_status_${nextIndex}">
+                            <option value="">اختر...</option>
+                            <option value="1">مطعّم بالكامل</option>
+                            <option value="2">جرعة أولى فقط</option>
+                            <option value="0">غير مطعّم</option>
+                        </select>
+                    </td>
+                    <td><input type="text" class="form-control form-control-sm" name="vaccine_name_${nextIndex}"></td>
+                    <td><input type="text" class="form-control form-control-sm" name="dose_${nextIndex}"></td>
+                `;
+                
+                tbody.appendChild(row);
+            }
+            console.log(`تم إنشاء عدد ${targetCount} من صفوف المخالطين بنجاح.`);
+        }
+    }
+}
+
+window.addEventListener("message", async function (event) {
     if (!event.data || event.data.type !== "FILL_DATA") return;
 
     const data = event.data.data;
-  window.caseData = data;
+    window.caseData = data;
     console.log("DATA RECEIVED", data);
 
+    // ==========================
+    // 1. تعبئة الحقول النصية (بما فيها حقل الـ TotalContacts)
+    // ==========================
     for (const key in data) {
-
         const el = document.querySelector(`[data-field="${key}"]`);
-
         if (el) {
             el.textContent = data[key] || "";
         }
     }
 
-    //setTimeout(() => window.print(), 800);
+    // ==========================
+    // 2. استدعاء بناء الجدول (الآن الـ span يحتوي على الرقم الصحيح)
+    // ==========================
+    buildContactsTable();
+
+    // ==========================
+    // 3. عنوان الصفحة
+    // ==========================
+    let month = "";
+    let year = "";
+
+    if (data.ReportDate) {
+        const parts = data.ReportDate.split("/");
+        if (parts.length === 3) {
+            month = parts[1];
+            year = parts[2];
+        }
+    }
+
+    document.title = [
+        data.ResidenceGovernorate,
+        data.ResidenceDistrict,
+        data.DiseaseName,
+        month,
+        year,
+        data.FirstName,
+        data.FatherName,
+        data.GrandFatherName
+    ].filter(Boolean).join(" - ");
+
+    // ==========================
+    // 4. QR CODE
+    // ==========================
+    const qrContainer = document.getElementById("qrcode");
+    if (qrContainer) {
+        qrContainer.innerHTML = "";
+        const myLink = await getDiseaseLink(data);
+        if (myLink) {
+            new QRCode(qrContainer, {
+                text: myLink,
+                width: 75,
+                height: 75
+            });
+            qrContainer.style.cursor = "pointer";
+            qrContainer.onclick = function () {
+                window.open(myLink, "_blank");
+            };
+        }
+    }
+    
+    // سطر الطباعة التلقائية (اختياري إذا أردت تفعيله لاحقاً)
+    // setTimeout(() => window.print(), 800);
 });
 </script>
-
-
-<script>
-
-async function getDiseaseLink(data) {
-
-    try {
-
-        const response =
-            await fetch(
-                "https://a-almandouh.github.io/nedss-system/Config/disease-routing.json"
-            );
-
-        const routes =
-            await response.json();
-
-        const route =
-            routes[data.DiseaseID];
-
-        if (
-            !route ||
-            !route.url
-        ) {
-
-            console.warn(
-                "No route found for DiseaseID:",
-                data.DiseaseID
-            );
-
-            return null;
-
-        }
-
-        let url =
-            route.url;
-
-        if (
-            route.appendCaseId
-        ) {
-
-            url +=
-                "&caseid=" +
-                data.CaseID;
-
-        }
-
-        return url;
-
-    }
-    catch (err) {
-
-        console.error(
-            "Disease route error",
-            err
-        );
-
-        return null;
-
-    }
-
-}
-
-window.addEventListener(
-    "message",
-    async function (event) {
-
-        if (
-            !event.data ||
-            event.data.type !== "FILL_DATA"
-        ) {
-            return;
-        }
-
-        const data =
-            event.data.data;
-
-        window.caseData =
-            data;
-
-        console.log(
-            "DATA RECEIVED",
-            data
-        );
-
-        // ==========================
-        // تعبئة الحقول
-        // ==========================
-
-        for (const key in data) {
-
-            const el =
-                document.querySelector(
-                    `[data-field="${key}"]`
-                );
-
-            if (el) {
-
-                el.textContent =
-                    data[key] || "";
-
-            }
-
-        }
-
-        // ==========================
-        // عنوان الصفحة
-        // ==========================
-
-        let month = "";
-        let year = "";
-
-        if (data.ReportDate) {
-
-            const parts =
-                data.ReportDate.split("/");
-
-            if (
-                parts.length === 3
-            ) {
-
-                month =
-                    parts[1];
-
-                year =
-                    parts[2];
-
-            }
-
-        }
-
-        document.title = [
-
-            data.ResidenceGovernorate,
-            data.ResidenceDistrict,
-            data.DiseaseName,
-            month,
-            year,
-            data.FirstName,
-            data.FatherName,
-            data.GrandFatherName
-
-        ]
-        .filter(Boolean)
-        .join(" - ");
-
-        // ==========================
-        // QR CODE
-        // ==========================
-
-        const qrContainer =
-            document.getElementById(
-                "qrcode"
-            );
-
-        if (qrContainer) {
-
-            qrContainer.innerHTML =
-                "";
-
-            const myLink =
-                await getDiseaseLink(
-                    data
-                );
-
-            if (myLink) {
-
-                new QRCode(
-                    qrContainer,
-                    {
-                        text: myLink,
-                        width: 75,
-                        height: 75
-                    }
-                );
-
-                qrContainer.style.cursor =
-                    "pointer";
-
-                qrContainer.onclick =
-                    function () {
-
-                        window.open(
-                            myLink,
-                            "_blank"
-                        );
-
-                    };
-
-            }
-
-        }
-
-    }
-);
-
-
-
- // <!-- كود الجافاسكريبت للتشغيل بعد تحميل الصفحة -->
-    
-        document.addEventListener("DOMContentLoaded", function () {
-            // 1. تحديد عنصر الـ span وجلب القيمة منه
-            const totalContactsSpan = document.querySelector('.val[data-field="TotalContacts"]');
-            
-            if (totalContactsSpan) {
-                // تحويل النص إلى رقم صحيح
-                const targetCount = parseInt(totalContactsSpan.textContent.trim()) || 0;
-                
-                // 2. تحديد الـ tbody بالـ id المطلوب
-                const tbody = document.getElementById("contacts");
-                
-                if (tbody) {
-                    // حساب الصفوف الموجودة حالياً (تكون 0 في البداية)
-                    const currentCount = tbody.rows.length;
-                    
-                    // حساب كم صف نحتاج لإكمال العدد
-                    const rowsToAdd = targetCount - currentCount;
-                    
-                    // 3. حلقة تكرار لإنشاء الصفوف بدقة
-                    for (let i = 0; i < rowsToAdd; i++) {
-                        const nextIndex = tbody.rows.length + 1; // رقم المسلسل التلقائي
-                        
-                        const row = document.createElement("tr");
-                        row.innerHTML = `
-                            <td>${nextIndex}</td>
-                            <td><input type="text" class="form-control form-control-sm" name="name_${nextIndex}"></td>
-                            <td><input type="number" class="form-control form-control-sm" name="age_${nextIndex}"></td>
-                            <td><input type="text" class="form-control form-control-sm" name="relation_${nextIndex}"></td>
-                            <td>
-                                <select class="form-select form-select-sm" name="vaccine_status_${nextIndex}">
-                                    <option value="">اختر...</option>
-                                    <option value="1">مطعّم بالكامل</option>
-                                    <option value="2">جرعة أولى فقط</option>
-                                    <option value="0">غير مطعّم</option>
-                                </select>
-                            </td>
-                            <td><input type="text" class="form-control form-control-sm" name="vaccine_name_${nextIndex}"></td>
-                            <td><input type="text" class="form-control form-control-sm" name="dose_${nextIndex}"></td>
-                        `;
-                        
-                        // إضافة الصف داخل الـ tbody
-                        tbody.appendChild(row);
-                    }
-                }
-            }
-        });
-    </script>
 </body>
    </html>
