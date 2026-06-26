@@ -533,50 +533,95 @@ body{
             </table>
         </div>
 
-<div class="row g-0 "><div class="col-4" style="text-decoration: underline"><span class="lbl fw-bold" > متابعة حدوث المضاعفات للحالة خلال 48 ساعة </span> <span class="val" data-field="FollowUp48h"></span><input type="checkbox" name="subscribe" value="on"></div>
+<div class="row g-0 "><div class="col-4" style="text-decoration: underline"><span class="lbl fw-bold" > متابعة حدوث المضاعفات للحالة خلال 48 ساعة </span> <input type="checkbox" data-field="FollowUp48h" class="form-check-input ms-2"></div>
                      <div class="col-4" style="text-decoration: underline"><span class="lbl fw-bold">متابعة حدوث المضاعفات للحالة بعد اسبوعين</span>  <input type="checkbox" data-field="FollowUp14d" class="form-check-input ms-2"></div>
 
-                     <div class="col-4" style="text-decoration: underline"><span class="lbl fw-bold" > متابعة حدوث المضاعفات للحالة بعد 4 اسابيع </span> <span class="val"data-field="FollowUp28d"></span></div></div>
+                     <div class="col-4" style="text-decoration: underline"><span class="lbl fw-bold" > متابعة حدوث المضاعفات للحالة بعد 4 اسابيع </span> <input type="checkbox" data-field="FollowUp28d" class="form-check-input ms-2"></div></div>
  
 <div class="row g-0 "><div class="col-4" ><span class="lbl fw-bold" > هل الحالة أصيبت بأي مضاعفات ؟ </span> <span class="val" data-field="HasComplications"></span> </div>
                       <div class="col-4" ><span class="lbl">في حالة نعم أذكر تاريخ حدوث المضاعفات</span>  <span class="val" data-field="ComplicationDate"></span> </div>
                        <div class="col-4" ><span class="lbl">في حالة نعم أذكر نوع المضاعفات</span></div></div>
-<div class="row g-0 "><div class="col-12" ></div>
-<div class="col-4">
-                    <span class="lbl">مضاعفات عصبية:</span>
-                    <span class="val">
-                        <span class="checkbox-item"><input id="ContentPlaceHolder2_AddNewRes1_chkSeizures" type="checkbox" name="ctl00$ContentPlaceHolder2$AddNewRes1$chkSeizures" checked="checked"><label for="ContentPlaceHolder2_AddNewRes1_chkSeizures">نوبات تشنجية</label></span>
-                        <span class="checkbox-item"><input id="ContentPlaceHolder2_AddNewRes1_chkEpileptic" type="checkbox" name="ctl00$ContentPlaceHolder2$AddNewRes1$chkEpileptic"><label for="ContentPlaceHolder2_AddNewRes1_chkEpileptic">نوبات صرعية</label></span>
-                    </span>
+<div class="row g-3">
+    <!-- مضاعفات عصبية -->
+    <div class="col-md-4">
+        <span class="lbl fw-bold d-block mb-1">مضاعفات عصبية:</span>
+        <div class="d-flex flex-wrap gap-3">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="chkSeizures" data-field="Seizures">
+                <label class="form-check-label" for="chkSeizures">نوبات تشنجية</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="chkEpileptic" data-field="Epileptic">
+                <label class="form-check-label" for="chkEpileptic">نوبات صرعية</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- مضاعفات ذهنية -->
+    <div class="col-md-4">
+        <span class="lbl fw-bold d-block mb-1">مضاعفات ذهنية:</span>
+        <div class="d-flex flex-wrap gap-3">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="chkMemoryImpairment" data-field="MemoryImpairment">
+                <label class="form-check-label" for="chkMemoryImpairment">ضعف الذاكرة</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="chkCommunicationImpairment" data-field="CommunicationImpairment">
+                <label class="form-check-label" for="chkCommunicationImpairment">ضعف التواصل</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- ضعف/فقدان الأطراف -->
+    <div class="col-md-4">
+        <span class="lbl fw-bold d-block mb-1">ضعف/فقدان الأطراف:</span>
+        <div class="d-flex flex-wrap gap-3">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="chkLimbImpairment" data-field="LimbImpairment">
+                <label class="form-check-label" for="chkLimbImpairment">ضعف الأطراف</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="chkLimbLoss" data-field="LimbLoss">
+                <label class="form-check-label" for="chkLimbLoss">شلل بالأطراف</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- ضعف/فقدان الحواس -->
+    <div class="col-12 mt-3">
+        <span class="lbl fw-bold d-block mb-1">ضعف/فقدان الحواس:</span>
+        <div class="d-flex flex-wrap gap-3 bg-light p-2 rounded">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="chkHearingImpairment" data-field="HearingImpairment">
+                <label class="form-check-label" for="chkHearingImpairment">ضعف السمع</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="chkHearingLoss" data-field="HearingLoss">
+                <label class="form-check-label" for="chkHearingLoss">فقدان السمع</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="chkVisionImpairment" data-field="VisionImpairment">
+                <label class="form-check-label" for="chkVisionImpairment">ضعف الرؤية</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="chkVisionLoss" data-field="VisionLoss">
+                <label class="form-check-label" for="chkVisionLoss">فقدان الرؤية</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="chkSpeechImpairment" data-field="SpeechImpairment">
+                <label class="form-check-label" for="chkSpeechImpairment">ضعف الكلام</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="chkSpeechLoss" data-field="SpeechLoss">
+                <label class="form-check-label" for="chkSpeechLoss">فقدان الكلام</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="chkEyeDisability" data-field="EyeDisability">
+                <label class="form-check-label" for="chkEyeDisability">حول بالعين</label>
+            </div>
+        </div>
+    </div>
 </div>
-
-<div class="col-4">
-                    <span class="lbl">مضاعفات ذهنية:</span>
-                    <span class="val">
-                        <span class="checkbox-item"><input id="ContentPlaceHolder2_AddNewRes1_chkMemoryImpairment" type="checkbox" name="ctl00$ContentPlaceHolder2$AddNewRes1$chkMemoryImpairment"><label for="ContentPlaceHolder2_AddNewRes1_chkMemoryImpairment">ضعف الذاكرة</label></span>
-                        <span class="checkbox-item"><input id="ContentPlaceHolder2_AddNewRes1_chkCommunicationImpairment" type="checkbox" name="ctl00$ContentPlaceHolder2$AddNewRes1$chkCommunicationImpairment"><label for="ContentPlaceHolder2_AddNewRes1_chkCommunicationImpairment">ضعف التواصل</label></span>
-                    </span>
-                </div>
-<div class="col-4">
-                    <span class="lbl">ضعف/فقدان الأطراف:</span>
-                    <span class="val">
-                        <span class="checkbox-item"><input id="ContentPlaceHolder2_AddNewRes1_chkLimbImpairment" type="checkbox" name="ctl00$ContentPlaceHolder2$AddNewRes1$chkLimbImpairment"><label for="ContentPlaceHolder2_AddNewRes1_chkLimbImpairment">ضعف الأطراف</label></span>
-                        <span class="checkbox-item"><input id="ContentPlaceHolder2_AddNewRes1_chkLimbLoss" type="checkbox" name="ctl00$ContentPlaceHolder2$AddNewRes1$chkLimbLoss" checked="checked"><label for="ContentPlaceHolder2_AddNewRes1_chkLimbLoss">شلل بالأطراف</label></span>
-                    </span>
-                </div>
-<div class="col-12">
-                    <span class="lbl">ضعف/فقدان الحواس:</span>
-                    <span class="val">
-                        <span class="checkbox-item"><input id="ContentPlaceHolder2_AddNewRes1_chkHearingImpairment" type="checkbox" name="ctl00$ContentPlaceHolder2$AddNewRes1$chkHearingImpairment"><label for="ContentPlaceHolder2_AddNewRes1_chkHearingImpairment">ضعف السمع</label></span>
-                        <span class="checkbox-item"><input id="ContentPlaceHolder2_AddNewRes1_chkHearingLoss" type="checkbox" name="ctl00$ContentPlaceHolder2$AddNewRes1$chkHearingLoss"><label for="ContentPlaceHolder2_AddNewRes1_chkHearingLoss">فقدان السمع</label></span>
-                        <span class="checkbox-item"><input id="ContentPlaceHolder2_AddNewRes1_chkVisionImpairment" type="checkbox" name="ctl00$ContentPlaceHolder2$AddNewRes1$chkVisionImpairment"><label for="ContentPlaceHolder2_AddNewRes1_chkVisionImpairment">ضعف الرؤية</label></span>
-                        <span class="checkbox-item"><input id="ContentPlaceHolder2_AddNewRes1_chkVisionLoss" type="checkbox" name="ctl00$ContentPlaceHolder2$AddNewRes1$chkVisionLoss"><label for="ContentPlaceHolder2_AddNewRes1_chkVisionLoss">فقدان الرؤية</label></span>
-                        <span class="checkbox-item"><input id="ContentPlaceHolder2_AddNewRes1_chkSpeechImpairment" type="checkbox" name="ctl00$ContentPlaceHolder2$AddNewRes1$chkSpeechImpairment"><label for="ContentPlaceHolder2_AddNewRes1_chkSpeechImpairment">ضعف الكلام</label></span>
-                        <span class="checkbox-item"><input id="ContentPlaceHolder2_AddNewRes1_chkSpeechLoss" type="checkbox" name="ctl00$ContentPlaceHolder2$AddNewRes1$chkSpeechLoss"><label for="ContentPlaceHolder2_AddNewRes1_chkSpeechLoss">فقدان الكلام</label></span>
-                        <span class="checkbox-item"><input id="ContentPlaceHolder2_AddNewRes1_ChkEyeDisability" type="checkbox" name="ctl00$ContentPlaceHolder2$AddNewRes1$ChkEyeDisability"><label for="ContentPlaceHolder2_AddNewRes1_ChkEyeDisability">حول بالعين</label></span>
-                    </span>
-                </div>
-
 
 
 <div class="row g-0">
