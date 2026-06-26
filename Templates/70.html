@@ -717,12 +717,23 @@ window.addEventListener("message", async function (event) {
     // ==========================
     // 1. تعبئة الحقول النصية (بما فيها حقل الـ TotalContacts)
     // ==========================
-    for (const key in data) {
-        const el = document.querySelector(`[data-field="${key}"]`);
-        if (el) {
+    // ==========================
+// 1. تعبئة الحقول النصية وخيارات الـ Checkbox
+// ==========================
+for (const key in data) {
+    const el = document.querySelector(`[data-field="${key}"]`);
+    if (el) {
+        // التحقق مما إذا كان العنصر هو checkbox
+        if (el.tagName === "INPUT" && el.type === "checkbox") {
+            // تفعيل الاختيار إذا كانت القيمة "on" أو true
+            el.checked = (data[key] === "on" || data[key] === true);
+        } else {
+            // تعبئة النصوص للعناصر العادية الأخرى مثل الـ span أو الـ div
             el.textContent = data[key] || "";
         }
     }
+}
+
 
     // ==========================
     // 2. استدعاء بناء الجدول (الآن الـ span يحتوي على الرقم الصحيح)
