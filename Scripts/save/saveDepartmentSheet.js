@@ -1,62 +1,52 @@
 console.log("saveDepartmentSheet loaded - Version 10");
+console.log("saveDepartmentSheet loaded - Version 10");
 
 async function saveDepartmentSheet() {
-    
-    
     let govSheetId = "";
     let deptSheetId = "";
     let driveFolderId = "";
 
-    // دالة مساعدة للتأكد من أن القيمة نصية وموجودة فعلياً وليست فارغة
+    // دالة مساعدة صارمة للتأكد من أن القيمة نصية وموجودة فعلياً وليست فارغة
     function isValidId(val) {
         return typeof val === "string" && val.trim() !== "";
     }
 
-    // 1. قراءة الإعدادات من ذاكرة الإضافة (نسخة مطورة لكشف الأخطاء)
-    if (typeof chrome !== "undefined" && chrome.storage && chrome.storage.local) {
-        console.log("🔍 جاري جلب الإعدادات من الذاكرة...");
-        
-        // جلب كائن الإعدادات بالكامل
-        const storageData = await chrome.storage.local.get("settings");
-        console.log("📦 محتوى الذاكرة الخام المجلوب:", JSON.stringify(storageData));
-        
-        const settings = storageData.settings || {};
-        console.log("⚙️ كائن settings الفعلي بالداخل:", settings);
-
-        // قراءة المتغيرات مع دعم أسماء بديلة في حال اختلاف التسمية أثناء الحفظ
-        govSheetId = settings.governorateSheet || settings.govSheetId || "";
-        deptSheetId = settings.departmentSheet || settings.deptSheetId || "";
-        
-        // فحص أكثر من اسم متوقع لمجلد الدرايف لتفادي أخطاء التسمية
-        driveFolderId = settings.driveFolderId || settings.driveFolder || settings.folderId || "";
-
-        console.log("📊 المستخرج [GovernorateSheet]:", govSheetId || "❌ فارغ");
-        console.log("📊 المستخرج [DepartmentSheet]:", deptSheetId || "❌ فارغ");
-        console.log("📊 المستخرج [DriveFolder]:", driveFolderId || "❌ فارغ");
-    }
+    console.log("🚀 بدء تشغيل دالة saveDepartmentSheet...");
 
     // 1. قراءة الإعدادات من ذاكرة الإضافة
     if (typeof chrome !== "undefined" && chrome.storage && chrome.storage.local) {
-        console.log("🔍 قراءة الإعدادات...");
-        const settings = (await chrome.storage.local.get("settings")).settings || {};
-        govSheetId = settings.governorateSheet || "";
-        deptSheetId = settings.departmentSheet || "";
-        driveFolderId = settings.driveFolderId || "";
+        console.log("🔍 جاري جلب الإعدادات من chrome.storage.local...");
+        try {
+            const storageData = await chrome.storage.local.get("settings");
+            console.log("📦 محتوى الذاكرة الخام المجلوب:", JSON.stringify(storageData));
+            
+            const settings = storageData.settings || {};
+            
+            // قراءة المتغيرات مع دعم الأسماء البديلة المتوقعة أثناء الحفظ
+            govSheetId = settings.governorateSheet || settings.govSheetId || "";
+            deptSheetId = settings.departmentSheet || settings.deptSheetId || "";
+            driveFolderId = settings.driveFolderId || settings.driveFolder || settings.folderId || "";
 
-        console.log("📊 [GovernorateSheet]", govSheetId || "غير موجود");
-        console.log("📊 [DepartmentSheet]", deptSheetId || "غير موجود");
-        console.log("📊 [DriveFolder]", driveFolderId || "غير موجود");
+            console.log("📊 المستخرج من الإعدادات [GovernorateSheet]:", govSheetId || "❌ فارغ");
+            console.log("📊 المستخرج من الإعدادات [DepartmentSheet]:", deptSheetId || "❌ فارغ");
+            console.log("📊 المستخرج من الإعدادات [DriveFolder]:", driveFolderId || "❌ فارغ");
+        } catch (err) {
+            console.error("❌ خطأ أثناء قراءة chrome.storage:", err);
+        }
+    } else {
+        console.log("⚠️ بيئة تشغيل خارج الإضافة (chrome.storage غير متاح).");
     }
 
-    // 2. جلب البيانات الأساسية
+    // 2. جلب البيانات الأساسية للعملية
+    console.log("🔄 جاري استدعاء collectAllData...");
     const allData = await collectAllData();
     const result = splitData(allData);
 
-    // 3. تطبيق القيم الافتراضية الذكية بفصل الشروط بالكامل
+    // 3. تطبيق القيم الافتراضية الذكية بفصل الشروط بالكامل وبشكل مستقل
     const district = (allData.ResidenceDistrict || "").trim();
-    console.log("📍 ResidenceDistrict =", district);
+    console.log("📍 المنطقة الحالية (ResidenceDistrict) =", district);
 
-    // فحص وفصل شرط الـ Governorate Sheet
+    // [فصل مستقل] - فحص وتهيئة شرط الـ Governorate Sheet
     if (!isValidId(govSheetId)) {
         switch (district) {
             case "الحمام": case "العلمين": case "الضبعه": case "مطروح": 
@@ -67,10 +57,12 @@ async function saveDepartmentSheet() {
                 govSheetId = "1HE7HinF2pQu4hh33GXvxvr8_upcJJ_-kqaM1MTfhe64";
                 break;
         }
-        console.log("⚠️ تم تطبيق govSheetId افتراضي:", govSheetId);
+        console.log("⚠️ تم تطبيق govSheetId افتراضي للمنطقة:", govSheetId);
+    } else {
+        console.log("✅ تم اعتماد govSheetId من الإعدادات بنجاح:", govSheetId);
     }
 
-    // فحص وفصل شرط الـ Department Sheet
+    // [فصل مستقل] - فحص وتهيئة شرط الـ Department Sheet
     if (!isValidId(deptSheetId)) {
         switch (district) {
             case "الحمام": deptSheetId = "1tNEAKq7VLRGA1zSG7mieqrS4PXMa3IHTv1b2p9xPkSk"; break;
@@ -83,10 +75,12 @@ async function saveDepartmentSheet() {
             case "سيوة": deptSheetId = "1P8eUrMclPEY_JqoifR38AEAIuKcb3eLN6DmG_FlGWMM"; break;
             default: deptSheetId = "1HE7HinF2pQu4hh33GXvxvr8_upcJJ_-kqaM1MTfhe64"; break;
         }
-        console.log("⚠️ تم تطبيق deptSheetId افتراضي:", deptSheetId);
+        console.log("⚠️ تم تطبيق deptSheetId افتراضي للمنطقة:", deptSheetId);
+    } else {
+        console.log("✅ تم اعتماد deptSheetId من الإعدادات بنجاح:", deptSheetId);
     }
 
-    // فحص وفصل شرط الـ Drive Folder ID
+    // [فصل مستقل] - فحص وتهيئة شرط الـ Drive Folder ID
     if (!isValidId(driveFolderId)) {
         switch (district) {
             case "الحمام": driveFolderId = "1GRuw0fNeOZNFE-NrP014rNmDuUhrySnW"; break;
@@ -99,13 +93,19 @@ async function saveDepartmentSheet() {
             case "سيوة": driveFolderId = "1ZmRwdWHzuE-eHq1uZcka0aiQ3HIIBHus"; break;
             default: driveFolderId = "1OImES8vUr4D_qyG3G1KLAgvkPNcOHVCb"; break;
         }
-        console.log("⚠️ تم تطبيق driveFolderId افتراضي:", driveFolderId);
+        console.log("⚠️ تم تطبيق driveFolderId افتراضي للمنطقة:", driveFolderId);
+    } else {
+        console.log("✅ تم اعتماد driveFolderId من الإعدادات بنجاح:", driveFolderId);
     }
-
 
     console.log("📊 Final GovernorateSheet =", govSheetId);
     console.log("📊 Final DepartmentSheet =", deptSheetId);
     console.log("📊 Final DriveFolder =", driveFolderId);
+
+    // 4. استكمال العمليات المتبقية لديك بعد تجهيز المتغيرات
+    console.log("⚙️ جاري بدء عمليات الحفظ والرفع الفعلية...");
+    
+    
 
     // التحقق من وجود المعرفات قبل بدء الإرسال
     if (!govSheetId && !deptSheetId) {
