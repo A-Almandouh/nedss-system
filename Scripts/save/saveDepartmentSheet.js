@@ -53,7 +53,7 @@ async function saveDepartmentSheet() {
                 deptSheetId = deptSheetId || "1y46lHwCV_HBzCAbwiuheenRWcEKRXWPVPsdN2y86y50";
                 driveFolderId = driveFolderId || "1RcKYywc6GSQ6kna6gp5O4rcg2xxeeMIV";
                 break;
-            case "بسيدى برانى":
+            case "سيدى برانى":
                 govSheetId = govSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
                 deptSheetId = deptSheetId || "1hoq1TrS8ubeDan_KzvyFCFLLdGaLCCgC11jvvMet7wI";
                 driveFolderId = driveFolderId || "1U7J2ZgXSQjWIeGfsDIQHtgP5Ga4Oje32";
