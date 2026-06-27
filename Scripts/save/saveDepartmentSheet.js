@@ -1,9 +1,15 @@
 console.log("saveDepartmentSheet loaded - Version 10");
 
 async function saveDepartmentSheet() {
+    
     let govSheetId = "";
     let deptSheetId = "";
     let driveFolderId = "";
+
+    // دالة مساعدة للتأكد من أن القيمة نصية وموجودة فعلياً وليست فارغة
+    function isValidId(val) {
+        return typeof val === "string" && val.trim() !== "";
+    }
 
     // 1. قراءة الإعدادات من ذاكرة الإضافة
     if (typeof chrome !== "undefined" && chrome.storage && chrome.storage.local) {
@@ -22,56 +28,54 @@ async function saveDepartmentSheet() {
     const allData = await collectAllData();
     const result = splitData(allData);
 
-    // 3. تطبيق القيم الافتراضية الذكية (كل متغير يعتمد على نفسه بشكل مستقل)
+    // 3. تطبيق القيم الافتراضية الذكية بفصل الشروط بالكامل
     const district = (allData.ResidenceDistrict || "").trim();
     console.log("📍 ResidenceDistrict =", district);
 
-    switch (district) {
-        case "الحمام":
-            govSheetId = govSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
-            deptSheetId = deptSheetId || "1tNEAKq7VLRGA1zSG7mieqrS4PXMa3IHTv1b2p9xPkSk";
-            driveFolderId = driveFolderId || "1GRuw0fNeOZNFE-NrP014rNmDuUhrySnW";
-            break;
-        case "العلمين":
-            govSheetId = govSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
-            deptSheetId = deptSheetId || "1nwYgtaB-jXYDaDS9001U44Z1teMfaPyijPaTu1ZxuB8";
-            driveFolderId = driveFolderId || "1KSG4-Q754StABwYqh8NxuAGh5zG2GpM0";
-            break;
-        case "الضبعه":
-            govSheetId = govSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
-            deptSheetId = deptSheetId || "1eFyCrNURcj-WjJazULVQgO4HWRY86fkK-HYibvzaqys";
-            driveFolderId = driveFolderId || "1NVwy8oujcRiCaWLWrSA5EmaKinUpt0wX";
-            break;
-        case "مطروح":
-            govSheetId = govSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
-            deptSheetId = deptSheetId || "19Ei5f4s58XbhHkKxmJguTeKOFALwEQkGH65AF7JZE4I";
-            driveFolderId = driveFolderId || "1POq1hlYgjh0BWus7Wgv4DwtPo896hOuy";
-            break;
-        case "النجيليه":
-            govSheetId = govSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
-            deptSheetId = deptSheetId || "1y46lHwCV_HBzCAbwiuheenRWcEKRXWPVPsdN2y86y50";
-            driveFolderId = driveFolderId || "1RcKYywc6GSQ6kna6gp5O4rcg2xxeeMIV";
-            break;
-        case "سيدى برانى":
-            govSheetId = govSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
-            deptSheetId = deptSheetId || "1hoq1TrS8ubeDan_KzvyFCFLLdGaLCCgC11jvvMet7wI";
-            driveFolderId = driveFolderId || "1U7J2ZgXSQjWIeGfsDIQHtgP5Ga4Oje32";
-            break;
-        case "السلوم":
-            govSheetId = govSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
-            deptSheetId = deptSheetId || "177nqNVKJ5IQDPKLoFniDI243LMTHVPw6KBzVdovHULY";
-            driveFolderId = driveFolderId || "1XJw4uTc2IyxLl3UDBHn9DM4zgW28WWNn";
-            break;
-        case "سيوة":
-            govSheetId = govSheetId || "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
-            deptSheetId = deptSheetId || "1P8eUrMclPEY_JqoifR38AEAIuKcb3eLN6DmG_FlGWMM";
-            driveFolderId = driveFolderId || "1ZmRwdWHzuE-eHq1uZcka0aiQ3HIIBHus";
-            break;
-        default:
-            govSheetId = govSheetId || "1HE7HinF2pQu4hh33GXvxvr8_upcJJ_-kqaM1MTfhe64";
-            deptSheetId = deptSheetId || "1HE7HinF2pQu4hh33GXvxvr8_upcJJ_-kqaM1MTfhe64";
-            driveFolderId = driveFolderId || "1OImES8vUr4D_qyG3G1KLAgvkPNcOHVCb";
-            break;
+    // فحص وفصل شرط الـ Governorate Sheet
+    if (!isValidId(govSheetId)) {
+        switch (district) {
+            case "الحمام": case "العلمين": case "الضبعه": case "مطروح": 
+            case "النجيليه": case "سيدى برانى": case "السلوم": case "سيوة":
+                govSheetId = "1g8NVjns3UNfURYebKkMBI33XB4BJUnDZJ3I6372J64M";
+                break;
+            default:
+                govSheetId = "1HE7HinF2pQu4hh33GXvxvr8_upcJJ_-kqaM1MTfhe64";
+                break;
+        }
+        console.log("⚠️ تم تطبيق govSheetId افتراضي:", govSheetId);
+    }
+
+    // فحص وفصل شرط الـ Department Sheet
+    if (!isValidId(deptSheetId)) {
+        switch (district) {
+            case "الحمام": deptSheetId = "1tNEAKq7VLRGA1zSG7mieqrS4PXMa3IHTv1b2p9xPkSk"; break;
+            case "العلمين": deptSheetId = "1nwYgtaB-jXYDaDS9001U44Z1teMfaPyijPaTu1ZxuB8"; break;
+            case "الضبعه": deptSheetId = "1eFyCrNURcj-WjJazULVQgO4HWRY86fkK-HYibvzaqys"; break;
+            case "مطروح": deptSheetId = "19Ei5f4s58XbhHkKxmJguTeKOFALwEQkGH65AF7JZE4I"; break;
+            case "النجيليه": deptSheetId = "1y46lHwCV_HBzCAbwiuheenRWcEKRXWPVPsdN2y86y50"; break;
+            case "سيدى برانى": deptSheetId = "1hoq1TrS8ubeDan_KzvyFCFLLdGaLCCgC11jvvMet7wI"; break;
+            case "السلوم": deptSheetId = "177nqNVKJ5IQDPKLoFniDI243LMTHVPw6KBzVdovHULY"; break;
+            case "سيوة": deptSheetId = "1P8eUrMclPEY_JqoifR38AEAIuKcb3eLN6DmG_FlGWMM"; break;
+            default: deptSheetId = "1HE7HinF2pQu4hh33GXvxvr8_upcJJ_-kqaM1MTfhe64"; break;
+        }
+        console.log("⚠️ تم تطبيق deptSheetId افتراضي:", deptSheetId);
+    }
+
+    // فحص وفصل شرط الـ Drive Folder ID
+    if (!isValidId(driveFolderId)) {
+        switch (district) {
+            case "الحمام": driveFolderId = "1GRuw0fNeOZNFE-NrP014rNmDuUhrySnW"; break;
+            case "العلمين": driveFolderId = "1KSG4-Q754StABwYqh8NxuAGh5zG2GpM0"; break;
+            case "الضبعه": driveFolderId = "1NVwy8oujcRiCaWLWrSA5EmaKinUpt0wX"; break;
+            case "مطروح": driveFolderId = "1POq1hlYgjh0BWus7Wgv4DwtPo896hOuy"; break;
+            case "النجيليه": driveFolderId = "1RcKYywc6GSQ6kna6gp5O4rcg2xxeeMIV"; break;
+            case "سيدى برانى": driveFolderId = "1U7J2ZgXSQjWIeGfsDIQHtgP5Ga4Oje32"; break;
+            case "السلوم": driveFolderId = "1XJw4uTc2IyxLl3UDBHn9DM4zgW28WWNn"; break;
+            case "سيوة": driveFolderId = "1ZmRwdWHzuE-eHq1uZcka0aiQ3HIIBHus"; break;
+            default: driveFolderId = "1OImES8vUr4D_qyG3G1KLAgvkPNcOHVCb"; break;
+        }
+        console.log("⚠️ تم تطبيق driveFolderId افتراضي:", driveFolderId);
     }
 
 
