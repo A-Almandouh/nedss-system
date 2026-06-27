@@ -2,6 +2,7 @@ console.log("saveDepartmentSheet loaded - Version 10");
 
 async function saveDepartmentSheet() {
     
+    
     let govSheetId = "";
     let deptSheetId = "";
     let driveFolderId = "";
@@ -9,6 +10,29 @@ async function saveDepartmentSheet() {
     // دالة مساعدة للتأكد من أن القيمة نصية وموجودة فعلياً وليست فارغة
     function isValidId(val) {
         return typeof val === "string" && val.trim() !== "";
+    }
+
+    // 1. قراءة الإعدادات من ذاكرة الإضافة (نسخة مطورة لكشف الأخطاء)
+    if (typeof chrome !== "undefined" && chrome.storage && chrome.storage.local) {
+        console.log("🔍 جاري جلب الإعدادات من الذاكرة...");
+        
+        // جلب كائن الإعدادات بالكامل
+        const storageData = await chrome.storage.local.get("settings");
+        console.log("📦 محتوى الذاكرة الخام المجلوب:", JSON.stringify(storageData));
+        
+        const settings = storageData.settings || {};
+        console.log("⚙️ كائن settings الفعلي بالداخل:", settings);
+
+        // قراءة المتغيرات مع دعم أسماء بديلة في حال اختلاف التسمية أثناء الحفظ
+        govSheetId = settings.governorateSheet || settings.govSheetId || "";
+        deptSheetId = settings.departmentSheet || settings.deptSheetId || "";
+        
+        // فحص أكثر من اسم متوقع لمجلد الدرايف لتفادي أخطاء التسمية
+        driveFolderId = settings.driveFolderId || settings.driveFolder || settings.folderId || "";
+
+        console.log("📊 المستخرج [GovernorateSheet]:", govSheetId || "❌ فارغ");
+        console.log("📊 المستخرج [DepartmentSheet]:", deptSheetId || "❌ فارغ");
+        console.log("📊 المستخرج [DriveFolder]:", driveFolderId || "❌ فارغ");
     }
 
     // 1. قراءة الإعدادات من ذاكرة الإضافة
