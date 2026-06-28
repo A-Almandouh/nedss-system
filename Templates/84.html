@@ -491,24 +491,21 @@ body {
 
 <script src="https://a-almandouh.github.io/nedss-system/Scripts/ui/buttons.js"></script>
  <script>
-window.addEventListener("message", function (event) {
+window.globalAppSettings = {};
 
-    if (!event.data || event.data.type !== "FILL_DATA") return;
-
-    const data = event.data.data;
-  window.caseData = data;
-    console.log("DATA RECEIVED", data);
-
-    for (const key in data) {
-
-        const el = document.querySelector(`[data-field="${key}"]`);
-
-        if (el) {
-            el.textContent = data[key] || "";
+window.addEventListener("message", (event) => {
+    if (event.data && event.data.type === "FILL_DATA") {
+        const receivedData = event.data.data;
+        
+        // استخراج الإعدادات المدمجة وحفظها بأمان
+        if (receivedData && receivedData.appSettings) {
+            window.globalAppSettings = receivedData.appSettings;
+            console.log("📥 [Template GitHub] تم استلام الإعدادات بنجاح وحفظها بالذاكرة:", window.globalAppSettings);
         }
+        
+        // 💡 استمر هنا في كتابة كود التعبئة الفعلي للحقول الخاص بك كالمعتاد...
+        // مثال: fillFields(receivedData);
     }
-
-    //setTimeout(() => window.print(), 800);
 });
 </script>
 
