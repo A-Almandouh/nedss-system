@@ -112,6 +112,6 @@ function createToolbar() {
                 if (typeof saveToSheet === "function") saveToSheet();
             }
         };
-    }
+   
 
 createToolbar();
