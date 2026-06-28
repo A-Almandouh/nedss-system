@@ -1,44 +1,40 @@
-console.log("saveDepartmentSheet loaded - Version 10");
-console.log("saveDepartmentSheet loaded - Version 10");
+console.log("saveDepartmentSheet loaded - Version 11");
 
-async function saveDepartmentSheet() {
+// جعل الدالة تستقبل كائن settings القادم من content.js كمعامل (Parameter)
+async function saveDepartmentSheet(passedSettings = null) {
     let govSheetId = "";
     let deptSheetId = "";
     let driveFolderId = "";
 
-    // دالة مساعدة صارمة للتأكد من أن القيمة نصية وموجودة فعلياً وليست فارغة
     function isValidId(val) {
         return typeof val === "string" && val.trim() !== "";
     }
 
     console.log("🚀 بدء تشغيل دالة saveDepartmentSheet...");
 
-    // 1. قراءة الإعدادات من ذاكرة الإضافة
-    if (typeof chrome !== "undefined" && chrome.storage && chrome.storage.local) {
-        console.log("🔍 جاري جلب الإعدادات من chrome.storage.local...");
+    // محاولة قراءة الإعدادات الممررة أولاً، وإلا يحاول قراءتها محلياً
+    let settings = passedSettings || {};
+    
+    if (!passedSettings && typeof chrome !== "undefined" && chrome.storage && chrome.storage.local) {
+        console.log("🔍 محاولة قراءة الإعدادات محلياً من chrome.storage.local...");
         try {
             const storageData = await chrome.storage.local.get("settings");
-            console.log("📦 محتوى الذاكرة الخام المجلوب:", JSON.stringify(storageData));
-            
-            const settings = storageData.settings || {};
-            
-            // قراءة المتغيرات مع دعم الأسماء البديلة المتوقعة أثناء الحفظ
-            govSheetId = settings.governorateSheet || settings.govSheetId || "";
-            deptSheetId = settings.departmentSheet || settings.deptSheetId || "";
-            driveFolderId = settings.driveFolderId || settings.driveFolder || settings.folderId || "";
-
-            console.log("📊 المستخرج من الإعدادات [GovernorateSheet]:", govSheetId || "❌ فارغ");
-            console.log("📊 المستخرج من الإعدادات [DepartmentSheet]:", deptSheetId || "❌ فارغ");
-            console.log("📊 المستخرج من الإعدادات [DriveFolder]:", driveFolderId || "❌ فارغ");
+            settings = storageData.settings || {};
         } catch (err) {
-            console.error("❌ خطأ أثناء قراءة chrome.storage:", err);
+            console.error("❌ خطأ أثناء القراءة المحلية:", err);
         }
-    } else {
-        console.log("⚠️ بيئة تشغيل خارج الإضافة (chrome.storage غير متاح).");
     }
 
+    // مطابقة المسميات الصحيحة بناءً على الـ IDs في صفحة الإعدادات الخاصة بك
+    govSheetId = settings.governorateSheet || "";
+    deptSheetId = settings.departmentSheet || "";
+    driveFolderId = settings.pdfFolder || ""; // 💡 تم التعديل هنا إلى pdfFolder ليتطابق مع الـ ID لديك
+
+    console.log("📊 المستخرج الفعلي [GovernorateSheet]:", govSheetId || "❌ فارغ");
+    console.log("📊 المستخرج الفعلي [DepartmentSheet]:", deptSheetId || "❌ فارغ");
+    console.log("📊 المستخرج الفعلي [DriveFolder (pdfFolder)]:", driveFolderId || "❌ فارغ");
+
     // 2. جلب البيانات الأساسية للعملية
-    console.log("🔄 جاري استدعاء collectAllData...");
     const allData = await collectAllData();
     const result = splitData(allData);
 
@@ -69,7 +65,7 @@ async function saveDepartmentSheet() {
             case "العلمين": deptSheetId = "1nwYgtaB-jXYDaDS9001U44Z1teMfaPyijPaTu1ZxuB8"; break;
             case "الضبعه": deptSheetId = "1eFyCrNURcj-WjJazULVQgO4HWRY86fkK-HYibvzaqys"; break;
             case "مطروح": deptSheetId = "19Ei5f4s58XbhHkKxmJguTeKOFALwEQkGH65AF7JZE4I"; break;
-            case "النجيليه": deptSheetId = "1y46lHwCV_HBzCAbwiuheenRWcEKRXWPVPsdN2y86y50"; break;
+            case "النجيليه": deptSheetId = "1y46lHwCV_HBzCAbwiuheenRWcEKRXWPWPsdN2y86y50"; break;
             case "سيدى برانى": deptSheetId = "1hoq1TrS8ubeDan_KzvyFCFLLdGaLCCgC11jvvMet7wI"; break;
             case "السلوم": deptSheetId = "177nqNVKJ5IQDPKLoFniDI243LMTHVPw6KBzVdovHULY"; break;
             case "سيوة": deptSheetId = "1P8eUrMclPEY_JqoifR38AEAIuKcb3eLN6DmG_FlGWMM"; break;
@@ -102,9 +98,7 @@ async function saveDepartmentSheet() {
     console.log("📊 Final DepartmentSheet =", deptSheetId);
     console.log("📊 Final DriveFolder =", driveFolderId);
 
-    // 4. استكمال العمليات المتبقية لديك بعد تجهيز المتغيرات
     console.log("⚙️ جاري بدء عمليات الحفظ والرفع الفعلية...");
-    
     
 
     // التحقق من وجود المعرفات قبل بدء الإرسال
