@@ -84,33 +84,34 @@ function createToolbar() {
         }
     };
     
-    //-------------------------------------------------
-    // 💡 حدث حفظ أون لاين (تم التعديل لجلب وتمرير الإعدادات)
+        //-------------------------------------------------
+    // 💡 حدث حفظ أون لاين (مع إضافة تنبيهات الفحص)
     //-------------------------------------------------
     const btnSave = document.getElementById("btnSave");
     if (btnSave) {
         btnSave.onclick = () => {
-            // جلب الإعدادات أولاً من الذاكرة الآمنة الخاصة بالإضافة [1]
+            alert("1. تم الضغط على زر الحفظ بنجاح!");
+            
             if (typeof chrome !== "undefined" && chrome.storage && chrome.storage.local) {
                 chrome.storage.local.get("settings", function(data) {
                     const currentSettings = data.settings || {};
-                    console.log("⚙️ [Toolbar] تم جلب الإعدادات بنجاح وجاري تمريرها للحفظ أونلاين:", currentSettings);
                     
-                    // تأكد أن الدالتين لديك مهيأتان لاستقبال كائن الإعدادات كمعامل (Argument)
+                    // تنبيه يوضح محتوى الذاكرة المجلوبة بالكامل
+                    alert("2. محتوى الذاكرة المجلوب من داخل التولبار:\n" + JSON.stringify(currentSettings));
+                    
                     if (typeof saveToSheet === "function") {
                         saveToSheet(currentSettings);
                     } else if (typeof saveDepartmentSheet === "function") {
                         saveDepartmentSheet(currentSettings);
                     } else {
-                        alert("دالة الحفظ غير متوفرة في هذه الصفحة!");
+                        alert("🚨 خطأ: دالة الحفظ غير متوفرة في هذه الصفحة!");
                     }
                 });
             } else {
-                // تراجع آمن في حال عدم توفر بيئة الإضافة لسبب ما
+                alert("⚠️ تنبيه: بيئة chrome.storage غير متاحة في مكان تشغيل التولبار!");
                 if (typeof saveToSheet === "function") saveToSheet();
             }
         };
     }
-}
 
 createToolbar();
