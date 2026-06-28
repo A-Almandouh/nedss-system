@@ -634,6 +634,9 @@ body {
 
 <script src="https://a-almandouh.github.io/nedss-system/Scripts/ui/buttons.js"></script>
 <script>
+// 💡 تهيئة المتغير العالمي الثابت في صفحة القالب لحفظ الإعدادات العابرة للأمان
+window.globalAppSettings = {};
+
 async function getDiseaseLink(data) {
     try {
         const response = await fetch("https://a-almandouh.github.io/nedss-system/Config/disease-routing.json");
@@ -661,21 +664,16 @@ function buildContactsTable() {
     const totalContactsSpan = document.querySelector('.val[data-field="TotalContacts"]');
     
     if (totalContactsSpan) {
-        // تحويل النص المستلم حديثاً إلى رقم صحيح
         const targetCount = parseInt(totalContactsSpan.textContent.trim()) || 0;
-        
         const tbody = document.getElementById("contacts");
         
         if (tbody) {
-            // تفريغ الجدول أولاً لمنع تكرار الصفوف إذا تم إرسال الرسالة أكثر من مرة
             tbody.innerHTML = ""; 
-            
             const currentCount = tbody.rows.length;
             const rowsToAdd = targetCount - currentCount;
             
             for (let i = 0; i < rowsToAdd; i++) {
                 const nextIndex = tbody.rows.length + 1;
-                
                 const row = document.createElement("tr");
                 row.innerHTML = `
                     <td>${nextIndex}</td>
@@ -694,7 +692,6 @@ function buildContactsTable() {
                     <td><input type="text" class="form-control form-control-sm" name="vaccine_name_${nextIndex}"></td>
                     <td><input type="text" class="form-control form-control-sm" name="dose_${nextIndex}"></td>
                 `;
-                
                 tbody.appendChild(row);
             }
             console.log(`تم إنشاء عدد ${targetCount} من صفوف المخالطين بنجاح.`);
@@ -709,29 +706,32 @@ window.addEventListener("message", async function (event) {
     window.caseData = data;
     console.log("DATA RECEIVED", data);
 
+    // =========================================================
+    // 💡 [الدمج الجديد]: التقاط الإعدادات المدمجة من الإضافة وحفظها بالذاكرة
+    // =========================================================
+    if (data && data.appSettings) {
+        window.globalAppSettings = data.appSettings;
+        console.log("📥 [Template GitHub] تم استلام الإعدادات بنجاح وحفظها بالذاكرة:", window.globalAppSettings);
+    } else {
+        console.warn("⚠️ لم يتم العثور على appSettings مدمجة في الرسالة المستلمة.");
+    }
+
     // ==========================
-    // 1. تعبئة الحقول النصية (بما فيها حقل الـ TotalContacts)
+    // 1. تعبئة الحقول النصية وخيارات الـ Checkbox
     // ==========================
-    // ==========================
-// 1. تعبئة الحقول النصية وخيارات الـ Checkbox
-// ==========================
-for (const key in data) {
-    const el = document.querySelector(`[data-field="${key}"]`);
-    if (el) {
-        // التحقق مما إذا كان العنصر هو checkbox
-        if (el.tagName === "INPUT" && el.type === "checkbox") {
-            // تفعيل الاختيار إذا كانت القيمة "on" أو true
-            el.checked = (data[key] === "on" || data[key] === true);
-        } else {
-            // تعبئة النصوص للعناصر العادية الأخرى مثل الـ span أو الـ div
-            el.textContent = data[key] || "";
+    for (const key in data) {
+        const el = document.querySelector(`[data-field="${key}"]`);
+        if (el) {
+            if (el.tagName === "INPUT" && el.type === "checkbox") {
+                el.checked = (data[key] === "on" || data[key] === true);
+            } else {
+                el.textContent = data[key] || "";
+            }
         }
     }
-}
-
 
     // ==========================
-    // 2. استدعاء بناء الجدول (الآن الـ span يحتوي على الرقم الصحيح)
+    // 2. استدعاء بناء الجدول
     // ==========================
     buildContactsTable();
 
@@ -779,9 +779,6 @@ for (const key in data) {
             };
         }
     }
-    
-    // سطر الطباعة التلقائية (اختياري إذا أردت تفعيله لاحقاً)
-    // setTimeout(() => window.print(), 800);
 });
 </script>
 </body>
