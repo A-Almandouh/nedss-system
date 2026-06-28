@@ -84,7 +84,7 @@ function createToolbar() {
         }
     };
     
-        //-------------------------------------------------
+    //-------------------------------------------------
     // 💡 حدث حفظ أون لاين (مع إضافة تنبيهات الفحص)
     //-------------------------------------------------
     const btnSave = document.getElementById("btnSave");
@@ -112,6 +112,8 @@ function createToolbar() {
                 if (typeof saveToSheet === "function") saveToSheet();
             }
         };
-   
+    }
+} // 💡 تم إغلاق قوس دالة createToolbar هنا بشكل صحيح قبل الاستدعاء
 
+// تشغيل الدالة
 createToolbar();
