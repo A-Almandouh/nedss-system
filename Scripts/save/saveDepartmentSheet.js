@@ -1,6 +1,5 @@
-console.log("saveDepartmentSheet loaded - Version 11");
+console.log("saveDepartmentSheet loaded - Version 12 - Final");
 
-// جعل الدالة تستقبل كائن settings القادم من content.js كمعامل (Parameter)
 async function saveDepartmentSheet(passedSettings = null) {
     let govSheetId = "";
     let deptSheetId = "";
@@ -12,27 +11,30 @@ async function saveDepartmentSheet(passedSettings = null) {
 
     console.log("🚀 بدء تشغيل دالة saveDepartmentSheet...");
 
-    // محاولة قراءة الإعدادات الممررة أولاً، وإلا يحاول قراءتها محلياً
     let settings = passedSettings || {};
-    
-    if (!passedSettings && typeof chrome !== "undefined" && chrome.storage && chrome.storage.local) {
-        console.log("🔍 محاولة قراءة الإعدادات محلياً من chrome.storage.local...");
-        try {
-            const storageData = await chrome.storage.local.get("settings");
-            settings = storageData.settings || {};
-        } catch (err) {
-            console.error("❌ خطأ أثناء القراءة المحلية:", err);
+
+    // 💡 [الدمج الذاتي المحسن]: إذا وصلت الإعدادات فارغة، نقوم بجلبها إجبارياً هنا
+    if (!passedSettings || Object.keys(passedSettings).length === 0) {
+        console.log("🔄 الإعدادات الممررة فارغة أو لم تصل، جاري محاولة الجلب الإجباري المباشر...");
+        if (typeof chrome !== "undefined" && chrome.storage && chrome.storage.local) {
+            try {
+                const storageData = await chrome.storage.local.get("settings");
+                settings = storageData.settings || {};
+                console.log("📥 تم الجلب الإجباري المباشر بنجاح:", settings);
+            } catch (err) {
+                console.error("❌ خطأ أثناء الجلب الإجباري:", err);
+            }
         }
     }
 
-    // مطابقة المسميات الصحيحة بناءً على الـ IDs في صفحة الإعدادات الخاصة بك
+    // مطابقة المسميات الصحيحة بناءً على الـ IDs في settings.js
     govSheetId = settings.governorateSheet || "";
     deptSheetId = settings.departmentSheet || "";
-    driveFolderId = settings.pdfFolder || ""; // 💡 تم التعديل هنا إلى pdfFolder ليتطابق مع الـ ID لديك
+    driveFolderId = settings.pdfFolder || ""; 
 
-    console.log("📊 المستخرج الفعلي [GovernorateSheet]:", govSheetId || "❌ فارغ");
-    console.log("📊 المستخرج الفعلي [DepartmentSheet]:", deptSheetId || "❌ فارغ");
-    console.log("📊 المستخرج الفعلي [DriveFolder (pdfFolder)]:", driveFolderId || "❌ فارغ");
+    console.log("📊 المستخرج النهائي [GovernorateSheet]:", govSheetId || "❌ فارغ");
+    console.log("📊 المستخرج النهائي [DepartmentSheet]:", deptSheetId || "❌ فارغ");
+    console.log("📊 المستخرج النهائي [DriveFolder (pdfFolder)]:", driveFolderId || "❌ فارغ");
 
     // 2. جلب البيانات الأساسية للعملية
     const allData = await collectAllData();
@@ -99,6 +101,8 @@ async function saveDepartmentSheet(passedSettings = null) {
     console.log("📊 Final DriveFolder =", driveFolderId);
 
     console.log("⚙️ جاري بدء عمليات الحفظ والرفع الفعلية...");
+    // يستمر كود الحفظ والرفع الفعلي الخاص بك هنا دون تعديل...
+
     
 
     // التحقق من وجود المعرفات قبل بدء الإرسال
