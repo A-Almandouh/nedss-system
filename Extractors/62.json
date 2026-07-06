@@ -1,0 +1,66 @@
+{
+  "0": {
+    "type": "radio",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel1_rdo_IfPneumoniaDiagnosedBy_0"
+  },
+  "1": {
+    "type": "radio",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel1_rdo_IfPneumoniaDiagnosedBy_1"
+  },
+  "ddlYesNo": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel7_YesNoList30_ddlYesNo"
+  },
+  "TextBox1": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel1_TextBox1"
+  },
+  "TextBox2": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel4_TextBox2"
+  },
+  "TextBox3": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel4_TextBox3"
+  },
+  "TxtDate": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_Common_Ext_Data1_SurveyDateCalender_TxtDate"
+  },
+  "TextBox4": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel4_TextBox4"
+  },
+  "TextBox5": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel4_TextBox5"
+  },
+  "TextBox10": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel5_TextBox10"
+  },
+  "TextBox6": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel2_TextBox6"
+  },
+  "TextBox7": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel2_TextBox7"
+  },
+  "TextBox8": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel2_TextBox8"
+  },
+  "TextBox9": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel6_TextBox9"
+  },
+  "TextBox11": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel7_TextBox11"
+  },
+  "txtOH": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_Common_Ext_Data1_txtOH"
+  }
+}
