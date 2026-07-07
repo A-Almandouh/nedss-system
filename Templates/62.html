@@ -125,7 +125,7 @@ body{
 }
 
 .form-header h1{
-    font-size:28px;
+    font-size:20px;
     font-weight:bold;
     margin-bottom:6px;
 }
@@ -176,7 +176,11 @@ body{
 <body>
 
 <div class="container-fluid">
-
+       <div class="row">
+        <div class="col-2"> <img src="https://a-almandouh.github.io/nedss-system/Assets/des85.png" alt="الوبائيات والترصد"></div>
+        <div class="col-8"></div>
+        <div class="col-2"> <img src="https://a-almandouh.github.io/nedss-system/Assets/icon48.png" alt="وزارة الصحة"></div>
+       </div>
 <div class="form-header">
     
     <div class="row">
@@ -187,9 +191,7 @@ body{
            <h1>
              نموج إبلاغ وبائي ومعملي لإشتباه العدوى التنفسية الحادة ARI      
             </h1> 
-            <br>
-            <p class="text-secondary small">للحالات المحجوزة بالقسم الداخلي لعدوى الأعراض التنفسية الحادة (ARI) سواء تم أخذ عينات لها أم لا</p>
-            
+            <!-- <br>            <p class="text-secondary small">للحالات المحجوزة بالقسم الداخلي لعدوى الأعراض التنفسية الحادة (ARI) سواء تم أخذ عينات لها أم لا</p> -->
         </div>
         <div class="col-2 "><span class=" badge text-bg-danger"> تحديث ابريل 2023</span></div>
     </div>
@@ -198,7 +200,7 @@ body{
     
 </div>
 <div class="row g-0 record">
-    <div class="col-3  justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(216, 214, 214);">
+    <div class="col-3  fw-bold d-flex justify-content-center align-items-center" style="font-size: 12px; background-color: rgb(254, 216, 177);">
             <span class="lbl">نوع الإشتباه  : </span>
     </div>       
     <div class="col-9">
@@ -231,7 +233,7 @@ body{
 </div>
 <form id="investigationForm">
 <div id="genral-data">
-    <div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(216, 214, 214);">البيانات الديموجرافية</div>
+    <div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(254, 216, 177);">البيانات الديموجرافية</div>
 
     <div class="row g-0 record">
 
@@ -328,7 +330,44 @@ body{
     </div>
 
 
-    <div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(216, 214, 214);"> البيانات  الإكليميكية </div>
+    <div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(254, 216, 177);"> البيانات  الإكلينيكية </div>
+    <div class="row g-0 record">
+        <div class="col-4">
+            <span class="lbl">الحجز بالمستشفى : مكان العزل : </span>
+            <span class="val" data-field="IsolationPlace"></span>
+        </div>
+
+        <div class="col-4">
+            <span class="lbl">تاريخ الدخول : </span>
+            <span class="val" data-field="AdmissionDate"></span>
+        </div>
+
+        <div class="col-4">
+                        <span class="lbl">تاريخ الخروج    : </span>
+                        <span class="val" data-field="DisDate"></span>
+        </div>
+
+    </div>
+    <div class="row g-0 record">
+        <div class="col-12">
+            <span class="lbl">تاريخ ظهور الأعراض : </span>
+            <span class="val" data-field="OnsetDate"></span>
+        </div>
+    </div>
+    <div class="row g-0 border border-dark">
+        
+            <div class="col-2"><span class="lbl">حمى</span><span class="val" data-field="ddlYesNo"></span></div>
+            <div class="col-2"> <span class="lbl">التهاب في الحلق</span><span class="val" data-field="ddlYesNo"></span></div>
+            <div class="col-2"><span class="lbl">سعال</span> <span class="val" data-field="ddlYesNo"></span></div>
+            <div class="col-2"> <span class="lbl">ضيق في التنفس</span><span class="val" data-field="ddlYesNo"></span> </div>   
+            <div class="col-2"><span class="lbl">رشح</span> <span class="val" data-field="ddlYesNo"></span>  </div>    
+            <div class="col-2"><span class="lbl">الم بالمفاصل</span> <span class="val" data-field="ddlYesNo"></span></div>
+            <div class="col-2"><span class="lbl">قئ</span><span class="val" data-field="ddlYesNo"></span></div>
+            <div class="col-2"><span class="lbl">إسهال</span>  <span class="val" data-field="ddlYesNo"></span></div>
+            <div class="col-2"><span class="lbl">صداع</span><span class="val" data-field="ddlYesNo"></span></div>
+            <div class="col-2"><span class="lbl">اخرى</span><span class="val" data-field="TextBox1"></span></div>
+        
+    </div>
     <div class="row g-0 record">
 
         <div class="col-2">
@@ -389,7 +428,7 @@ body{
     </div>
 
    
-    <div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(216, 214, 214);">  البيانات الإكلينيكية </div>
+    <div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(254, 216, 177);">  البيانات الإكلينيكية </div>
         <div class="row g-0 record">
             <div class="col-12  input-error">
                 <span class="lbl">الأعراض: </span>
@@ -404,11 +443,11 @@ body{
             </div>
             </div>
 
-    <div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(216, 214, 214);">  البيانات المعملية </div>
+    <div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(254, 216, 177);">  البيانات المعملية </div>
 
      <div class="row g-0 record">
         <div class="col-6"><span class="lbl">تملأ بمعرفة المستشفى   : </span></div>
-        <div class="col-6"><span class="lbl">تملأ بمعرفة المعامل   : </span></div>>
+        <div class="col-6"><span class="lbl">تملأ بمعرفة المعامل   : </span></div>
      </div>
     <div class="row g-0 record">
 
@@ -485,7 +524,7 @@ body{
 
     </div>
 
-    <div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(216, 214, 214);">   بيانات خاصة بالمستشفى والمريض </div>
+    <div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(254, 216, 177);">   بيانات خاصة بالمستشفى والمريض </div>
     <div class="row g-0 record">
 
         <div class="col-4">
@@ -529,7 +568,7 @@ body{
 </div>               
 
 <hr>
-<div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(216, 214, 214);">الاستبيان الاستقصائي</div>
+<div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(254, 216, 177);">الاستبيان الاستقصائي</div>
 
 <div class="container-fluid" id="Private-questions">
 
