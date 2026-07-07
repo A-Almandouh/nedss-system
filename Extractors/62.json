@@ -59,6 +59,11 @@
     "type": "text",
     "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel1_TextBox1"
   },
+  "IsCasePneumonia": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel1_ddl_IsCasePneumonia_ddlYesN"
+  },
+
   "TextBox2": {
     "type": "text",
     "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel4_TextBox2"
