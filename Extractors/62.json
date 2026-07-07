@@ -7,9 +7,53 @@
     "type": "radio",
     "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel1_rdo_IfPneumoniaDiagnosedBy_1"
   },
-  "ddlYesNo": {
+   "ddlYesNo1": {
     "type": "select",
-    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel7_YesNoList30_ddlYesNo"
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel1_YesNoList1_ddlYesNo"
+  },
+  "ddlYesNo2": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel1_YesNoList2_ddlYesNo"
+  },
+  "ddlYesNo3": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel1_YesNoList3_ddlYesNo"
+  },
+  "ddlYesNo4": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel1_YesNoList4_ddlYesNo"
+  },
+  "ddlYesNo5": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel1_YesNoList5_ddlYesNo"
+  },
+  "ddlYesNo6": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel1_YesNoList6_ddlYesNo"
+  },
+  "ddlYesNo7": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel1_YesNoList7_ddlYesNo"
+  },
+  "ddlYesNo8": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel1_YesNoList8_ddlYesNo"
+  },
+  "ddlYesNo9": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel1_YesNoList9_ddlYesNo"
+  },
+  "ddlYesNo10": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel1_YesNoList10_ddlYesNo"
+  },
+  "ddlYesNo11": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel1_YesNoList11_ddlYesNo"
+  },
+  "ddlYesNo12": {
+    "type": "select",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel1_YesNoList12_ddlYesNo"
   },
   "TextBox1": {
     "type": "text",
