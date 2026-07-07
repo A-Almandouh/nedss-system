@@ -1,13 +1,9 @@
 {
-  "0": {
+  "DiagnosedBy": {
     "type": "radio",
-    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel1_rdo_IfPneumoniaDiagnosedBy_0"
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel1_rdo_IfPneumoniaDiagnosedBy"
   },
-  "1": {
-    "type": "radio",
-    "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel1_rdo_IfPneumoniaDiagnosedBy_1"
-  },
-   "ddlYesNo1": {
+     "ddlYesNo1": {
     "type": "select",
     "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel1_YesNoList1_ddlYesNo"
   },
