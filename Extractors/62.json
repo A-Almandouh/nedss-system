@@ -136,8 +136,20 @@
     "type": "text",
     "id": "ctl00_contentplaceholder1_Ext_N1H11_TabContainer1_TabPanel7_TextBox11"
   },
+  "SurveyDate": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_Common_Ext_Data1_SurveyDateCalender_TxtDate"
+  },
   "txtOH": {
     "type": "text",
     "id": "ctl00_contentplaceholder1_Ext_N1H11_Common_Ext_Data1_txtOH"
+  },
+  "txtOS": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_Common_Ext_Data1_txtOS"
+  },
+  "txtAdmin": {
+    "type": "text",
+    "id": "ctl00_contentplaceholder1_Ext_N1H11_Common_Ext_Data1_txtAdmin"
   }
 }
