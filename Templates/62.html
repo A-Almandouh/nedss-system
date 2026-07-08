@@ -187,7 +187,7 @@ body{
     
     <!-- العمود الأول: شعار الوبائيات والترصد والـ QR -->
     <div class="col-3 d-flex flex-row align-items-center gap-3 mb-3 mb-md-0"> <img src="https://a-almandouh.github.io/nedss-system/Assets/des85.png" alt="الوبائيات والترصد" style="max-height: 80px; width: auto;">  
-        <div  id="qrcode" class="mt-2"></div> 
+        <div  id="qrcode" class="d-flex align-items-center"></div> 
     </div>
     
     <!-- العمود الثاني: العنوان الرئيسي والفرعي -->
@@ -982,7 +982,12 @@ window.addEventListener(
                         height: 75
                     }
                 );
-
+               
+    const qrImage = qrContainer.querySelector('img');
+        if (qrImage) {
+            qrImage.style.display = "block";
+        }
+               
                 qrContainer.style.cursor =
                     "pointer";
 
