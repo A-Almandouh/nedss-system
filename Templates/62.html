@@ -438,10 +438,10 @@ body{
    </div>
 
     <div class="row g-0 border border-dark"> 
-      <div class="col-3">
+      <div class="col-2">
             <label for="Covid-19" class="lbl">عدوى مسبقة بكوفيد 19   </label>
        </div>
-       <div class="col-3">
+       <div class="col-2">
            <select class="val input-error" id="Covid-19">
                 <option value="" disabled selected>اختر</option>
                 <option value="نعم">نعم</option>
@@ -449,17 +449,17 @@ body{
                 <option value="غير معروف">غير معروف</option>
           </select>
        </div>
-       <div class="col-3">
+       <div class="col-2">
             <label  for="Covid-19-date" class="lbl">في حالة نعم اذكر التاريخ.:</label>
        </div>
-       <div class="col-3">
+       <div class="col-2">
            <input type="date" class="val input-error" id="Covid-19-date">
        </div>
    
-<div class="col-3">
+<div class="col-2">
             <label for="Covid-19-dig" class="lbl">طريقة التشخيص   </label>
        </div>
-       <div class="col-3">
+       <div class="col-2">
            <select class="val input-error" id="Covid-19-dig">
                 <option value="" disabled selected>اختر</option>
                 <option value="أشعة سينية">أشعة سينية</option>
@@ -472,23 +472,20 @@ body{
   </div>
    </div>
    
-    <div class="row g-0 record">
-
-        <div class="col-6">
-            <span class="lbl">تاريخ الإبلاغ للجهة الأعلى : </span>
-            <span class="val" data-field=""></span>
-        </div>
-
-        <div class="col-6">
-            <span class="lbl">تاريخ ظهور الأعراض : </span>
-            <span class="val" data-field="OnsetDate"></span>
-        </div>
-
+      
+    <div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(254, 216, 177);">بيانات التعرض  </div>
+        <div class="row g-0 border border-dark">
+        
+            <div class="col-4"><span class="lbl">تاريخ السفر خلال 14 يوم قبل ظهور الأعراض  </span><span class="val" data-field="ddlYesNo22"></span></div>
+            <div class="col-4"> <span class="lbl">فى حالة نعم اسم الدولة </span><span class="val" data-field="ddlYesNo24"></span></div>
+            <div class="col-4"><span class="lbl">تاريخ العودة </span> <span class="val" data-field="ddlYesNo26"></span></div>
+            <div class="col-4"> <span class="lbl">   مخالط مباشر لحالة ايجابية خلال  14 يوم قبل ظهور الأعراض</span><span class="val" data-field=""></span> </div>   
+            <div class="col-4"><span class="lbl"> تشخيص الحالة </span> <span class="val" data-field="ddlYesNo28"></span>  </div>    
+            <div class="col-4"><span class="lbl">  اسم الحالة  </span> <span class="val" data-field="ddlYesNo30"></span></div>
+            
     </div>
-
    
-    <div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(254, 216, 177);">  البيانات الإكلينيكية </div>
-        <div class="row g-0 record">
+   <div class="row g-0 record">
             <div class="col-12  input-error">
                 <span class="lbl">الأعراض: </span>
                 <input class="form-check-input" type="checkbox" value="" id="fevar"><label class="form-check-label lbl " for="fevar"> حمى مستمرة او متقطعة لمدة 14 يوم - </label>
