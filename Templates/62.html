@@ -1,1 +1,849 @@
+   <!DOCTYPE html>
+   <html lang="ar" dir="rtl">
+     <head>
+       <meta charset="utf-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@gh-pages/qrcode.min.js"></script>
+       <title>نموذج استقصاء</title>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+       <style>
+         * {
+           font-family: Arial, Helvetica, sans-serif;
+         }
+
+         @page {
+           size: A4 portrait;
+           margin: 0;
+         }
+
+         body {
+           background: #fff;
+           font-family: Tahoma, Arial, sans-serif;
+           font-size: 14px;
+           padding: 8mm;
+           margin: 0;
+         }
+
+         .form-header {
+           margin-bottom: 10px;
+         }
+
+         .form-header h1 {
+           font-size: 20px;
+           font-weight: bold;
+           margin-bottom: 5px;
+         }
+
+         .form-header h2 {
+           font-size: 12px;
+           margin: 0;
+         }
+
+         .record {
+           border: 1px solid #000;
+           margin-bottom: 0px;
+           page-break-inside: avoid;
+           break-inside: avoid;
+         }
+
+         .record>div {
+           border-left: 1px solid #000;
+           padding: 3px 5px;
+           min-height: 35px;
+         }
+
+         .record>div:last-child {
+           border-left: none;
+         }
+
+         .lbl {
+           font-weight: bold;
+           font-size: 11px;
+           margin-bottom: 2px;
+         }
+
+         .val {
+           font-size: 12px;
+           min-height: 16px;
+         }
+
+         .input-error {
+           border: 2px solid red !important;
+           outline: none !important;
+           width: 100%;
+           font-size: 12px;
+           min-height: 16px;
+           text-align: right;
+         }
+
+         @media print {
+
+           html,
+           body {
+             width: 210mm;
+             height: 297mm;
+             margin: 0;
+             padding: 0;
+             overflow: hidden;
+           }
+
+           .container-fluid {
+             width: 100%;
+             margin: 0 auto;
+             padding: 6mm;
+             box-sizing: border-box;
+           }
+
+           .record {
+             page-break-inside: avoid;
+             break-inside: avoid;
+           }
+
+           .input-error {
+             border: none !important;
+             outline: none !important;
+             background: transparent !important;
+             width: 100%;
+             font-size: 12px;
+             min-height: 16px;
+             text-align: right;
+           }
+         }
+
+         body {
+           background: #fff;
+           font-family: Tahoma, Arial, sans-serif;
+           font-size: 14px;
+           padding: 15px;
+         }
+
+         .form-header {
+           margin-bottom: 20px;
+         }
+
+         .form-header h1 {
+           font-size: 20px;
+           font-weight: bold;
+           margin-bottom: 6px;
+         }
+
+         .form-header h2 {
+           font-size: 12px;
+           margin: 0;
+         }
+
+         .record {
+           border: 1px solid #000;
+           margin-bottom: 0px;
+         }
+
+         .record>div {
+           border-left: 1px solid #000;
+           padding: 1px;
+           min-height: 30px;
+         }
+
+         .record>div:last-child {
+           border-left: none;
+         }
+
+         .lbl {
+           font-weight: bold;
+           margin-bottom: 4px;
+         }
+
+         .val {
+           min-height: 22px;
+         }
+
+         @media print {
+           body {
+             padding: 0;
+           }
+         }
+       </style>
+     </head>
+     <body>
+       <div class="container-fluid">
+         <!--  <div class="row"><div class="col-2"><img src="https://a-almandouh.github.io/nedss-system/Assets/des85.png" alt="الوبائيات والترصد"></div><div class="col-8"></div><div class="col-2"><img src="https://a-almandouh.github.io/nedss-system/Assets/icon48.png" alt="وزارة الصحة"></div></div> -->
+         <div class="form-header">
+           <div class="row align-items-center text-center ">
+             <!-- العمود الأول: شعار الوبائيات والترصد والـ QR -->
+             <div class="col-3 d-flex flex-row align-items-center gap-3 mb-3 mb-md-0">
+               <img src="https://a-almandouh.github.io/nedss-system/Assets/des85.png" alt="الوبائيات والترصد" style="max-height: 80px; width: auto;">
+               <div id="qrcode" class="d-flex align-items-center"></div>
+             </div>
+             <!-- العمود الثاني: العنوان الرئيسي والفرعي -->
+             <div class="col-7  text-center my-2 my-md-0">
+               <h1 class="h3 fw-bold text-dark mb-2">نموذج إبلاغ وبائي ومعملي لإشتباه العدوى التنفسية الحادة ARI</h1>
+               <p class="text-secondary small mb-0">للحالات المحجوزة بالقسم الداخلي لعدوى الأعراض التنفسية الحادة (ARI) سواء تم أخذ عينات لها أم لا</p>
+             </div>
+             <!-- العمود الثالث: شعار وزارة الصحة والتحديث -->
+             <div class="col-2  text-center">
+               <img src="https://a-almandouh.github.io/nedss-system/Assets/icon48.png" alt="وزارة الصحة" style="max-height: 80px; width: auto;" class="mb-2">
+               <br>
+               <span class="badge bg-danger px-3 py-2">تحديث أبريل 2023</span>
+             </div>
+           </div>
+           <div class="row g-0 record">
+             <div class="col-3  fw-bold d-flex justify-content-center align-items-center" style="font-size: 12px; background-color: rgb(254, 216, 177);">
+               <span class="lbl">نوع الإشتباه : </span>
+             </div>
+             <div class="col-9">
+               <span style="border: 1px solid #000; padding: 2px 6px; margin: 0 5px; border-radius: 3px;">✔</span>
+               <span class="lbl">انفلونزا موسمية (A/H1, A/H1pdm09, A/H3, Flu B)</span>
+               <br>
+               <span style="border: 1px solid #000; padding: 2px 6px; margin: 0 5px; border-radius: 3px;">X</span>
+               <span class="lbl">انفلونزا طيور</span>
+               <br>
+               <span style="border: 1px solid #000; padding: 2px 6px; margin: 0 5px; border-radius: 3px;">X</span>
+               <span class="lbl">فيروس الكورونا متلازمة الشرق أوسط التنفسية (MERS Cov)</span>
+               <br>
+               <span style="border: 1px solid #000; padding: 2px 6px; margin: 0 5px; border-radius: 3px;">X</span>
+               <span class="lbl">فيروس الكورونا المستجد (COVID-19)</span>
+               <br>
+               <span style="border: 1px solid #000; padding: 2px 6px; margin: 0 5px; border-radius: 3px;">X</span>
+               <span class="lbl">الفيروس المخلوى التنفسي (RSV)</span>
+             </div>
+           </div>
+           <div class="row g-0 record">
+             <div class="col-4">
+               <span class="lbl"> اسم المستشفى : </span>
+               <span class="val" data-field="NotificationSource"></span>
+             </div>
+             <div class="col-4">
+               <span class="lbl"> تليفون / فاكس المستشفى : </span>
+             </div>
+             <div class="col-4">
+               <span class="lbl"> تاريخ التقرير (الإبلاغ) : </span>
+               <span class="val" data-field="ReportDate"></span>
+             </div>
+           </div>
+           <form id="investigationForm">
+             <div class="container-fluid" id="Private-questions">
+               <div id="genral-data">
+                 <div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(254, 216, 177);">البيانات الديموجرافية</div>
+                 <div class="row g-0 record">
+                   <div class="col-6">
+                     <span class="lbl">اسم المريض رباعى: </span>
+                     <span class="val" data-field="FirstName"></span>
+                     <span class="val" data-field="FatherName"></span>
+                     <span class="val" data-field="GrandFatherName"></span>
+                     <span class="val" data-field="FamilyName"></span>
+                   </div>
+                   <div class="col-6">
+                     <span class="lbl">العمر : </span>
+                     <span class="val">
+                       <span data-field="Age"></span>
+                       <span data-field="AgeType"></span>
+                     </span>
+                   </div>
+                 </div>
+                 <div class="row g-0 record">
+                   <div class="col-6">
+                     <span class="lbl">النوع : </span>
+                     <span class="val" data-field="Sex"></span>
+                   </div>
+                   <div class="col-6">
+                     <span class="lbl">الحالة الاجتماعية : </span>
+                     <span class="val" data-field="MaritalStatus"></span>
+                   </div>
+                 </div>
+                 <div class="row g-0 record">
+                   <div class="col-6">
+                     <span class="lbl">الوظيفة / المهنة : </span>
+                     <span class="val" data-field="Occupation"></span>
+                   </div>
+                   <div class="col-3">
+                     <span class="lbl">الجنسية : </span>
+                     <span class="val" data-field="Nationality"></span>
+                   </div>
+                   <div class="col-3">
+                     <span class="lbl">رقم التليفون : </span>
+                     <span class="val" data-field="Phone"></span>
+                   </div>
+                 </div>
+                 <div class="row g-0 record">
+                   <div class="col-6">
+                     <span class="lbl">العنوان بالتفصيل : </span>
+                     <span class="val" data-field="ResidenceStreet"></span>
+                   </div>
+                   <div class="col-6">
+                     <span class="lbl">الرقم القومي : </span>
+                     <span class="val" data-field="NationalID"></span>
+                   </div>
+                 </div>
+                 <div class="row g-0 record">
+                   <div class="col-4">
+                     <span class="lbl">محافظة السكن : </span>
+                     <span class="val" data-field="ResidenceGovernorate"></span>
+                   </div>
+                   <div class="col-4">
+                     <span class="lbl">إدارة السكن : </span>
+                     <span class="val" data-field="ResidenceDistrict"></span>
+                   </div>
+                   <div class="col-4">
+                     <span class="lbl">مكتب الصحة : </span>
+                     <span class="val" data-field="ResidenceAdministration"></span>
+                   </div>
+                 </div>
+                 <div class="row g-0 record"></div>
+                 <div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(254, 216, 177);"> البيانات الإكلينيكية </div>
+                 <div class="row g-0 record">
+                   <div class="col-4">
+                     <span class="lbl">الحجز بالمستشفى : مكان العزل : </span>
+                     <span class="val" data-field="IsolationPlace"></span>
+                   </div>
+                   <div class="col-4">
+                     <span class="lbl">تاريخ الدخول : </span>
+                     <span class="val" data-field="AdmissionDate"></span>
+                   </div>
+                   <div class="col-4">
+                     <span class="lbl">تاريخ الخروج : </span>
+                     <span class="val" data-field="DisDate"></span>
+                   </div>
+                 </div>
+                 <div class="row g-0 record">
+                   <div class="col-12">
+                     <span class="lbl">تاريخ ظهور الأعراض : </span>
+                     <span class="val" data-field="OnsetDate"></span>
+                   </div>
+                 </div>
+                 <div class="row g-0 border border-dark">
+                   <div class="col-2">
+                     <span class="lbl">حمى </span>
+                     <span class="val" data-field="ddlYesNo1"></span>
+                   </div>
+                   <div class="col-2">
+                     <span class="lbl">التهاب في الحلق </span>
+                     <span class="val" data-field="ddlYesNo3"></span>
+                   </div>
+                   <div class="col-2">
+                     <span class="lbl">سعال</span>
+                     <span class="val" data-field="ddlYesNo2"></span>
+                   </div>
+                   <div class="col-2">
+                     <span class="lbl">ضيق في التنفس </span>
+                     <span class="val" data-field="ddlYesNo7"></span>
+                   </div>
+                   <div class="col-2">
+                     <span class="lbl">رشح </span>
+                     <span class="val" data-field="ddlYesNo4"></span>
+                   </div>
+                   <div class="col-2">
+                     <span class="lbl">الم بالمفاصل </span>
+                     <span class="val" data-field="ddlYesNo9"></span>
+                   </div>
+                   <div class="col-2">
+                     <span class="lbl">قئ </span>
+                     <span class="val" data-field="ddlYesNo10"></span>
+                   </div>
+                   <div class="col-2">
+                     <span class="lbl">إسهال </span>
+                     <span class="val" data-field="ddlYesNo11"></span>
+                   </div>
+                   <div class="col-2">
+                     <span class="lbl">صداع </span>
+                     <span class="val" data-field="ddlYesNo5"></span>
+                   </div>
+                   <div class="col-2">
+                     <span class="lbl">اخرى </span>
+                     <span class="val" data-field="TextBox1"></span>
+                   </div>
+                 </div>
+                 <div class="row g-0 border border-dark">
+                   <div class="col-2">
+                     <span class="lbl">تشخيص التهاب رئوى </span>
+                     <span class="val" data-field="IsCasePneumonia"></span>
+                   </div>
+                   <div class="col-2">
+                     <span class="lbl">تم التشخيص عن طريق </span>
+                     <span class="val" data-field="DiagnosedBy"></span>
+                   </div>
+                   <div class="col-2">
+                     <span class="lbl">نوع الالتهاب الرئوى </span>
+                     <span class="val" data-field="ddlYesNo2"></span>
+                   </div>
+                 </div>
+                 <div class="row g-0 border border-dark">
+                   <div class="col-2">
+                     <span class="lbl">عوامل الخطورة </span>
+                     <span class="val" data-field="ddlYesNo22"></span>
+                   </div>
+                   <div class="col-3">
+                     <span class="lbl">امراض الصدر المزمنة </span>
+                     <span class="val" data-field="ddlYesNo24"></span>
+                   </div>
+                   <div class="col-2">
+                     <span class="lbl">امراض القلب </span>
+                     <span class="val" data-field="ddlYesNo26"></span>
+                   </div>
+                   <div class="col-2">
+                     <span class="lbl"> ارتفاع ضغط الدم </span>
+                     <span class="val" data-field=""></span>
+                   </div>
+                   <div class="col-2">
+                     <span class="lbl">السمنة المفرطة </span>
+                     <span class="val" data-field="ddlYesNo28"></span>
+                   </div>
+                   <div class="col-2">
+                     <span class="lbl"> سيدات حوامل </span>
+                     <span class="val" data-field="ddlYesNo30"></span>
+                   </div>
+                   <div class="col-2">
+                     <span class="lbl">مرضى السكرى </span>
+                     <span class="val" data-field="ddlYesNo23"></span>
+                   </div>
+                   <div class="col-2">
+                     <span class="lbl">أمراض الربو </span>
+                     <span class="val" data-field="ddlYesNo24"></span>
+                   </div>
+                   <div class="col-2">
+                     <span class="lbl">أمراض الكلى </span>
+                     <span class="val" data-field="ddlYesNo27"></span>
+                   </div>
+                   <div class="col-2">
+                     <span class="lbl">أمراض الكبد </span>
+                     <span class="val" data-field=""></span>
+                   </div>
+                   <div class="col-4">
+                     <span class="lbl">نقص المناعة وأمراض الدم </span>
+                     <span class="val" data-field="ddlYesNo25"></span>
+                   </div>
+                   <div class="col-3">
+                     <span class="lbl">أمراض الجهاز العصبى والعضلى </span>
+                     <span class="val" data-field=""></span>
+                   </div>
+                   <div class="col-4">
+                     <span class="lbl">أخرى تذكر </span>
+                     <span class="val" data-field="TextBox11"></span>
+                   </div>
+                 </div>
+                 <div class="row g-0 border border-dark">
+                   <div class="col-3">
+                     <label for="Care-Unit" class="lbl">الحجز بوحدة العناية المركزة</label>
+                   </div>
+                   <div class="col-3">
+                     <select class="val input-error" id="Care-Unit">
+                       <option value="" disabled selected>اختر</option>
+                       <option value="نعم">نعم</option>
+                       <option value="لا">لا</option>
+                       <option value="غير معروف">غير معروف</option>
+                     </select>
+                   </div>
+                   <div class="col-3">
+                     <label for="Care-Unit-date" class="lbl">في حالة نعم اذكر التاريخ.:</label>
+                   </div>
+                   <div class="col-3">
+                     <input type="date" class="val input-error" id="Care-Unit-date">
+                   </div>
+                   <div class="col-3">
+                     <label for="Ventilator" class="lbl">استخدام جهاز تنفس صناعى</label>
+                   </div>
+                   <div class="col-3">
+                     <select class="val input-error" id="Ventilator">
+                       <option value="" disabled selected>اختر</option>
+                       <option value="نعم">نعم</option>
+                       <option value="لا">لا</option>
+                       <option value="غير معروف">غير معروف</option>
+                     </select>
+                   </div>
+                   <div class="col-3">
+                     <label for="Ventilator-date" class="lbl">في حالة نعم اذكر التاريخ :</label>
+                   </div>
+                   <div class="col-3">
+                     <input type="date" class="val input-error" id="Ventilator-date">
+                   </div>
+                 </div>
+               </div>
+             </div>
+             <div class="row g-0 border border-dark">
+               <div class="col-2">
+                 <label for="Covid-19" class="lbl">عدوى مسبقة بكوفيد 19 </label>
+               </div>
+               <div class="col-2">
+                 <select class="val input-error" id="Covid-19">
+                   <option value="" disabled selected>اختر</option>
+                   <option value="نعم">نعم</option>
+                   <option value="لا">لا</option>
+                   <option value="غير معروف">غير معروف</option>
+                 </select>
+               </div>
+               <div class="col-2">
+                 <label for="Covid-19-date" class="lbl">في حالة نعم اذكر التاريخ.:</label>
+               </div>
+               <div class="col-2">
+                 <input type="date" class="val input-error" id="Covid-19-date">
+               </div>
+               <div class="col-2">
+                 <label for="Covid-19-dig" class="lbl">طريقة التشخيص </label>
+               </div>
+               <div class="col-2">
+                 <select class="val input-error" id="Covid-19-dig">
+                   <option value="" disabled selected>اختر</option>
+                   <option value="أشعة سينية">أشعة سينية</option>
+                   <option value="أشعة مقطعية">أشعة مقطعية</option>
+                   <option value="PCR">PCR</option>
+                 </select>
+               </div>
+             </div>
+         </div>
+       </div>
+       <div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(254, 216, 177);">بيانات التعرض </div>
+       <div class="row g-0 border border-dark">
+         <div class="col-4">
+           <span class="lbl">تاريخ السفر خلال 14 يوم قبل ظهور الأعراض </span>
+           <span class="val" data-field="ddlYesNo22"></span>
+         </div>
+         <div class="col-4">
+           <span class="lbl">فى حالة نعم اسم الدولة </span>
+           <span class="val" data-field="TextBox10"></span>
+         </div>
+         <div class="col-4">
+           <span class="lbl">تاريخ العودة </span>
+           <span class="val" data-field="TxtDate"></span>
+         </div>
+         <div class="col-4">
+           <span class="lbl"> مخالط مباشر لحالة ايجابية خلال 14 يوم قبل ظهور الأعراض</span>
+           <span class="val" data-field=""></span>
+         </div>
+         <div class="col-4">
+           <span class="lbl"> تشخيص الحالة </span>
+           <span class="val" data-field="ddlYesNo28"></span>
+         </div>
+         <div class="col-4">
+           <span class="lbl"> اسم الحالة </span>
+           <span class="val" data-field="TextBox4"></span>
+         </div>
+       </div>
+       <div class="row g-0 record">
+         <div class="col-12  input-error">
+           <span class="lbl">تعامل مباشر خلال 14 يوم قبل ظهور الأعراض مع : </span>
+           <input class="form-check-input" type="checkbox" value="" id="fevar">
+           <label class="form-check-label lbl " for="fevar"> طيور - </label>
+           <input class="form-check-input" type="checkbox" value="" id="headache">
+           <label class="form-check-label lbl " for="headache"> خنازير - </label>
+           <input class="form-check-input" type="checkbox" value="" id="sweat">
+           <label class="form-check-label lbl " for="sweat"> خفافيش - </label>
+           <input class="form-check-input" type="checkbox" value="" id="Joint-pain">
+           <label class="form-check-label lbl " for="Joint-pain"> جمال - </label>
+           <label for="symptoms" class="lbl"> اخرى تذكر</label>
+           <input type="text" class="val" id="symptoms" placeholder="أعراض اخرى تذكر">
+         </div>
+       </div>
+       <!-- الصف الأول -->
+       <div class="row g-0 align-items-center">
+         <div class="col-3">
+           <label for="Frequently" class="lbl">هل سبق زيارة اسواق او اماكن حيوانات فى اخر 14 يوم؟</label>
+         </div>
+         <div class="col-1">
+           <select class="val input-error" id="Frequently">
+             <option value="" disabled selected>اختر</option>
+             <option value="نعم">نعم</option>
+             <option value="لا">لا</option>
+           </select>
+         </div>
+         <div class="col-3">
+           <label for="Frequently" class="lbl">هل سبق زيارة مركز خدمة طبية فى اخر 14 يوم ؟</label>
+         </div>
+         <div class="col-1">
+           <select class="val input-error" id="Frequently">
+             <option value="" disabled selected>اختر</option>
+             <option value="نعم">نعم</option>
+             <option value="لا">لا</option>
+           </select>
+         </div>
+         <div class="col-2">
+           <label for="Frequently-hosp" class="lbl">في حالة نعم اذكر سبب الزيارة:</label>
+         </div>
+         <div class="col-2">
+           <input type="text" class="val input-error" id="Frequently-hosp">
+         </div>
+       </div>
+       <!-- الصف الثاني -->
+       <div class="row g-0 align-items-center">
+         <div class="col-4">
+           <span class="lbl"> الحالة عند الخروج : </span>
+           <span class="val" data-field="OutCome"></span>
+         </div>
+         <div class="col-2">
+           <label for="Frequently-hosp" class="lbl">في حالة التحويل اذكر اسم المستشفى:</label>
+         </div>
+         <div class="col-2">
+           <input type="text" class="val input-error" id="Frequently-hosp">
+         </div>
+       </div>
+       <div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(254, 216, 177);"> بيانات التطعيم </div>
+       <!-- الصف الثالث -->
+       <div class="row g-0 align-items-center">
+         <div class="col-3">
+           <label for="antibiotic" class="lbl">هل تلقى قاح الكورونا المستجد -19 COVID ؟</label>
+         </div>
+         <div class="col-1">
+           <select class="val input-error" id="antibiotic">
+             <option value="" disabled selected>اختر</option>
+             <option value="نعم">نعم</option>
+             <option value="لا">لا</option>
+             <option value="غير معروف">غير معروف</option>
+             <option value="لا ينطبق">لا ينطبق</option>
+           </select>
+         </div>
+         <div class="col-3">
+           <label for="antibiotic-name" class="lbl">في حالة نعم عدد الجرعات:</label>
+         </div>
+         <div class="col-1">
+           <input type="number" class="val input-error" id="antibiotic-name">
+         </div>
+         <div class="col-2">
+           <label for="antibiotic-name" class="lbl" التاريخ:</label>
+         </div>
+         <div class="col-2">
+           <input type="date" class="val input-error" id="antibiotic-name">
+         </div>
+         <div class="col-3">
+           <label for="antibiotic" class="lbl">هل تلقى قاح الأنفلونزا ؟</label>
+         </div>
+         <div class="col-1">
+           <select class="val input-error" id="antibiotic">
+             <option value="" disabled selected>اختر</option>
+             <option value="نعم">نعم</option>
+             <option value="لا">لا</option>
+             <option value="غير معروف">غير معروف</option>
+             <option value="لا ينطبق">لا ينطبق</option>
+           </select>
+         </div>
+         <div class="col-3">
+           <label for="antibiotic-name" class="lbl">في حالة نعم عدد الجرعات:</label>
+         </div>
+         <div class="col-1">
+           <input type="number" class="val input-error" id="antibiotic-name">
+         </div>
+         <div class="col-2">
+           <label for="antibiotic-name" class="lbl" التاريخ:</label>
+         </div>
+         <div class="col-2">
+           <input type="date" class="val input-error" id="antibiotic-name">
+         </div>
+       </div>
+       <div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(254, 216, 177);"> البيانات المعملية </div>
+       <div class="row g-0 record">
+         <div class="col-6">
+           <span class="lbl">تملأ بمعرفة المستشفى : </span>
+         </div>
+         <div class="col-6">
+           <span class="lbl">تملأ بمعرفة المعامل : </span>
+         </div>
+       </div>
+       <div class="row g-0 record">
+         <div class="col-2">
+           <span class="lbl">نوع العينة : </span>
+         </div>
+         <div class="col-2">
+           <span class="lbl">رقم العينة : </span>
+         </div>
+         <div class="col-2">
+           <span class="lbl"> تاريخ السحب : </span>
+           <span class="val" data-field="LabTest1"></span>
+         </div>
+         <div class="col-3">
+           <span class="lbl">تاريخ الفحص : </span>
+         </div>
+         <div class="col-3">
+           <span class="lbl">النتيجة : </span>
+         </div>
+       </div>
+       <div class="row g-0 record">
+         <div class="col-2">
+           <span class="val" data-field="Specimen1"></span>
+         </div>
+         <div class="col-2"></div>
+         <div class="col-2">
+           <span class="val" data-field="GetSampleDate1"></span>
+         </div>
+         <div class="col-3"></div>
+       </div>
+       <div class="row g-0 record">
+         <div class="col-2">
+           <span class="val" data-field="Specimen2"></span>
+         </div>
+         <div class="col-2"></div>
+         <div class="col-2">
+           <span class="val" data-field="GetSampleDate2"></span>
+         </div>
+         <div class="col-3"></div>
+         <div class="col-3">
+           <span class="val" data-field="Result2"></span>
+         </div>
+       </div>
+       <div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(254, 216, 177);"> بيانات خاصة بالمستشفى والمريض </div>
+       <div class="row g-0 record">
+         <div class="col-4">
+           <span class="lbl">رقم المستشفى : </span>
+           <span class="val" data-field="HosID"></span>
+         </div>
+         <div class="col-4">
+           <span class="lbl">اسم الطبيب : </span>
+           <span class="val" data-field="PhysicianName"></span>
+         </div>
+         <div class="col-4">
+           <span class="lbl">تصنيف الحالة : </span>
+           <span class="val" data-field="CaseStatus"></span>
+         </div>
+       </div>
+       <div class="row g-0 record">
+         <div class="col-4">
+           <span class="lbl"> النتيجة : </span>
+           <span class="val" data-field="OutCome"></span>
+         </div>
+         <div class="col-4">
+           <span class="lbl">تاريخ الخروج : </span>
+           <span class="val" data-field="DisDate"></span>
+         </div>
+         <div class="col-4">
+           <span class="lbl">التشخيص النهائى : </span>
+           <span class="val" data-field="FinalDiagnosis"></span>
+         </div>
+       </div>
+       </div>
+       </div>
+       <hr>
+       <div class="row g-0 ">
+         <div class="col-3">
+           <span class="lbl">تاريخ التقصى </span>
+           <span class="val" data-field="SurveyDate"></span>
+         </div>
+         <div class="col-3">
+           <span class="lbl"> المراقب الصحي </span>
+           <br>
+           <span class="val" data-field="txtOH"></span>
+         </div>
+         <div class="col-3">
+           <span class="lbl">مسئول الترصد </span>
+           <br>
+           <span class="val" data-field="txtOS"></span>
+         </div>
+         <div class="col-1">
+           <span class="lbl"> يعتمد </span>
+         </div>
+         <div class="col-2">
+           <span class="lbl"> مدير الإدارة </span>
+           <br>
+           <span class="val" data-field="txtAdmin"></span>
+         </div>
+       </div>
+       </div>
+       </form>
+       <!-- جمع البيانات -->
+       <script src="https://a-almandouh.github.io/nedss-system/Scripts/data/extractor.js"></script>
+       <script src="https://a-almandouh.github.io/nedss-system/Scripts/data/collectTemplateFields.js"></script>
+       <script src="https://a-almandouh.github.io/nedss-system/Scripts/data/collectAllData.js"></script>
+       <!-- فصل البيانات -->
+       <script src="https://a-almandouh.github.io/nedss-system/Scripts/Google/config.js"></script>
+       <script src="https://a-almandouh.github.io/nedss-system/Scripts/Google/splitData.js"></script>
+       <!-- الحفظ -->
+       <script src="https://a-almandouh.github.io/nedss-system/Scripts/save/saveHtml.js"></script>
+       <script src="https://a-almandouh.github.io/nedss-system/Scripts/save/saveCsv.js"></script>
+       <script src="https://a-almandouh.github.io/nedss-system/Scripts/save/saveToSheet.js"></script>
+       <script src="https://a-almandouh.github.io/nedss-system/Scripts/save/saveDepartmentSheet.js"></script>
+       <script src="https://a-almandouh.github.io/nedss-system/Scripts/ui/buttons.js"></script>
+       <script>
+         window.globalAppSettings = {};
+         window.addEventListener("message", (event) => {
+           if (event.data && event.data.type === "FILL_DATA") {
+             const receivedData = event.data.data;
+             // استخراج الإعدادات المدمجة وحفظها بأمان
+             if (receivedData && receivedData.appSettings) {
+               window.globalAppSettings = receivedData.appSettings;
+               console.log("📥 [Template GitHub] تم استلام الإعدادات بنجاح وحفظها بالذاكرة:", window.globalAppSettings);
+             }
+             // 💡 استمر هنا في كتابة كود التعبئة الفعلي للحقول الخاص بك كالمعتاد...
+             // مثال: fillFields(receivedData);
+           }
+         });
+       </script>
+       <script>
+         async function getDiseaseLink(data) {
+           try {
+             const response = await fetch("https://a-almandouh.github.io/nedss-system/Config/disease-routing.json");
+             const routes = await response.json();
+             const route = routes[data.DiseaseID];
+             if (!route || !route.url) {
+               console.warn("No route found for DiseaseID:", data.DiseaseID);
+               return null;
+             }
+             let url = route.url;
+             if (route.appendCaseId) {
+               url += "&caseid=" + data.CaseID;
+             }
+             return url;
+           } catch (err) {
+             console.error("Disease route error", err);
+             return null;
+           }
+         }
+         window.addEventListener("message", async function(event) {
+           if (!event.data || event.data.type !== "FILL_DATA") {
+             return;
+           }
+           const data = event.data.data;
+           window.caseData = data;
+           console.log("DATA RECEIVED", data);
+           // ==========================
+           // تعبئة الحقول
+           // ==========================
+           for (const key in data) {
+             const el = document.querySelector(`[data-field="${key}"]`);
+             if (el) {
+               el.textContent = data[key] || "";
+             }
+           }
+           // ==========================
+           // عنوان الصفحة
+           // ==========================
+           let month = "";
+           let year = "";
+           if (data.ReportDate) {
+             const parts = data.ReportDate.split("/");
+             if (parts.length === 3) {
+               month = parts[1];
+               year = parts[2];
+             }
+           }
+           document.title = [
+             data.ResidenceGovernorate,
+             data.ResidenceDistrict,
+             data.DiseaseName,
+             month,
+             year,
+             data.FirstName,
+             data.FatherName,
+             data.GrandFatherName
+           ].filter(Boolean).join(" - ");
+           // ==========================
+           // QR CODE
+           // ==========================
+           const qrContainer = document.getElementById("qrcode");
+           if (qrContainer) {
+             qrContainer.innerHTML = "";
+             const myLink = await getDiseaseLink(data);
+             if (myLink) {
+               new QRCode(qrContainer, {
+                 text: myLink,
+                 width: 75,
+                 height: 75
+               });
+               const qrImage = qrContainer.querySelector('img');
+               if (qrImage) {
+                 qrImage.style.display = "block";
+               }
+               qrContainer.style.cursor = "pointer";
+               qrContainer.onclick = function() {
+                 window.open(myLink, "_blank");
+               };
+             }
+           }
+         });
+       </script>
+     </body>
+   </html>
 
