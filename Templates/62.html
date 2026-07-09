@@ -487,18 +487,48 @@ body{
    
    <div class="row g-0 record">
             <div class="col-12  input-error">
-                <span class="lbl">الأعراض: </span>
-                <input class="form-check-input" type="checkbox" value="" id="fevar"><label class="form-check-label lbl " for="fevar"> حمى مستمرة او متقطعة لمدة 14 يوم - </label>
-                <input class="form-check-input" type="checkbox" value="" id="headache"><label class="form-check-label lbl " for="headache"> صداع - </label>
-                <input class="form-check-input" type="checkbox" value="" id="sweat"><label class="form-check-label lbl " for="sweat"> عرق ليلى - </label>
-                <input class="form-check-input" type="checkbox" value="" id="Joint-pain"><label class="form-check-label lbl " for="Joint-pain"> الم بالمفاصل/ العضلات - </label>
-                <input class="form-check-input" type="checkbox" value="" id="Loss-appetite"><label class="form-check-label lbl " for="Loss-appetite"> فقدان الشهية  - </label>
-                <input class="form-check-input" type="checkbox" value="" id="meager"><label class="form-check-label lbl " for="meager"> هزلان عام  - </label>
+                <span class="lbl">تعامل مباشر خلال 14 يوم قبل ظهور الأعراض مع : </span>
+                <input class="form-check-input" type="checkbox" value="" id="fevar"><label class="form-check-label lbl " for="fevar"> طيور - </label>
+                <input class="form-check-input" type="checkbox" value="" id="headache"><label class="form-check-label lbl " for="headache"> خنازير - </label>
+                <input class="form-check-input" type="checkbox" value="" id="sweat"><label class="form-check-label lbl " for="sweat">  خفافيش - </label>
+                <input class="form-check-input" type="checkbox" value="" id="Joint-pain"><label class="form-check-label lbl " for="Joint-pain">  جمال  - </label>
                 <label for="symptoms" class="lbl"> اخرى تذكر</label><input type="text" class="val" id="symptoms" placeholder="أعراض اخرى تذكر">
                 
             </div>
             </div>
+<!-- الصف الأول -->
+   <div class="row g-0 align-items-center">
+       <div class="col-4">
+            <label for="Frequently" class="lbl">هل سبق زيارة اسواق او اماكن إعاشة حيوانات فى اخر 14 يوم ؟؟</label>
+       </div>
+       <div class="col-2">
+           <select class="val input-error" id="Frequently">
+                <option value="" disabled selected>اختر</option>
+                <option value="نعم">نعم</option>
+                <option value="لا">لا</option>
+               
+          </select>
+       </div>
+      <div class="col-4">
+            <label for="Frequently" class="lbl">هل سبق زيارة زيارة مركز تقديم خدمة طبية فى اخر 14 يوم ؟؟</label>
+       </div>
+       <div class="col-2">
+           <select class="val input-error" id="Frequently">
+                <option value="" disabled selected>اختر</option>
+                <option value="نعم">نعم</option>
+                <option value="لا">لا</option>
+               
+          </select>
+       </div>
+       <div class="col-3">
+            <label for="Frequently-hosp" class="lbl">في حالة نعم اذكر سبب الزيارة:</label>
+       </div>
+       <div class="col-3">
+           <input type="text" class="val input-error" id="Frequently-hosp" placeholder="اسم المنشآت">
+       </div>
+   </div>
 
+   
     <div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(254, 216, 177);">  البيانات المعملية </div>
 
      <div class="row g-0 record">
@@ -628,27 +658,7 @@ body{
 
 <div class="container-fluid" id="Private-questions">
 
-   <!-- الصف الأول -->
-   <div class="row g-0 align-items-center">
-       <div class="col-4">
-            <label for="Frequently" class="lbl">هل تم التردد على منشآت صحية قبل الإبلاغ عن الحالة؟</label>
-       </div>
-       <div class="col-2">
-           <select class="val input-error" id="Frequently">
-                <option value="" disabled selected>اختر</option>
-                <option value="نعم">نعم</option>
-                <option value="لا">لا</option>
-                <option value="غير معروف">غير معروف</option>
-          </select>
-       </div>
-       <div class="col-3">
-            <label for="Frequently-hosp" class="lbl">في حالة نعم اذكر اسم المنشآت الصحية:</label>
-       </div>
-       <div class="col-3">
-           <input type="text" class="val input-error" id="Frequently-hosp" placeholder="اسم المنشآت">
-       </div>
-   </div>
-
+   
    <!-- الصف الثاني -->
    <div class="row g-0 align-items-center">
        <div class="col-4">
