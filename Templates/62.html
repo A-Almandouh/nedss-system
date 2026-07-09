@@ -524,10 +524,23 @@ body{
             <label for="Frequently-hosp" class="lbl">في حالة نعم اذكر سبب الزيارة:</label>
        </div>
        <div class="col-2">
-           <input type="text" class="val input-error" id="Frequently-hosp" placeholder="اسم المنشآت">
+           <input type="text" class="val input-error" id="Frequently-hosp" >
        </div>
    </div>
-
+ 
+   <!-- الصف الثاني -->
+   <div class="row g-0 align-items-center">
+        <div class="col-4">
+                        <span class="lbl"> الحالة عند الخروج  : </span>
+                        <span class="val"data-field="OutCome"></span>
+                    </div>
+        <div class="col-2">
+            <label for="Frequently-hosp" class="lbl">في حالة التحويل اذكر اسم المستشفى:</label>
+       </div>
+       <div class="col-2">
+           <input type="text" class="val input-error" id="Frequently-hosp" >
+       </div>
+   </div>
    
     <div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(254, 216, 177);">  البيانات المعملية </div>
 
@@ -578,10 +591,7 @@ body{
             
         </div>
 
-        <div class="col-3">
-            <span class="lbl">النتيجة : </span>
-            <span class="val" data-field="Result1"></span>
-        </div>
+       
 
     </div>
     
@@ -658,22 +668,7 @@ body{
 
 <div class="container-fluid" id="Private-questions">
 
-   
-   <!-- الصف الثاني -->
-   <div class="row g-0 align-items-center">
-       <div class="col-4">
-            <label for="Previous-diagnosisy" class="lbl">هل تم تشخيص المريض مسبقاً بإصابته بمرض البروسيلا؟</label>
-       </div>
-       <div class="col-2">
-           <select class="val input-error" id="Previous-diagnosisy">
-                <option value="" disabled selected>اختر</option>
-                <option value="نعم">نعم</option>
-                <option value="لا">لا</option>
-                <option value="غير معروف">غير معروف</option>
-          </select>
-       </div>
-       <div class="col-6"></div> <!-- عمود فارغ لتكملة الـ 12 عمود وضمان التنسيق -->
-   </div>
+  
   
    <!-- الصف الثالث -->
    <div class="row g-0 align-items-center">
