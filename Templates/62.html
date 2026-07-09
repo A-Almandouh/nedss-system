@@ -238,6 +238,8 @@ body{
     </div>
 </div>
 <form id="investigationForm">
+<div class="container-fluid" id="Private-questions">
+
 <div id="genral-data">
     <div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(254, 216, 177);">البيانات الديموجرافية</div>
 
@@ -724,162 +726,9 @@ body{
      </div>                
 </div>               
 
-<hr>
-<div class="row g-0 record justify-content-center fw-bold" style="font-size: 12px; background-color: rgb(254, 216, 177);">الاستبيان الاستقصائي</div>
-
-<div class="container-fluid" id="Private-questions">
 
   
-  
-   <!-- الصف الثالث -->
-   <div class="row g-0 align-items-center">
-       <div class="col-4">
-            <label for="antibiotic" class="lbl">هل تلقى مضادات حيوية قبل الإبلاغ عن الحالة؟</label>
-       </div>
-       <div class="col-2">
-           <select class="val input-error" id="antibiotic">
-                <option value="" disabled selected>اختر</option>
-                <option value="نعم">نعم</option>
-                <option value="لا">لا</option>
-                <option value="غير معروف">غير معروف</option>
-          </select>
-       </div>
-       <div class="col-3">
-            <label for="antibiotic-name" class="lbl">في حالة نعم اذكر اسم المضادات الحيوية:</label>
-       </div>
-       <div class="col-3">
-           <input type="text" class="val input-error" id="antibiotic-name" placeholder="المضاد الحيوي">
-       </div>
-   </div>
-       
-   <!-- عنوان فرعي -->
-   <div class="row ">
-        <div class="col-12">
-            <span class="lbl fw-bold" style="text-decoration: underline">* عوامل الخطورة:</span>
-        </div>
-   </div>
-
-   <!-- الصف الرابع -->
-   <div class="row g-0 align-items-center">
-        <div class="col-3">
-             <label class="lbl">هل يوجد تعامل مع الحيوانات؟</label>
-        </div>
-        <div class="col-1">
-             <span class="val" data-field="AnimalDeal"></span>
-        </div>
-        <div class="col-2">
-            <label for="Treat-an-animal-place" class="lbl">مكان التعامل:</label>
-        </div>
-        <div class="col-2">
-           <input type="text" class="val input-error" id="Treat-an-animal-place" placeholder="مكان التعامل">
-        </div>
-        <div class="col-2">
-            <label for="Treat-an-animal-name" class="lbl">نوع الحيوان:</label>
-        </div>
-        <div class="col-2">
-           <input type="text" class="val input-error" id="Treat-an-animal-name" placeholder="نوع الحيوان">
-        </div>
-   </div>
-
-   <!-- الصف الخامس -->
-   <div class="row g-0 align-items-center">
-        <div class="col-4">
-            <label class="lbl">هل حدث إجهاض أو نفوق لأحد الحيوانات المتعامل معها؟</label>
-        </div>
-        <div class="col-2">
-            <span class="val" data-field="AnimalAbortion"></span>
-        </div>
-        <div class="col-4">
-            <label for="Inform-veterinarian" class="lbl">هل تم إبلاغ البيطري في حالة نعم؟ (يرفق)</label>
-        </div>
-        <div class="col-2">
-           <select class="val input-error" id="Inform-veterinarian">
-                <option value="" disabled selected>اختر</option>
-                <option value="نعم">نعم</option>
-                <option value="لا">لا</option>
-                <option value="غير معروف">غير معروف</option>
-          </select>
-        </div>
-    </div>
-
-    <!-- الصف السادس -->
-    <div class="row g-0 align-items-center">
-        <div class="col-2">
-            <label for="meat" class="lbl">تناول لحوم غير مطهية جيداً؟</label>
-        </div>
-        <div class="col-2">
-            <select class="val input-error" id="meat">
-                <option value="" disabled selected>اختر</option>
-                <option value="نعم">نعم</option>
-                <option value="لا">لا</option>
-                <option value="غير معروف">غير معروف</option>
-            </select>
-        </div>
-        <div class="col-2">
-            <label for="milk" class="lbl">ألبان غير مبسترة/معاملة؟</label>
-        </div>
-        <div class="col-2">
-            <select class="val input-error" id="milk">
-                <option value="" disabled selected>اختر</option>
-                <option value="نعم">نعم</option>
-                <option value="لا">لا</option>
-                <option value="غير معروف">غير معروف</option>
-            </select>
-        </div>
-        <div class="col-2">
-            <label for="Source-milk" class="lbl">مصدر الألبان وعنوانه:</label>
-        </div>
-        <div class="col-2">
-            <input type="text" class="val input-error" id="Source-milk" placeholder="المصدر والعنوان">
-        </div>
-    </div>
-
-    <!-- عنوان فرعي ثانٍ -->
-    <div class="row ">
-        <div class="col-12">
-            <span class="lbl fw-bold" style="text-decoration: underline">* عوامل أخرى:</span>
-        </div>
-    </div>
-
-    <!-- الصف السابع -->
-    <div class="row g-0 align-items-center">
-        <div class="col-3">
-            <label class="lbl">التعرض لطعم أو ميكروب البروسيلا بالمعمل:</label>
-        </div>
-        <div class="col-1">
-            <span class="val" data-field="BrucellaExposure"></span>
-        </div>
-        <div class="col-2">
-            <label for="lab" class="lbl">اسم المعمل وعنوانه:</label>
-        </div>
-        <div class="col-2">
-            <input type="text" class="val input-error" id="lab" placeholder="المعمل">
-        </div>
-        <div class="col-2">
-            <label for="vacc" class="lbl">تفاصيل التعرض للطعم:</label>
-        </div>
-        <div class="col-2">
-            <input type="text" class="val input-error" id="vacc" placeholder="التفاصيل">
-        </div>
-    </div>
-
-    <!-- الصف الثامن -->
-    <div class="row g-0 align-items-center">
-        <div class="col-4">
-            <label class="lbl">هل توجد حالات أخرى مرتبطة تعاني من نفس الأعراض؟</label>
-        </div>
-        <div class="col-2">
-            <span class="val" data-field="SimilarCasesNearby"></span>
-        </div>
-        <div class="col-2">
-            <label for="contact" class="lbl">في حالة نعم اذكر المكان:</label>
-        </div>
-        <div class="col-4">
-            <input type="text" class="val input-error" id="contact" placeholder="المكان">
-        </div>
-    </div>
-
-
+ 
 
 
 
